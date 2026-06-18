@@ -1,354 +1,322 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>曾银晶 | AI产品 & AIGC作品集</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>曾银晶 · 影灵灵 — AI 皮影文化 IP</title>
+  <meta name="description" content="广东外语外贸大学市场营销专业，影灵灵创始人，用生成式AI重构文化叙事">
+  <link rel="icon" href="images/about/photo.jpg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- GSAP & SplitType for menu animation -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
 </head>
-
 <body>
 
-<!-- NAV -->
-<nav class="nav glass">
-  <div class="logo">ZengYinjing</div>
-  <div class="nav-links">
-    <a href="#hero">Home</a>
-    <a href="#about">About</a>
-    <a href="#project">Project</a>
-  </div>
-</nav>
+  <!-- ========== REFERENCE BADGE ========== -->
+  <a href="https://webflow.com/made-in-webflow" target="_blank" class="badge_ref">
+    <div>Clonable on <strong>Webflow</strong></div>
+  </a>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-inner">
-    <p class="hero-tag">AI Cultural IP Designer</p>
-    <h1 class="hero-heading">用生成式 AI<br>重构文化叙事</h1>
-    <p class="hero-sub">Turning traditional culture into AI-generated cinematic experiences.</p>
-    <p class="hero-project-name">影灵灵 · AI 皮影文化 IP</p>
-    <a href="#project" class="hero-cta">查看作品 →</a>
-    <a href="#about" class="hero-scroll">了解更多 ↓</a>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about-section" id="about">
-  <div class="section-header">
-    <h2 class="section-title">About</h2>
-    <p class="section-lead">市场营销 × AIGC · 用 AI 重新定义文化内容生产</p>
-  </div>
-  <div class="about-grid">
-
-    <div class="about-card about-intro">
-      <div class="about-photo">
-        <img src="images/about/photo.jpg" alt="曾银晶生活照" onerror="this.style.display='none'">
-      </div>
-      <h3>曾银晶</h3>
-      <p class="about-role">AI产品方向 · AIGC内容生产</p>
-      <p class="about-bio">广东外语外贸大学 · 市场营销（2024–2028）<br>GPA 3.76/4.0 · 前15%</p>
-      <br><br>
-      <p class="contact-label">Contact Me</p>
-      <div class="intro-contact" id="contact">
-        <a href="mailto:LinWan1020@163.com" class="intro-contact-item">
-          <span>📧</span>
-          <span>Email</span>
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav" id="mainNav">
+    <div class="nav_top-wrapper">
+      <div class="nav_top">
+        <a href="#hero" class="nav_link" data-nav="top-link">曾银晶</a>
+        <a href="#" class="nav_menu w-inline-block" data-nav="menu-button" id="menuBtn">
+          <div class="nav_menu_line top" data-nav="menu-line"></div>
+          <div class="nav_menu_line bottom" data-nav="menu-line"></div>
+          <div class="nav_menu-text">Menu</div>
         </a>
-        <div class="intro-contact-item" onclick="copyWechat()">
-          <span>💬</span>
-          <span>微信</span>
+        <a href="#contact" class="nav_link" data-nav="top-link">CONTACT</a>
+      </div>
+      <div class="nav_top-line"></div>
+    </div>
+
+    <!-- Fullscreen Menu Overlay -->
+    <div class="nav_overlay" id="navOverlay">
+      <div class="nav_overlay-inner">
+
+        <div class="nav_item-wrapper" data-menu-item="0">
+          <div class="nav_item-img-wrapper" data-nav="link-img">
+            <img src="images/about/photo.jpg" alt="" class="nav_item-img">
+          </div>
+          <div class="nav_link-wrapper">
+            <a href="#hero" class="nav_link is-large" data-nav="bottom-link">HOME</a>
+          </div>
+          <div class="nav_item-img-wrapper" data-nav="link-img">
+            <img src="images/about/volunteer.jpg" alt="" class="nav_item-img">
+          </div>
         </div>
-        <a href="曾银晶_简历.pdf" download class="intro-contact-item resume-link">
-          <span>📄</span>
-          <span>简历</span>
-        </a>
+        <div class="nav_item-line" data-nav="bottom-line"></div>
+
+        <div class="nav_item-wrapper" data-menu-item="1">
+          <div class="nav_item-img-wrapper" data-nav="link-img">
+            <img src="images/about/internship.jpg" alt="" class="nav_item-img">
+          </div>
+          <div class="nav_link-wrapper">
+            <a href="#about" class="nav_link is-large" data-nav="bottom-link">ABOUT</a>
+          </div>
+          <div class="nav_item-img-wrapper" data-nav="link-img">
+            <img src="images/about/volunteer.jpg" alt="" class="nav_item-img">
+          </div>
+        </div>
+        <div class="nav_item-line" data-nav="bottom-line"></div>
+
+        <div class="nav_item-wrapper" data-menu-item="2">
+          <div class="nav_item-img-wrapper" data-nav="link-img">
+            <img src="images/yinglingling/yinglingling_views.png" alt="" class="nav_item-img">
+          </div>
+          <div class="nav_link-wrapper">
+            <a href="#project" class="nav_link is-large" data-nav="bottom-link">PROJECT</a>
+          </div>
+          <div class="nav_item-img-wrapper" data-nav="link-img">
+            <img src="images/yinglingling/yinglingling_birth.png" alt="" class="nav_item-img">
+          </div>
+        </div>
+        <div class="nav_item-line" data-nav="bottom-line"></div>
+
+        <div class="nav_item-wrapper" data-menu-item="3">
+          <div class="nav_item-img-wrapper" data-nav="link-img">
+            <img src="images/about/photo.jpg" alt="" class="nav_item-img">
+          </div>
+          <div class="nav_link-wrapper">
+            <a href="#contact" class="nav_link is-large" data-nav="bottom-link">CONTACT</a>
+          </div>
+          <div class="nav_item-img-wrapper" data-nav="link-img">
+            <img src="images/about/internship.jpg" alt="" class="nav_item-img">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <div class="hero_bg"></div>
+    <div class="hero_content">
+      <p class="hero_eyebrow">AI · 文化 IP · AIGC</p>
+      <h1 class="hero_title">
+        <span class="hero_title-line">用生成式 AI</span>
+        <span class="hero_title-line">重构<span class="text-gradient">文化叙事</span></span>
+      </h1>
+      <p class="hero_sub">影灵灵 — AI 皮影文化 IP</p>
+      <a href="#project" class="hero_cta">查看作品 ↓</a>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-hint-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about" id="about">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">About Me</h2>
+      <p class="section-desc">广东外语外贸大学 · 市场营销（2024–2028）</p>
+    </div>
+
+    <div class="about-grid">
+      <!-- Photo Card -->
+      <div class="about-card about-photo-card">
+        <div class="photo-frame">
+          <img src="images/about/photo.jpg" alt="曾银晶">
+        </div>
+        <div class="photo-info">
+          <p class="photo-name">曾银晶</p>
+          <p class="about-bio">广东外语外贸大学 · 市场营销（2024–2028）<br>GPA 3.76/4.0 · 前15%</p>
+          <br><br>
+          <p class="contact-label">Contact Me</p>
+          <div class="intro-contact" id="contact">
+            <a class="intro-contact-item" href="mailto:LinWan1020@163.com">
+              <span>📧</span><span>Email</span>
+            </a>
+            <div class="intro-contact-item" onclick="copyWechat()">
+              <span>💬</span><span>微信</span>
+            </div>
+            <a class="intro-contact-item" href="曾银晶_简历.pdf" download>
+              <span>📄</span><span>简历</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Project -->
+      <div class="about-card core-project-card">
+        <div class="core-project-badge">核心项目</div>
+        <h3 class="core-project-name">影灵灵</h3>
+        <p class="core-project-tagline">AI 皮影文化 IP</p>
+        <p class="core-project-desc">以生成式 AI 为核心的内容生产体系，让传统皮影戏在数字时代焕发新生。通过 Prompt 工程、视觉一致性控制和多模态管线设计，实现文化 IP 的规模化 AIGC 内容输出。</p>
+        <a href="#project" class="card-link">查看详情 →</a>
+      </div>
+
+      <!-- Internship -->
+      <div class="about-card has-preview">
+        <div class="preview-overlay">
+          <img src="images/about/internship.jpg" alt="实习照片">
+        </div>
+        <div class="card-icon">💼</div>
+        <h3>实习经历</h3>
+        <p class="card-org">第十五届全运会 · 好宝 BEE 吉祥物运营</p>
+        <p class="card-detail">参与吉祥物 IP 运营，协助内容策划与社群互动，累计曝光 50 万+。</p>
+      </div>
+
+      <!-- Volunteer -->
+      <div class="about-card has-preview">
+        <div class="preview-overlay">
+          <img src="images/about/volunteer.jpg" alt="志愿照片">
+        </div>
+        <div class="card-icon">🤝</div>
+        <h3>志愿经历</h3>
+        <p class="card-org">第十五届全运会 · 粤语和普通话双语播报</p>
+        <p class="card-detail">为开幕式提供语言志愿服务，累计服务时长 120+ 小时。</p>
+      </div>
+
+      <!-- Skills -->
+      <div class="about-card">
+        <div class="card-icon">🛠</div>
+        <h3>技能标签</h3>
+        <div class="skill-tags">
+          <span>Prompt 工程</span>
+          <span>AIGC 内容生产</span>
+          <span>视觉一致性控制</span>
+          <span>多模态管线设计</span>
+          <span>市场营销</span>
+          <span>文化 IP 运营</span>
+        </div>
+      </div>
+
+      <!-- Self Assessment -->
+      <div class="about-card">
+        <div class="card-icon">💡</div>
+        <h3>自我评价</h3>
+        <p class="card-detail">对生成式 AI 与文化创意交叉领域有浓厚兴趣，善于将技术工具应用于叙事表达。具备跨团队协作经验，能在多元文化背景下高效沟通。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROJECT ========== -->
+  <section class="project" id="project">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Project</h2>
+      <p class="section-desc">影灵灵 · AI 皮影文化 IP — 完整创作过程</p>
+    </div>
+
+    <!-- Project Intro -->
+    <div class="project-intro">
+      <div class="project-role">
+        <span class="label">我的角色</span>
+        <span>创始人 & AIGC 内容负责人</span>
+      </div>
+      <div class="project-role">
+        <span class="label">时间</span>
+        <span>2025 — 至今</span>
+      </div>
+      <div class="project-highlights">
+        <div class="highlight-item">🎯 构建完整 AIGC 内容生产管线</div>
+        <div class="highlight-item">🎨 实现皮影角色 AI 视觉一致性</div>
+        <div class="highlight-item">📹 产出两部 B站 原创短片</div>
       </div>
     </div>
 
-    <div class="about-card">
-      <h4>🎓 教育背景</h4>
-      <p><strong>广东外语外贸大学</strong><br>市场营销专业 &nbsp;|&nbsp; 2024.09 – 2028.06</p>
-      <p class="muted">GPA：3.76/4.0（前15%）｜优秀学生三等奖学金</p>
-      <p class="muted">相关课程：市场营销学 · 消费者行为学 · 数据分析基础 · 电子商务 · 商务英语</p>
+    <!-- 01 Films -->
+    <div class="project-section-label">
+      <span class="psl-number">01</span>
+      <span class="psl-text">/ Films</span>
     </div>
-
-    <div class="about-card has-preview" data-preview="images/about/internship.jpg">
-      <h4>💼 实习经历</h4>
-      <p><strong>中国对外贸易广州物业发展有限公司</strong> &nbsp;|&nbsp; 文创门店运营实习生</p>
-      <p class="muted">2026.04 – 2026.05</p>
-      <ul>
-        <li>负责门店销售数据统计及库存管理，日均营业额核对 3万+ 元</li>
-        <li>面向海内外参展客商进行文创产品讲解与销售支持，累计接待 200+ 人次/日</li>
-        <li>协助收集顾客反馈，为商品陈列与补货决策提供参考</li>
-      </ul>
-      <div class="preview-overlay">
-        <img src="images/about/internship.jpg" alt="实习预览">
-      </div>
-    </div>
-
-    <div class="about-card has-preview" data-preview="images/about/volunteer.jpg">
-      <h4>🤝 志愿经历</h4>
-      <p><strong>第十五届全国运动会</strong> &nbsp;|&nbsp; 赛事志愿者</p>
-      <p class="muted">2025.10</p>
-      <ul>
-        <li>负责赛事观众票务核验与现场引导，累计服务观众 1000+ 人次</li>
-        <li>负责纸质门票收发与登记工作，累计处理票务 600+ 张</li>
-      </ul>
-      <div class="preview-overlay">
-        <img src="images/about/volunteer.jpg" alt="志愿预览">
-      </div>
-    </div>
-
-    <div class="about-card">
-      <h4>🛠️ 技能与工具</h4>
-      <div class="skill-tags">
-        <span class="tag tag-ai">ChatGPT</span>
-        <span class="tag tag-ai">Claude</span>
-        <span class="tag tag-ai">即梦AI</span>
-        <span class="tag tag-ai">可灵AI</span>
-        <span class="tag tag-ai">Runway</span>
-        <span class="tag tag-ai">剪映AI</span>
-        <span class="tag tag-pm">Prompt Engineering</span>
-        <span class="tag tag-pm">产品策划</span>
-        <span class="tag tag-pm">AIGC工作流搭建</span>
-        <span class="tag tag-pm">内容设计</span>
-        <span class="tag tag-base">Excel</span>
-        <span class="tag tag-base">PowerPoint</span>
-        <span class="tag tag-base">CET-6（550+）</span>
-      </div>
-    </div>
-
-    <div class="about-card">
-      <h4>🌟 自我评价</h4>
-      <p>关注 AIGC 产品与 AI 内容生产方向，具备 Prompt Engineering、AI 视频生成及 AIGC 工作流搭建实践经验；能够结合用户需求完成内容策划与产品方案设计，对 AI Agent、生成式 AI 及数字内容产品保持持续关注和学习。</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- PROJECT -->
-<section class="stage" id="project">
-  <h2>Project</h2>
-  <p class="stage-lead">影灵灵 · AI 皮影文化 IP</p>
-
-  <div class="project-intro">
-    <p><strong>AIGC文化传播产品「影灵灵」</strong> &nbsp;|&nbsp; 项目负责人 &nbsp;|&nbsp; 2026.03 – 2026.06</p>
-    <ul>
-      <li>负责原创IP"影灵灵"角色定位、世界观设定及视觉体系设计，完成角色三视图及场景资产</li>
-      <li>建立角色 & 场景 Prompt 模板库，实现 AI 角色一致性优化</li>
-      <li>搭建 ChatGPT + 即梦AI + 可灵AI 协同的 AIGC 内容生产管线</li>
-      <li>完成《影灵灵登场》《影灵灵教你做皮影》等 AI 短视频的全流程制作</li>
-      <li>输出视觉资产 50+ · 标准化 Prompt 模板 20+ · 沉淀可复用内容生产方法论</li>
-    </ul>
-  </div>
-
-  <div class="project-block">
-    <h3 class="project-block-label">01 / Films — 影灵灵短片</h3>
-    <div class="demo-videos">
-      <div class="demo-video-item bili-embed">
+    <div class="video-grid">
+      <div class="video-item">
         <iframe src="//player.bilibili.com/player.html?bvid=BV14Zjw6FEfb&page=1&autoplay=0"
-                scrolling="no" border="0" frameborder="0"
-                allowfullscreen>
-        </iframe>
-        <p class="video-caption">《影灵灵登场》</p>
+                scrolling="no" border="0" frameborder="no" framespacing="0"
+                allowfullscreen="true"></iframe>
+        <p>影灵灵登场</p>
       </div>
-      <div class="demo-video-item bili-embed">
+      <div class="video-item">
         <iframe src="//player.bilibili.com/player.html?bvid=BV1NwjA64EE3&page=1&autoplay=0"
                 scrolling="no" border="0" frameborder="no" framespacing="0"
-                allowfullscreen>
-        </iframe>
-        <p class="video-caption">《影灵灵做皮影》</p>
+                allowfullscreen="true"></iframe>
+        <p>影灵灵诞生故事</p>
       </div>
     </div>
-  </div>
 
-  <div class="project-block">
-    <h3 class="project-block-label">02 / Visual Assets — 视觉资产</h3>
+    <!-- 02 Visual Assets -->
+    <div class="project-section-label">
+      <span class="psl-number">02</span>
+      <span class="psl-text">/ Visual Assets</span>
+    </div>
     <div class="demo-grid">
       <div class="demo-item">
-        <img src="images/yinglingling/yinglingling_views.png" alt="影灵灵 角色三视图">
-        <p>角色三视图</p>
+        <img src="images/yinglingling/yinglingling_views.png" alt="影灵灵三视图" loading="lazy">
+        <p>影灵灵三视图</p>
       </div>
       <div class="demo-item">
-        <img src="images/yinglingling/making_piying.png" alt="影灵灵教你做皮影">
-        <p>《影灵灵教你做皮影》</p>
+        <img src="images/yinglingling/making_piying.png" alt="做皮影" loading="lazy">
+        <p>做皮影</p>
       </div>
       <div class="demo-item">
-        <img src="images/yinglingling/yinglingling_birth.png" alt="影灵灵诞生">
-        <p>《影灵灵诞生》概念场景</p>
+        <img src="images/yinglingling/yinglingling_birth.png" alt="影灵灵诞生" loading="lazy">
+        <p>影灵灵诞生</p>
       </div>
       <div class="demo-item">
-        <img src="images/yinglingling/yinglingling_projection.png" alt="影灵灵投影">
-        <p>影灵灵投影场景</p>
+        <img src="images/yinglingling/yinglingling_projection.png" alt="皮影投影" loading="lazy">
+        <p>皮影投影</p>
       </div>
       <div class="demo-item">
-        <img src="images/yinglingling/yinglingling_small.png" alt="生成小皮影">
-        <p>AI 生成小皮影角色</p>
+        <img src="images/yinglingling/yinglingling_small.png" alt="小皮影" loading="lazy">
+        <p>小皮影</p>
       </div>
     </div>
-  </div>
 
-  <div class="project-block">
-    <h3 class="project-block-label">03 / Method — 生产方法论</h3>
-    <div class="system-grid">
-      <div class="system-card">
-        <h4>🎯 Prompt 工程</h4>
-        <p>将角色拆解为身份、外貌、服饰、道具、气质等维度，建立标准化 Prompt 模板库，实现角色一致性控制。</p>
+    <!-- 03 Method -->
+    <div class="project-section-label">
+      <span class="psl-number">03</span>
+      <span class="psl-text">/ Method</span>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">🎯</div>
+        <h4>Prompt 工程</h4>
+        <p>通过结构化 Prompt 设计，实现皮影角色在多场景下的视觉一致性，建立可复用的提示词模板库。</p>
       </div>
-      <div class="system-card">
-        <h4>🎨 视觉一致性</h4>
-        <p>通过 LoRA 微调 + ControlNet 辅助，确保"影灵灵"在不同场景、不同姿态下保持视觉识别一致性。</p>
+      <div class="tech-card">
+        <div class="tech-icon">🎨</div>
+        <h4>视觉一致性控制</h4>
+        <p>结合 LoRA 微调与风格锚定技术，确保影灵灵角色在不同生成任务中保持核心特征稳定。</p>
       </div>
-      <div class="system-card">
-        <h4>🎬 多模态生成管线</h4>
-        <p>ChatGPT（脚本）→ 即梦AI（分镜）→ 可灵AI（视频生成）→ Runway（后期），搭建完整 AIGC 内容生产工作流。</p>
+      <div class="tech-card">
+        <div class="tech-icon">🔗</div>
+        <h4>多模态管线设计</h4>
+        <p>整合文本→图像→视频的生成管线，实现从创意构思到成片输出的一站式 AIGC 内容生产。</p>
       </div>
     </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <p>© 2026 曾银晶 · 影灵灵</p>
+    <p class="muted">广外市场营销 · AIGC 文化 IP 方向</p>
+  </footer>
+
+  <!-- ========== LIGHTBOX ========== -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+    <div class="lightbox-prev" onclick="lightboxNav(-1)">&#10094;</div>
+    <div class="lightbox-next" onclick="lightboxNav(1)">&#10095;</div>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+      <p id="lightbox-caption"></p>
+    </div>
+    <p class="lightbox-counter" id="lightbox-counter"></p>
   </div>
-</section>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
-  <div class="lightbox-prev" onclick="lightboxNav(-1)">&#10094;</div>
-  <div class="lightbox-next" onclick="lightboxNav(1)">&#10095;</div>
-  <div class="lightbox-content">
-    <img id="lightbox-img" src="" alt="">
-    <p id="lightbox-caption"></p>
-  </div>
-  <p class="lightbox-counter" id="lightbox-counter"></p>
-</div>
+  <!-- ========== TOAST ========== -->
+  <div class="toast" id="toast">微信号已复制 ✓</div>
 
-<!-- TOAST -->
-<div class="toast" id="toast">微信号已复制 ✓</div>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-  <p>© 2026 曾银晶 · AI Cultural IP Designer</p>
-  <p class="muted">Built with VibeCoding ✨</p>
-</footer>
-
-<script>
-/* Lightbox — click to enlarge demo images with keyboard prev/next */
-let lightboxImages = [];
-let lightboxIdx = 0;
-
-function openLightbox(img, caption){
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lightbox-img');
-  const lbCap = document.getElementById('lightbox-caption');
-  const lbCnt = document.getElementById('lightbox-counter');
-  lightboxImages = Array.from(document.querySelectorAll('.demo-item img'));
-  lightboxIdx = lightboxImages.indexOf(img);
-  if (lightboxIdx < 0) lightboxIdx = 0;
-  updateLightbox();
-  lb.classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-function updateLightbox(){
-  const img = lightboxImages[lightboxIdx];
-  if (!img) return;
-  const lbImg = document.getElementById('lightbox-img');
-  const lbCap = document.getElementById('lightbox-caption');
-  const lbCnt = document.getElementById('lightbox-counter');
-  lbImg.src = img.src;
-  lbImg.alt = img.alt;
-  const capEl = img.parentElement.querySelector('p');
-  lbCap.textContent = capEl ? capEl.textContent : img.alt || '';
-  lbCnt.textContent = (lightboxIdx + 1) + ' / ' + lightboxImages.length;
-}
-function lightboxNav(delta){
-  if (lightboxImages.length === 0) return;
-  lightboxIdx = (lightboxIdx + delta + lightboxImages.length) % lightboxImages.length;
-  updateLightbox();
-}
-function closeLightbox(){
-  const lb = document.getElementById('lightbox');
-  lb.classList.remove('show');
-  document.body.style.overflow = '';
-}
-document.getElementById('lightbox').addEventListener('click', function(e){
-  if (e.target === this) closeLightbox();
-});
-document.addEventListener('keydown', function(e){
-  const lb = document.getElementById('lightbox');
-  if (!lb.classList.contains('show')) return;
-  if (e.key === 'Escape'){ closeLightbox(); }
-  else if (e.key === 'ArrowRight'){ e.preventDefault(); lightboxNav(1); }
-  else if (e.key === 'ArrowLeft'){ e.preventDefault(); lightboxNav(-1); }
-});
-document.querySelectorAll('.demo-item img').forEach(function(img){
-  img.addEventListener('click', function(e){
-    e.stopPropagation();
-    openLightbox(this);
-  });
-});
-
-/* Copy WeChat ID — with fallback for file:// protocol */
-function copyWechat(){
-  const id = 'Zzing1018';
-  function showToast(){
-    const t = document.getElementById('toast');
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2000);
-  }
-  if (navigator.clipboard && window.isSecureContext){
-    navigator.clipboard.writeText(id).then(showToast);
-  } else {
-    const ta = document.createElement('textarea');
-    ta.value = id;
-    ta.style.cssText = 'position:fixed;left:-9999px';
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    showToast();
-  }
-}
-
-/* Scroll animation — sections fade in */
-const sections = document.querySelectorAll('.stage, .about-section');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('show');
-    }
-  });
-}, { threshold: 0.1 });
-sections.forEach(s => obs.observe(s));
-
-/* Staggered card reveal — cards within each grid fade in one by one */
-const cardObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const cards = e.target.querySelectorAll('.about-card, .demo-item, .system-card, .demo-video-item');
-      cards.forEach((card, i) => {
-        card.style.transitionDelay = (i * 0.08) + 's';
-        card.classList.add('card-show');
-      });
-      cardObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.about-grid, .demo-grid, .system-grid, .demo-videos, .project-block').forEach(g => cardObserver.observe(g));
-
-/* Nav active state on scroll */
-const navSections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  navSections.forEach(sec => {
-    const top = sec.offsetTop - 120;
-    if (window.scrollY >= top) current = sec.getAttribute('id');
-  });
-  navLinks.forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
-  });
-});
-</script>
-
+  <script src="js/main.js"></script>
 </body>
 </html>
