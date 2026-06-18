@@ -3,292 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>曾银晶 | AI产品与AIGC作品集</title>
-
-<style>
-
-/* ======================
-   🌌 DESIGN SYSTEM
-====================== */
-
-:root{
-  --bg:#0b0f17;
-  --card:rgba(255,255,255,0.06);
-  --glass:rgba(255,255,255,0.08);
-  --text:#eaeef7;
-  --muted:rgba(255,255,255,0.6);
-  --accent:#8b5cf6;
-  --accent2:#22d3ee;
-  --border:rgba(255,255,255,0.12);
-}
-
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC";
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
-
-/* ======================
-   ✨ GLASS
-====================== */
-
-.glass{
-  background:var(--glass);
-  border:1px solid var(--border);
-  backdrop-filter:blur(20px);
-  border-radius:20px;
-}
-
-/* ======================
-   🌊 HERO
-====================== */
-
-.hero{
-  min-height:100vh;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:0 10%;
-  position:relative;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  width:600px;
-  height:600px;
-  background:radial-gradient(circle,var(--accent),transparent 70%);
-  filter:blur(120px);
-  opacity:0.25;
-  right:-120px;
-  top:-120px;
-  animation:float 6s ease-in-out infinite;
-}
-
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(30px);}
-}
-
-.hero-left{
-  max-width:50%;
-}
-
-.hero h1{
-  font-size:48px;
-  margin:0;
-}
-
-.hero h2{
-  font-size:16px;
-  color:var(--muted);
-  margin-top:10px;
-}
-
-.hero p{
-  color:var(--muted);
-  line-height:1.8;
-  margin-top:15px;
-}
-
-.tags span{
-  display:inline-block;
-  padding:6px 12px;
-  margin:6px 6px 0 0;
-  border-radius:20px;
-  background:rgba(255,255,255,0.06);
-  font-size:12px;
-}
-
-.buttons a{
-  display:inline-block;
-  margin-right:10px;
-  margin-top:20px;
-  padding:10px 16px;
-  border-radius:10px;
-  text-decoration:none;
-  font-size:14px;
-}
-
-.buttons a:first-child{
-  background:var(--accent);
-  color:white;
-}
-
-.buttons a:nth-child(2){
-  background:rgba(255,255,255,0.08);
-  color:white;
-}
-
-.buttons a:nth-child(3){
-  background:#111;
-  color:white;
-}
-
-.hero-right img{
-  width:320px;
-  border-radius:20px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.5);
-}
-
-/* ======================
-   📦 BENTO PROJECT
-====================== */
-
-.section{
-  padding:80px 10%;
-}
-
-.section h2{
-  font-size:28px;
-  margin-bottom:20px;
-}
-
-.bento{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.card{
-  padding:20px;
-  border-radius:20px;
-  background:var(--card);
-  border:1px solid var(--border);
-  transition:0.3s;
-  position:relative;
-  overflow:hidden;
-}
-
-.card:hover{
-  transform:translateY(-6px);
-  border-color:var(--accent);
-  box-shadow:0 10px 40px rgba(139,92,246,0.25);
-}
-
-.card::after{
-  content:"";
-  position:absolute;
-  width:200px;
-  height:200px;
-  background:var(--accent);
-  filter:blur(60px);
-  opacity:0;
-  transition:0.4s;
-  top:-50px;
-  right:-50px;
-}
-
-.card:hover::after{
-  opacity:0.2;
-}
-
-/* ======================
-   🧠 SKILLS
-====================== */
-
-.skills span{
-  display:inline-block;
-  margin:5px;
-  padding:8px 12px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.06);
-  font-size:13px;
-}
-
-/* ======================
-   🎬 VIDEO CARDS
-====================== */
-
-.video-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
-}
-
-.video-card{
-  position:relative;
-  border-radius:16px;
-  overflow:hidden;
-  cursor:pointer;
-}
-
-.video-card img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-}
-
-.video-card p{
-  padding:10px;
-}
-
-.play{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-size:40px;
-  color:white;
-  background:rgba(0,0,0,0.4);
-  width:60px;
-  height:60px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-}
-
-/* ======================
-   🎥 MODAL
-====================== */
-
-.modal{
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.85);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-}
-
-.modal video{
-  width:80%;
-  max-width:900px;
-  border-radius:12px;
-}
-
-.close{
-  position:absolute;
-  top:20px;
-  right:30px;
-  font-size:40px;
-  cursor:pointer;
-  color:white;
-}
-
-</style>
+<title>曾银晶 | AI产品 & AIGC作品集</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- ================= NAV ================= -->
+<nav class="nav glass">
+  <div class="logo">ZengYinjing</div>
+  <div class="nav-links">
+    <a href="#hero">About</a>
+    <a href="#exp">Experience</a>
+    <a href="#project">Projects</a>
+    <a href="#video">Videos</a>
+    <a href="mailto:your@email.com">Contact</a>
+  </div>
+</nav>
+
 <!-- ================= HERO ================= -->
-<section class="hero">
+<section class="hero" id="hero">
 
   <div class="hero-left">
 
     <h1>曾银晶</h1>
+
     <h2>广东外语外贸大学｜市场营销（2028届）</h2>
 
     <p>
       AI产品 / Prompt工程 / AIGC内容设计方向探索者。
-      专注用生成式AI重构文化内容生产流程。
+      构建从IP设计到AIGC视频生产的完整内容生成工作流。
     </p>
 
     <div class="tags">
@@ -307,26 +51,29 @@ body{
   </div>
 
   <div class="hero-right">
-    <img src="images/yinglingling/影灵灵诞生.png">
+    <img src="images/yinglingling/yinglingling.jpg">
   </div>
 
 </section>
 
 <!-- ================= EXPERIENCE ================= -->
-<section class="section">
+<section class="section" id="exp">
 
 <h2>背景与能力</h2>
 
 <div class="card glass">
-<p>具备AI内容生产与产品设计能力，关注AIGC在文化IP与营销场景中的应用。</p>
+  <p>
+    专注AIGC内容生产与AI产品设计，具备从Prompt设计、图像生成、
+    视频生成到内容包装的完整工作流经验。
+  </p>
 
-<div class="skills">
-  <span>Prompt Engineering</span>
-  <span>Midjourney</span>
-  <span>Runway / Kling</span>
-  <span>CapCut AI</span>
-  <span>Product Thinking</span>
-</div>
+  <div class="skills">
+    <span>Prompt Engineering</span>
+    <span>Midjourney</span>
+    <span>Runway / Kling</span>
+    <span>CapCut AI</span>
+    <span>Product Thinking</span>
+  </div>
 </div>
 
 </section>
@@ -340,17 +87,17 @@ body{
 
   <div class="card">
     <h3>影灵灵 IP设计</h3>
-    <p>非遗皮影戏AI角色设计</p>
+    <p>非遗皮影戏AI角色系统设计</p>
   </div>
 
   <div class="card">
     <h3>Prompt工程体系</h3>
-    <p>角色一致性与风格控制</p>
+    <p>角色一致性与风格控制优化</p>
   </div>
 
   <div class="card">
     <h3>AIGC视频生产</h3>
-    <p>从图像到动态叙事生成</p>
+    <p>从静态图像到动态叙事生成</p>
   </div>
 
 </div>
@@ -358,7 +105,7 @@ body{
 </section>
 
 <!-- ================= VIDEO ================= -->
-<section class="section">
+<section class="section" id="video">
 
 <h2>视频作品</h2>
 
@@ -387,7 +134,6 @@ body{
 </div>
 
 <script>
-
 function openVideo(src){
   document.getElementById('modal').style.display='flex';
   document.getElementById('player').src=src;
@@ -397,7 +143,6 @@ function closeVideo(){
   document.getElementById('modal').style.display='none';
   document.getElementById('player').pause();
 }
-
 </script>
 
 </body>
