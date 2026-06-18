@@ -257,10 +257,10 @@ ABOUT
 .intro-contact-item{
   display:flex;
   align-items:center;
-  gap:4px;
-  padding:6px 14px;
+  gap:6px;
+  padding:10px 20px;
   border-radius:980px;
-  font-size:12px;
+  font-size:14px;
   font-weight:600;
   color:#515154;
   background:rgba(0,0,0,0.04);
@@ -274,7 +274,7 @@ ABOUT
   border-color:rgba(109,94,252,0.2);
   color:#6d5efc;
 }
-.intro-contact-item span:first-child{ font-size:14px; }
+.intro-contact-item span:first-child{ font-size:16px; }
 .resume-link{
   background:linear-gradient(135deg, rgba(109,94,252,0.10), rgba(0,188,212,0.07));
   border-color:rgba(109,94,252,0.15);
