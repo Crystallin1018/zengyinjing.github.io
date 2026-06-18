@@ -65,61 +65,62 @@ NAV (Apple style)
 }
 
 /* ======================
-HERO (Keynote style)
+HERO (Keynote style — now includes About)
 ====================== */
 
 .hero{
-  height:100vh;
-  min-height:600px;
+  min-height:100vh;
+  padding:120px 8% 100px;
   display:flex;
-  align-items:center;
+  align-items:flex-start;
   justify-content:center;
-  text-align:center;
   background:
     radial-gradient(circle at 25% 20%, rgba(109,94,252,0.13), transparent 45%),
     radial-gradient(circle at 75% 65%, rgba(0,188,212,0.10), transparent 45%),
     #ffffff;
 }
 
-.hero-inner{ max-width:720px; padding:0 24px; }
+.hero-inner{ max-width:1100px; width:100%; }
 
 .hero-tag{
   display:inline-block;
-  font-size:13px;
+  font-size:12px;
   font-weight:600;
   letter-spacing:1.5px;
   text-transform:uppercase;
   color:#6d5efc;
-  margin-bottom:16px;
+  margin-bottom:8px;
 }
 
-.hero h1{
-  font-size:clamp(40px, 7vw, 72px);
+.hero-heading{
+  font-size:clamp(28px, 4vw, 42px);
   font-weight:800;
-  letter-spacing:-3px;
-  line-height:1.05;
-  margin:0 0 20px;
+  letter-spacing:-1.5px;
+  line-height:1.15;
+  margin:0 0 12px;
+  color:#1d1d1f;
 }
 
 .hero-sub{
-  font-size:17px;
+  font-size:15px;
   color:#86868b;
-  max-width:520px;
-  margin:0 auto 36px;
   line-height:1.6;
+  margin:0 0 20px;
 }
 
-.hero-cta{
+/* Hero CTA inside project card */
+.hero-project .hero-cta{
   display:inline-block;
-  padding:14px 32px;
+  margin-top:18px;
+  padding:12px 28px;
   background:#1d1d1f;
   color:#ffffff;
   border-radius:980px;
-  font-size:15px;
+  font-size:14px;
   font-weight:600;
   transition:all 0.3s;
 }
-.hero-cta:hover{ background:#333; transform:scale(1.04); }
+.hero-project .hero-cta:hover{ background:#333; transform:scale(1.04); }
 
 /* ======================
 STAGES (scroll storytelling)
@@ -240,6 +241,22 @@ ABOUT
 .about-card.highlight{
   border-color:rgba(109,94,252,0.2);
   background:rgba(109,94,252,0.03);
+}
+
+/* Hero text inside 核心项目 card */
+.hero-project{
+  text-align:center;
+}
+.hero-project h4,
+.hero-project p,
+.hero-project li,
+.hero-project ul{
+  text-align:left;
+}
+.hero-project .hero-tag,
+.hero-project .hero-heading,
+.hero-project .hero-sub{
+  text-align:center;
 }
 
 /* Card hover preview */
@@ -528,8 +545,8 @@ RESPONSIVE
   .about-grid{ grid-template-columns:1fr; }
   .about-intro{ grid-row:span 1; }
   .about-photo{ width:100px; height:130px; }
-  .stage{ padding:100px 6% 80px; }
-  .hero h1{ letter-spacing:-1.5px; }
+  .hero{ padding:100px 6% 80px; }
+  .hero-heading{ letter-spacing:-1px; }
   .product-card{ padding:32px 24px; }
   .contact-links{ gap:12px; }
   .contact-card{ padding:20px 24px; min-width:110px; }
