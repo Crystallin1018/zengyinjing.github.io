@@ -370,6 +370,38 @@ DEMO
   text-align:left;
 }
 
+/* Demo videos */
+.demo-videos{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  margin-bottom:48px;
+}
+.demo-video-item{
+  background:rgba(0,0,0,0.02);
+  border:1px solid rgba(0,0,0,0.06);
+  border-radius:16px;
+  overflow:hidden;
+  transition:all 0.3s;
+}
+.demo-video-item:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.10);
+}
+.demo-video-item video{
+  width:100%;
+  display:block;
+  border-radius:16px 16px 0 0;
+}
+.video-caption{
+  padding:14px 18px;
+  font-size:14px;
+  font-weight:600;
+  color:#1d1d1f;
+  margin:0;
+  text-align:center;
+}
+
 .demo-item{
   background:rgba(0,0,0,0.02);
   border:1px solid rgba(0,0,0,0.06);
