@@ -1,17 +1,17 @@
 
 /* ======================
-🌌 DESIGN SYSTEM
+🌈 LIGHT DESIGN SYSTEM
 ====================== */
 
 :root{
-  --bg:#0b0f17;
-  --card:rgba(255,255,255,0.06);
-  --glass:rgba(255,255,255,0.08);
-  --text:#eaeef7;
-  --muted:rgba(255,255,255,0.65);
-  --accent:#8b5cf6;
-  --accent2:#22d3ee;
-  --border:rgba(255,255,255,0.12);
+  --bg:#f5f7fb;
+  --card:rgba(255,255,255,0.7);
+  --glass:rgba(255,255,255,0.6);
+  --text:#1d1d1f;
+  --muted:#6e6e73;
+  --accent:#6d5efc;
+  --accent2:#00bcd4;
+  --border:rgba(0,0,0,0.08);
 }
 
 /* ======================
@@ -20,7 +20,6 @@ GLOBAL
 
 body{
   margin:0;
-  padding:0;
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC",sans-serif;
   background:var(--bg);
   color:var(--text);
@@ -33,18 +32,18 @@ html{
 }
 
 /* ======================
-GLASS EFFECT
+GLASS EFFECT (LIGHT)
 ====================== */
 
 .glass{
   background:var(--glass);
   border:1px solid var(--border);
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(18px);
   border-radius:20px;
 }
 
 /* ======================
-HERO
+HERO (APPLE STYLE)
 ====================== */
 
 .hero{
@@ -56,15 +55,14 @@ HERO
   position:relative;
 }
 
-/* neon glow background */
+/* soft gradient background */
 .hero::before{
   content:"";
   position:absolute;
   width:600px;
   height:600px;
-  background:radial-gradient(circle,var(--accent),transparent 70%);
-  filter:blur(120px);
-  opacity:0.25;
+  background:radial-gradient(circle, rgba(109,94,252,0.25), transparent 70%);
+  filter:blur(90px);
   right:-120px;
   top:-120px;
   animation:floatGlow 6s ease-in-out infinite;
@@ -72,7 +70,7 @@ HERO
 
 @keyframes floatGlow{
   0%,100%{transform:translateY(0);}
-  50%{transform:translateY(30px);}
+  50%{transform:translateY(25px);}
 }
 
 .hero-left{
@@ -80,9 +78,9 @@ HERO
 }
 
 .hero h1{
-  font-size:48px;
+  font-size:52px;
   margin:0;
-  letter-spacing:1px;
+  letter-spacing:-1px;
 }
 
 .hero h2{
@@ -109,10 +107,10 @@ HERO
   display:inline-block;
   padding:6px 12px;
   margin:6px 6px 0 0;
-  border-radius:20px;
-  background:rgba(255,255,255,0.06);
+  border-radius:999px;
+  background:rgba(0,0,0,0.04);
   font-size:12px;
-  border:1px solid rgba(255,255,255,0.08);
+  border:1px solid rgba(0,0,0,0.06);
 }
 
 /* buttons */
@@ -127,7 +125,7 @@ HERO
   border-radius:10px;
   text-decoration:none;
   font-size:14px;
-  transition:0.3s;
+  transition:0.25s;
 }
 
 .buttons a:hover{
@@ -140,8 +138,8 @@ HERO
 }
 
 .buttons a:nth-child(2){
-  background:rgba(255,255,255,0.08);
-  color:white;
+  background:rgba(0,0,0,0.05);
+  color:var(--text);
 }
 
 .buttons a:nth-child(3){
@@ -149,10 +147,11 @@ HERO
   color:white;
 }
 
+/* hero image */
 .hero-right img{
   width:340px;
   border-radius:22px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  box-shadow:0 20px 60px rgba(0,0,0,0.12);
 }
 
 /* ======================
@@ -166,7 +165,7 @@ SECTION
 .section h2{
   font-size:28px;
   margin-bottom:25px;
-  letter-spacing:1px;
+  letter-spacing:-0.5px;
 }
 
 /* ======================
@@ -184,34 +183,34 @@ BENTO GRID
   border-radius:20px;
   background:var(--card);
   border:1px solid var(--border);
-  transition:0.35s;
+  transition:0.3s;
   position:relative;
   overflow:hidden;
 }
 
-/* hover lift */
+/* hover */
 .card:hover{
   transform:translateY(-6px);
-  border-color:var(--accent);
-  box-shadow:0 15px 50px rgba(139,92,246,0.25);
+  box-shadow:0 15px 40px rgba(0,0,0,0.08);
+  border-color:rgba(109,94,252,0.4);
 }
 
-/* neon glow on hover */
+/* subtle glow */
 .card::after{
   content:"";
   position:absolute;
-  width:220px;
-  height:220px;
-  background:var(--accent);
-  filter:blur(70px);
+  width:180px;
+  height:180px;
+  background:rgba(109,94,252,0.15);
+  filter:blur(60px);
   opacity:0;
   transition:0.4s;
-  top:-60px;
-  right:-60px;
+  top:-50px;
+  right:-50px;
 }
 
 .card:hover::after{
-  opacity:0.25;
+  opacity:1;
 }
 
 /* ======================
@@ -222,10 +221,10 @@ SKILLS
   display:inline-block;
   margin:5px;
   padding:8px 12px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.06);
+  border-radius:999px;
+  background:rgba(0,0,0,0.04);
   font-size:13px;
-  border:1px solid rgba(255,255,255,0.08);
+  border:1px solid rgba(0,0,0,0.06);
 }
 
 /* ======================
@@ -243,27 +242,25 @@ VIDEO GRID
   border-radius:16px;
   overflow:hidden;
   cursor:pointer;
-  background:rgba(255,255,255,0.04);
-  border:1px solid var(--border);
+  background:white;
+  border:1px solid rgba(0,0,0,0.08);
   transition:0.3s;
 }
 
 .video-card:hover{
   transform:translateY(-5px);
-  border-color:var(--accent);
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 .video-card img{
   width:100%;
   height:180px;
   object-fit:cover;
-  display:block;
 }
 
 .video-card p{
   padding:10px;
   font-size:14px;
-  color:var(--text);
 }
 
 .play{
@@ -272,19 +269,18 @@ VIDEO GRID
   left:50%;
   transform:translate(-50%,-50%);
   font-size:34px;
-  color:white;
-  background:rgba(0,0,0,0.45);
   width:60px;
   height:60px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
+  background:rgba(255,255,255,0.8);
   backdrop-filter:blur(10px);
 }
 
 /* ======================
-MODAL VIDEO
+MODAL
 ====================== */
 
 .modal{
@@ -294,7 +290,7 @@ MODAL VIDEO
   left:0;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.88);
+  background:rgba(0,0,0,0.7);
   justify-content:center;
   align-items:center;
   z-index:999;
@@ -303,29 +299,23 @@ MODAL VIDEO
 .modal video{
   width:80%;
   max-width:900px;
-  border-radius:14px;
-  box-shadow:0 20px 80px rgba(0,0,0,0.6);
+  border-radius:12px;
 }
 
 .close{
   position:absolute;
   top:20px;
   right:30px;
-  font-size:42px;
+  font-size:40px;
   color:white;
   cursor:pointer;
-  opacity:0.8;
-}
-
-.close:hover{
-  opacity:1;
 }
 
 /* ======================
 RESPONSIVE
 ====================== */
 
-@media (max-width:900px){
+@media(max-width:900px){
 
 .hero{
   flex-direction:column;
