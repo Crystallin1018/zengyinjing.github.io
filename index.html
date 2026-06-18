@@ -9,140 +9,83 @@
 
 <body>
 
-<!-- ================= NAV ================= -->
+<!-- NAV -->
 <nav class="nav glass">
   <div class="logo">ZengYinjing</div>
   <div class="nav-links">
-    <a href="#hero">About</a>
-    <a href="#exp">Experience</a>
-    <a href="#project">Projects</a>
-    <a href="#video">Videos</a>
-    <a href="mailto:your@email.com">Contact</a>
+    <a href="#hero">Home</a>
+    <a href="#vision">Vision</a>
+    <a href="#problem">Problem</a>
+    <a href="#solution">Solution</a>
+    <a href="#system">System</a>
+    <a href="#demo">Demo</a>
   </div>
 </nav>
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 <section class="hero" id="hero">
-
-  <div class="hero-left">
-
-    <h1>曾银晶</h1>
-
-    <h2>广东外语外贸大学｜市场营销（2028届）</h2>
-
-    <p>
-      AI产品 / Prompt工程 / AIGC内容设计方向探索者。
-      构建从IP设计到AIGC视频生产的完整内容生成工作流。
-    </p>
-
-    <div class="tags">
-      <span>AI Product Thinking</span>
-      <span>Prompt Engineering</span>
-      <span>AIGC Video</span>
-      <span>IP Design</span>
-    </div>
-
-    <div class="buttons">
-      <a href="resume.pdf">📄 简历</a>
-      <a href="#project">项目</a>
-      <a href="mailto:your@email.com">联系</a>
-    </div>
-
+  <div class="hero-inner">
+    <h1>AI Cultural IP Designer</h1>
+    <p>Turning traditional culture into AI-generated cinematic experiences.</p>
   </div>
+</section>
 
-  <div class="hero-right">
-    <img src="images/yinglingling/yinglingling.jpg">
+<!-- VISION -->
+<section class="stage" id="vision">
+  <h2>Vision</h2>
+  <p>Reconstruct cultural storytelling through generative AI systems.</p>
+</section>
+
+<!-- PROBLEM -->
+<section class="stage" id="problem">
+  <h2>Problem</h2>
+  <p>Traditional cultural IP lacks scalable, digital-native generation systems.</p>
+</section>
+
+<!-- SOLUTION -->
+<section class="stage" id="solution">
+  <h2>Solution</h2>
+
+  <div class="product-card">
+    影灵灵 · AI皮影文化IP系统
   </div>
 
 </section>
 
-<!-- ================= EXPERIENCE ================= -->
-<section class="section" id="exp">
+<!-- SYSTEM -->
+<section class="stage" id="system">
+  <h2>System</h2>
+  <p>Prompt Engineering · Visual Consistency · Multi-modal Generation Pipeline</p>
+</section>
 
-<h2>背景与能力</h2>
+<!-- DEMO -->
+<section class="stage" id="demo">
+  <h2>Demo</h2>
 
-<div class="card glass">
-  <p>
-    专注AIGC内容生产与AI产品设计，具备从Prompt设计、图像生成、
-    视频生成到内容包装的完整工作流经验。
-  </p>
-
-  <div class="skills">
-    <span>Prompt Engineering</span>
-    <span>Midjourney</span>
-    <span>Runway / Kling</span>
-    <span>CapCut AI</span>
-    <span>Product Thinking</span>
-  </div>
-</div>
+  <video controls>
+    <source src="videos/yinglingling/intro.mp4">
+  </video>
 
 </section>
 
-<!-- ================= PROJECT ================= -->
-<section class="section" id="project">
-
-<h2>核心项目</h2>
-
-<div class="bento">
-
-  <div class="card">
-    <h3>影灵灵 IP设计</h3>
-    <p>非遗皮影戏AI角色系统设计</p>
-  </div>
-
-  <div class="card">
-    <h3>Prompt工程体系</h3>
-    <p>角色一致性与风格控制优化</p>
-  </div>
-
-  <div class="card">
-    <h3>AIGC视频生产</h3>
-    <p>从静态图像到动态叙事生成</p>
-  </div>
-
-</div>
-
+<!-- CLOSING -->
+<section class="stage">
+  <h2>Closing</h2>
+  <p>Let’s build AI-native cultural storytelling systems.</p>
 </section>
-
-<!-- ================= VIDEO ================= -->
-<section class="section" id="video">
-
-<h2>视频作品</h2>
-
-<div class="video-grid">
-
-  <div class="video-card" onclick="openVideo('videos/yinglingling/intro.mp4')">
-    <div class="play">▶</div>
-    <img src="images/yinglingling/video1.png">
-    <p>影灵灵诞生</p>
-  </div>
-
-  <div class="video-card" onclick="openVideo('videos/yinglingling/tutorial.mp4')">
-    <div class="play">▶</div>
-    <img src="images/yinglingling/video2.png">
-    <p>皮影制作教程</p>
-  </div>
-
-</div>
-
-</section>
-
-<!-- ================= MODAL ================= -->
-<div id="modal" class="modal">
-  <span class="close" onclick="closeVideo()">×</span>
-  <video id="player" controls></video>
-</div>
 
 <script>
-function openVideo(src){
-  document.getElementById('modal').style.display='flex';
-  document.getElementById('player').src=src;
-}
+const items = document.querySelectorAll('.stage');
 
-function closeVideo(){
-  document.getElementById('modal').style.display='none';
-  document.getElementById('player').pause();
-}
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('show');
+    }
+  });
+},{threshold:0.2});
+
+items.forEach(i=>obs.observe(i));
 </script>
 
 </body>
