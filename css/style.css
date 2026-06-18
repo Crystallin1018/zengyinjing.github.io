@@ -554,11 +554,12 @@ img{ max-width:100%; display:block; }
   z-index:2;
   border-radius:20px;
   overflow:hidden;
+  background:#1d1d1f;
 }
 .has-preview .preview-overlay img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain;
 }
 .has-preview:hover .preview-overlay{ opacity:1; }
 .has-preview:hover{ color:#fff; }
