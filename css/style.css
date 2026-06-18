@@ -1,50 +1,55 @@
-
-/* ======================
-🌈 LIGHT DESIGN SYSTEM
-====================== */
-
 :root{
   --bg:#f5f7fb;
-  --card:rgba(255,255,255,0.7);
+  --card:rgba(255,255,255,0.75);
   --glass:rgba(255,255,255,0.6);
   --text:#1d1d1f;
   --muted:#6e6e73;
   --accent:#6d5efc;
-  --accent2:#00bcd4;
   --border:rgba(0,0,0,0.08);
 }
 
-/* ======================
-GLOBAL
-====================== */
+/* ================= BASE ================= */
 
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC",sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC";
   background:var(--bg);
   color:var(--text);
-  overflow-x:hidden;
 }
 
-/* smooth scroll */
-html{
-  scroll-behavior:smooth;
-}
-
-/* ======================
-GLASS EFFECT (LIGHT)
-====================== */
+html{scroll-behavior:smooth;}
 
 .glass{
+  backdrop-filter:blur(18px);
   background:var(--glass);
   border:1px solid var(--border);
-  backdrop-filter:blur(18px);
-  border-radius:20px;
+  border-radius:18px;
 }
 
-/* ======================
-HERO (APPLE STYLE)
-====================== */
+/* ================= NAV ================= */
+
+.nav{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:85%;
+  max-width:1100px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 18px;
+  z-index:999;
+}
+
+.nav-links a{
+  margin-left:18px;
+  text-decoration:none;
+  color:var(--text);
+  opacity:0.8;
+}
+
+/* ================= HERO ================= */
 
 .hero{
   min-height:100vh;
@@ -52,71 +57,29 @@ HERO (APPLE STYLE)
   justify-content:space-between;
   align-items:center;
   padding:0 10%;
-  position:relative;
 }
 
-/* soft gradient background */
-.hero::before{
-  content:"";
-  position:absolute;
-  width:600px;
-  height:600px;
-  background:radial-gradient(circle, rgba(109,94,252,0.25), transparent 70%);
-  filter:blur(90px);
-  right:-120px;
-  top:-120px;
-  animation:floatGlow 6s ease-in-out infinite;
+.hero h1{font-size:52px;margin:0;}
+.hero h2{color:var(--muted);font-size:16px;}
+.hero p{color:var(--muted);line-height:1.8;max-width:520px;}
+
+.hero-right img{
+  width:340px;
+  border-radius:20px;
 }
 
-@keyframes floatGlow{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(25px);}
-}
-
-.hero-left{
-  max-width:52%;
-}
-
-.hero h1{
-  font-size:52px;
-  margin:0;
-  letter-spacing:-1px;
-}
-
-.hero h2{
-  font-size:16px;
-  margin-top:10px;
-  color:var(--muted);
-  font-weight:400;
-}
-
-.hero p{
-  margin-top:15px;
-  line-height:1.8;
-  color:var(--muted);
-  font-size:15px;
-  max-width:520px;
-}
-
-/* tags */
-.tags{
-  margin-top:15px;
-}
+/* ================= TAGS ================= */
 
 .tags span{
   display:inline-block;
   padding:6px 12px;
-  margin:6px 6px 0 0;
-  border-radius:999px;
+  margin:5px;
   background:rgba(0,0,0,0.04);
+  border-radius:999px;
   font-size:12px;
-  border:1px solid rgba(0,0,0,0.06);
 }
 
-/* buttons */
-.buttons{
-  margin-top:20px;
-}
+/* ================= BUTTONS ================= */
 
 .buttons a{
   display:inline-block;
@@ -124,12 +87,6 @@ HERO (APPLE STYLE)
   padding:10px 16px;
   border-radius:10px;
   text-decoration:none;
-  font-size:14px;
-  transition:0.25s;
-}
-
-.buttons a:hover{
-  transform:translateY(-2px);
 }
 
 .buttons a:first-child{
@@ -137,26 +94,13 @@ HERO (APPLE STYLE)
   color:white;
 }
 
-.buttons a:nth-child(2){
+.buttons a:nth-child(2),
+.buttons a:nth-child(3){
   background:rgba(0,0,0,0.05);
   color:var(--text);
 }
 
-.buttons a:nth-child(3){
-  background:#111;
-  color:white;
-}
-
-/* hero image */
-.hero-right img{
-  width:340px;
-  border-radius:22px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.12);
-}
-
-/* ======================
-SECTION
-====================== */
+/* ================= SECTION ================= */
 
 .section{
   padding:80px 10%;
@@ -164,13 +108,10 @@ SECTION
 
 .section h2{
   font-size:28px;
-  margin-bottom:25px;
-  letter-spacing:-0.5px;
+  margin-bottom:20px;
 }
 
-/* ======================
-BENTO GRID
-====================== */
+/* ================= BENTO ================= */
 
 .bento{
   display:grid;
@@ -179,43 +120,18 @@ BENTO GRID
 }
 
 .card{
-  padding:22px;
+  padding:20px;
   border-radius:20px;
   background:var(--card);
   border:1px solid var(--border);
   transition:0.3s;
-  position:relative;
-  overflow:hidden;
 }
 
-/* hover */
 .card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 15px 40px rgba(0,0,0,0.08);
-  border-color:rgba(109,94,252,0.4);
+  transform:translateY(-5px);
 }
 
-/* subtle glow */
-.card::after{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  background:rgba(109,94,252,0.15);
-  filter:blur(60px);
-  opacity:0;
-  transition:0.4s;
-  top:-50px;
-  right:-50px;
-}
-
-.card:hover::after{
-  opacity:1;
-}
-
-/* ======================
-SKILLS
-====================== */
+/* ================= SKILLS ================= */
 
 .skills span{
   display:inline-block;
@@ -224,12 +140,9 @@ SKILLS
   border-radius:999px;
   background:rgba(0,0,0,0.04);
   font-size:13px;
-  border:1px solid rgba(0,0,0,0.06);
 }
 
-/* ======================
-VIDEO GRID
-====================== */
+/* ================= VIDEO ================= */
 
 .video-grid{
   display:grid;
@@ -243,13 +156,6 @@ VIDEO GRID
   overflow:hidden;
   cursor:pointer;
   background:white;
-  border:1px solid rgba(0,0,0,0.08);
-  transition:0.3s;
-}
-
-.video-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 .video-card img{
@@ -258,42 +164,30 @@ VIDEO GRID
   object-fit:cover;
 }
 
-.video-card p{
-  padding:10px;
-  font-size:14px;
-}
-
 .play{
   position:absolute;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  font-size:34px;
+  font-size:36px;
+  background:rgba(255,255,255,0.8);
   width:60px;
   height:60px;
-  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:rgba(255,255,255,0.8);
-  backdrop-filter:blur(10px);
+  border-radius:50%;
 }
 
-/* ======================
-MODAL
-====================== */
+/* ================= MODAL ================= */
 
 .modal{
   display:none;
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  inset:0;
   background:rgba(0,0,0,0.7);
   justify-content:center;
   align-items:center;
-  z-index:999;
 }
 
 .modal video{
@@ -309,31 +203,4 @@ MODAL
   font-size:40px;
   color:white;
   cursor:pointer;
-}
-
-/* ======================
-RESPONSIVE
-====================== */
-
-@media(max-width:900px){
-
-.hero{
-  flex-direction:column;
-  text-align:center;
-  padding:60px 5%;
-}
-
-.hero-left{
-  max-width:100%;
-}
-
-.hero-right img{
-  width:260px;
-  margin-top:30px;
-}
-
-.bento{
-  grid-template-columns:1fr;
-}
-
 }
