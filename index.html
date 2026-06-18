@@ -1,375 +1,404 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>曾银晶 | AI产品与AIGC作品集</title>
 
-<title>曾银晶 | AI Product Portfolio</title>
+<style>
 
-<link rel="stylesheet" href="css/style.css">
+/* ======================
+   🌌 DESIGN SYSTEM
+====================== */
+
+:root{
+  --bg:#0b0f17;
+  --card:rgba(255,255,255,0.06);
+  --glass:rgba(255,255,255,0.08);
+  --text:#eaeef7;
+  --muted:rgba(255,255,255,0.6);
+  --accent:#8b5cf6;
+  --accent2:#22d3ee;
+  --border:rgba(255,255,255,0.12);
+}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC";
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ======================
+   ✨ GLASS
+====================== */
+
+.glass{
+  background:var(--glass);
+  border:1px solid var(--border);
+  backdrop-filter:blur(20px);
+  border-radius:20px;
+}
+
+/* ======================
+   🌊 HERO
+====================== */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 10%;
+  position:relative;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle,var(--accent),transparent 70%);
+  filter:blur(120px);
+  opacity:0.25;
+  right:-120px;
+  top:-120px;
+  animation:float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(30px);}
+}
+
+.hero-left{
+  max-width:50%;
+}
+
+.hero h1{
+  font-size:48px;
+  margin:0;
+}
+
+.hero h2{
+  font-size:16px;
+  color:var(--muted);
+  margin-top:10px;
+}
+
+.hero p{
+  color:var(--muted);
+  line-height:1.8;
+  margin-top:15px;
+}
+
+.tags span{
+  display:inline-block;
+  padding:6px 12px;
+  margin:6px 6px 0 0;
+  border-radius:20px;
+  background:rgba(255,255,255,0.06);
+  font-size:12px;
+}
+
+.buttons a{
+  display:inline-block;
+  margin-right:10px;
+  margin-top:20px;
+  padding:10px 16px;
+  border-radius:10px;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.buttons a:first-child{
+  background:var(--accent);
+  color:white;
+}
+
+.buttons a:nth-child(2){
+  background:rgba(255,255,255,0.08);
+  color:white;
+}
+
+.buttons a:nth-child(3){
+  background:#111;
+  color:white;
+}
+
+.hero-right img{
+  width:320px;
+  border-radius:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* ======================
+   📦 BENTO PROJECT
+====================== */
+
+.section{
+  padding:80px 10%;
+}
+
+.section h2{
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+.bento{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  padding:20px;
+  border-radius:20px;
+  background:var(--card);
+  border:1px solid var(--border);
+  transition:0.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:var(--accent);
+  box-shadow:0 10px 40px rgba(139,92,246,0.25);
+}
+
+.card::after{
+  content:"";
+  position:absolute;
+  width:200px;
+  height:200px;
+  background:var(--accent);
+  filter:blur(60px);
+  opacity:0;
+  transition:0.4s;
+  top:-50px;
+  right:-50px;
+}
+
+.card:hover::after{
+  opacity:0.2;
+}
+
+/* ======================
+   🧠 SKILLS
+====================== */
+
+.skills span{
+  display:inline-block;
+  margin:5px;
+  padding:8px 12px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.06);
+  font-size:13px;
+}
+
+/* ======================
+   🎬 VIDEO CARDS
+====================== */
+
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.video-card{
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.video-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.video-card p{
+  padding:10px;
+}
+
+.play{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:40px;
+  color:white;
+  background:rgba(0,0,0,0.4);
+  width:60px;
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+}
+
+/* ======================
+   🎥 MODAL
+====================== */
+
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.85);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.modal video{
+  width:80%;
+  max-width:900px;
+  border-radius:12px;
+}
+
+.close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:40px;
+  cursor:pointer;
+  color:white;
+}
+
+</style>
 </head>
-<script>
-function openVideo(src){
-    document.getElementById('videoPlayer').src = src;
-    document.getElementById('videoModal').style.display = 'flex';
-}
 
-function closeVideo(){
-    document.getElementById('videoModal').style.display = 'none';
-    document.getElementById('videoPlayer').pause();
-}
-</script>
 <body>
-<!-- HERO区域 -->
+
+<!-- ================= HERO ================= -->
 <section class="hero">
 
-  <!-- 左侧信息 -->
   <div class="hero-left">
 
     <h1>曾银晶</h1>
-
-    <h2>AI产品方向 / Prompt工程 / AIGC内容设计</h2>
+    <h2>广东外语外贸大学｜市场营销（2028届）</h2>
 
     <p>
-      专注于AI驱动的内容生产与产品设计，
-      方向包括：AIGC工作流设计、Prompt工程优化、
-      IP内容生成与数字文化传播。
+      AI产品 / Prompt工程 / AIGC内容设计方向探索者。
+      专注用生成式AI重构文化内容生产流程。
     </p>
 
-    <!-- 核心能力 -->
     <div class="tags">
-      <span>AI产品思维</span>
+      <span>AI Product Thinking</span>
       <span>Prompt Engineering</span>
-      <span>AIGC视频生成</span>
-      <span>IP设计</span>
+      <span>AIGC Video</span>
+      <span>IP Design</span>
     </div>
 
-    <!-- 按钮 -->
     <div class="buttons">
-
-      <!-- 简历下载（你可以后面换成真实PDF路径） -->
-      <a href="resume.pdf" target="_blank">📄 查看简历</a>
-
-      <!-- 邮件 -->
-      <a href="mailto:你的邮箱@gmail.com">✉ 联系我</a>
-
-      <!-- GitHub -->
-      <a href="https://github.com/" target="_blank">GitHub</a>
-
+      <a href="resume.pdf">📄 简历</a>
+      <a href="#project">项目</a>
+      <a href="mailto:your@email.com">联系</a>
     </div>
 
   </div>
 
-  <!-- 右侧头像 -->
   <div class="hero-right">
-
     <img src="images/yinglingling/影灵灵诞生.png">
-
-  </div>
-
-</section>
-  </div>
-
-  <div class="hero-right">
-
-    <img src="images/yinglingling/影灵灵诞生.png">
-
   </div>
 
 </section>
 
+<!-- ================= EXPERIENCE ================= -->
+<section class="section">
 
-<!-- 项目卡片 -->
-<section id="project">
+<h2>背景与能力</h2>
 
-  <h2>核心项目</h2>
+<div class="card glass">
+<p>具备AI内容生产与产品设计能力，关注AIGC在文化IP与营销场景中的应用。</p>
 
-  <div class="project-card">
+<div class="skills">
+  <span>Prompt Engineering</span>
+  <span>Midjourney</span>
+  <span>Runway / Kling</span>
+  <span>CapCut AI</span>
+  <span>Product Thinking</span>
+</div>
+</div>
 
-    <h3>影灵灵｜非遗皮影AI IP设计</h3>
+</section>
 
-    <p>
-      完整构建AI驱动的文化IP生产流程：
-      从角色设计 → Prompt工程 → 图像生成 → 视频制作 → 内容传播。
-    </p>
+<!-- ================= PROJECT ================= -->
+<section class="section" id="project">
 
-    <a href="#video">进入项目详情 →</a>
+<h2>核心项目</h2>
 
+<div class="bento">
+
+  <div class="card">
+    <h3>影灵灵 IP设计</h3>
+    <p>非遗皮影戏AI角色设计</p>
   </div>
 
-</section>
-
-
-<!-- AIGC工作流 -->
-<section id="workflow">
-
-  <h2>AIGC内容生产工作流</h2>
-
-  <div class="workflow">
-
-    <div>1. IP设定</div>
-    <div>2. Prompt设计</div>
-    <div>3. 图像生成</div>
-    <div>4. 视频生成</div>
-    <div>5. 剪辑包装</div>
-    <div>6. 内容发布</div>
-
+  <div class="card">
+    <h3>Prompt工程体系</h3>
+    <p>角色一致性与风格控制</p>
   </div>
 
-</section>
-
-
-<!-- 视频入口 -->
-<section id="video">
-
-  <h2>视频作品</h2>
-
-  <p>点击查看影灵灵完整AIGC视频</p>
-
-  <a href="#video-section">进入视频展示 →</a>
-
-</section>
-<header>
-<nav>
-<div class="logo">曾银晶</div>
-
-<ul>
-<li><a href="#about">关于我</a></li>
-<li><a href="#project">项目</a></li>
-<li><a href="#contact">联系</a></li>
-</ul>
-</nav>
-</header>
-
-<section class="hero">
-
-<h1>
-AI Product Designer
-</h1>
-
-<p>
-Prompt Engineer · AIGC Creator
-</p>
-
-<a href="#project" class="btn">
-查看作品
-</a>
-
-</section>
-
-<section id="about">
-
-<h2>关于我</h2>
-
-<p>
-广东外语外贸大学
-市场营销专业
-
-专注AI产品设计、
-Prompt Engineering、
-数字IP开发与AI视频生产。
-</p>
-
-</section>
-
-<section class="project-detail">
-
-<h2>影灵灵 IP设计与AIGC内容生产项目</h2>
-
-<p>
-以中国非遗皮影戏为文化原型，
-设计原创IP角色「影灵灵」，
-并通过AIGC工作流完成角色设定、
-Prompt工程优化、视频生产及传播内容设计。
-</p>
-
-<h3>角色设定图</h3>
-
-<div class="gallery">
-
-<img src="images/yinglingling/影灵灵诞生.png">
-
-<img src="images/yinglingling/三视图.png">
-
-<img src="images/yinglingling/做皮影.png">
-
-<img src="images/yinglingling/生成小皮影.png">
+  <div class="card">
+    <h3>AIGC视频生产</h3>
+    <p>从图像到动态叙事生成</p>
+  </div>
 
 </div>
+
+</section>
+
+<!-- ================= VIDEO ================= -->
+<section class="section">
 
 <h2>视频作品</h2>
 
 <div class="video-grid">
 
-  <!-- 视频1 -->
   <div class="video-card" onclick="openVideo('videos/yinglingling/intro.mp4')">
-    <img src="images/yinglingling/video1-cover.png">
-    <div class="play-btn">▶</div>
-    <p>影灵灵登场（IP诞生）</p>
+    <div class="play">▶</div>
+    <img src="images/yinglingling/video1.png">
+    <p>影灵灵诞生</p>
   </div>
 
-  <!-- 视频2 -->
   <div class="video-card" onclick="openVideo('videos/yinglingling/tutorial.mp4')">
-    <img src="images/yinglingling/video2-cover.png">
-    <div class="play-btn">▶</div>
-    <p>影灵灵教你做皮影</p>
+    <div class="play">▶</div>
+    <img src="images/yinglingling/video2.png">
+    <p>皮影制作教程</p>
   </div>
 
 </div>
 
-<!-- 弹窗播放器 -->
-<div id="videoModal" class="modal">
+</section>
+
+<!-- ================= MODAL ================= -->
+<div id="modal" class="modal">
   <span class="close" onclick="closeVideo()">×</span>
-
-  <video id="videoPlayer" controls autoplay></video>
+  <video id="player" controls></video>
 </div>
 
-<h2>IP设计</h2>
+<script>
 
-<img src="images/hero.jpg">
+function openVideo(src){
+  document.getElementById('modal').style.display='flex';
+  document.getElementById('player').src=src;
+}
 
-<div class="grid">
+function closeVideo(){
+  document.getElementById('modal').style.display='none';
+  document.getElementById('player').pause();
+}
 
-<div>
-<h3>角色定位</h3>
-
-<p>
-光影文化守护精灵
-传播中国非遗文化
-</p>
-</div>
-
-<div>
-<h3>关键词</h3>
-
-<p>
-皮影戏
-东方幻想
-守护精灵
-年轻化传播
-</p>
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<h2>Prompt Engineering</h2>
-
-<div class="compare">
-
-<div>
-<h3>原始Prompt</h3>
-
-<img src="images/prompt_before.jpg">
-</div>
-
-<div>
-<h3>优化后Prompt</h3>
-
-<img src="images/prompt_after.jpg">
-</div>
-
-</div>
-
-<p>
-累计Prompt迭代12+
-生成图片80+
-完成3版角色定稿
-</p>
-
-</section>
-
-<section>
-
-<h2>AIGC工作流</h2>
-
-<img src="images/workflow.png">
-
-<p>
-文化调研 → 角色定位 →
-Prompt设计 → 生图 →
-视频生成 → 后期剪辑
-</p>
-
-</section>
-
-<section>
-
-<h2>AI视频生产</h2>
-
-<img src="images/storyboard.jpg">
-
-<p>
-负责脚本设计、
-Prompt设计、
-镜头设计、
-AI生成与后期统筹。
-</p>
-
-</section>
-
-<section>
-
-<h2>Product Thinking</h2>
-
-<div class="grid">
-
-<div>
-<h3>问题</h3>
-
-<p>
-角色一致性差
-Prompt门槛高
-视频生产复杂
-</p>
-</div>
-
-<div>
-<h3>解决方案</h3>
-
-<p>
-角色模板库
-Prompt模板市场
-AI视频工作流助手
-</p>
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<h2>简历下载</h2>
-
-<a href="resume.pdf" class="btn">
-下载简历
-</a>
-
-</section>
-
-<section id="contact">
-
-<h2>联系我</h2>
-
-<p>
-邮箱：你的邮箱
-</p>
-
-<p>
-GitHub：Crystallin1018
-</p>
-
-</section>
-
-<footer>
-
-© 2026 曾银晶
-
-</footer>
+</script>
 
 </body>
 </html>
