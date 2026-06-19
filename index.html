@@ -280,7 +280,50 @@
     }
 
     /* ========== ABOUT ME SECTION ========== */
-    .about-grid {
+
+    /* ===== 四象限 ===== */
+    .quadrant-wrap {
+      max-width: 900px;
+      margin: 0 auto 64px;
+      padding: 48px 32px;
+    }
+    .quadrant-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;  /* 让圆圈可以绝对定位 */
+    }
+    
+    /* 四个象限 */
+    .q-cell {
+      padding: 32px 28px;
+    }
+    .q-cell h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 12px;
+    }
+    .q-cell p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #4a4a4a;
+      margin-bottom: 6px;
+    }
+    .q-cell strong { color: #1a1a1a; font-weight: 600; }
+    
+    /* 边框（十字分割线） */
+    .q-tl { border-right: 1px solid #d9d5cc; border-bottom: 1px solid #d9d5cc; }
+    .q-tr { border-bottom: 1px solid #d9d5cc; }
+    .q-bl { border-right: 1px solid #d9d5cc; }
+    .q-br { }
+    
+    /* 中心圆：绝对定位在 grid 正中间 */
+
+
+.about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
@@ -794,7 +837,13 @@
     }
 
     /* ========== RESPONSIVE — MOBILE ========== */
-    @media (max-width: 560px) {
+    
+      /* Quadrant tablet */
+      .quadrant-wrap { padding: 24px 16px; }
+.q-center-circle { width: 90px; height: 90px; font-size: 32px; }
+      .qc-h, .qc-v { display: none; }
+
+@media (max-width: 560px) {
       .navbar { padding: 0 16px; height: 56px; }
       .mobile-nav { top: 56px; }
 
@@ -829,7 +878,11 @@
       opacity: 1;
       transform: translateY(0);
     }
-  </style>
+  
+      /* Quadrant mobile */
+      .quadrant-wrap { padding: 16px; margin-top: 32px; }
+      .q-center-circle { width: 70px; height: 70px; font-size: 26px; }
+</style>
 </head>
 
 <body>
@@ -897,7 +950,7 @@
     <!-- Avatar — JS will detect and load the image -->
     <div class="hero-avatar-wrapper fade-up">
       <div class="hero-avatar" id="heroAvatar">
-        <div class="avatar-placeholder">晶</div>
+        <div class="avatar-placeholder">曾</div>
       </div>
     </div>
 
@@ -917,7 +970,51 @@
   <section class="section about-section" id="about">
 
     <h2 class="section-heading fade-up">ABOUT ME</h2>
-    <p class="section-subheading fade-up">We love design that tells a story.</p>
+    
+    <!-- ===== 四象限布局：教育 / 实习 / 项目 / 志愿 ===== -->
+    <div class="quadrant-wrap fade-up">
+      <div class="quadrant-grid">
+        
+        <!-- 左上：学校 -->
+        <div class="q-cell q-tl">
+          <h4>EDUCATION</h4>
+          <p><strong>广东外语外贸大学</strong></p>
+          <p>市场营销专业 · 本科（2024 – 2028）</p>
+          <p>GPA <strong>3.76 / 4.0</strong>（前 15%）· 主修市场营销，聚焦数字化营销与品牌管理。</p>
+        </div>
+
+        <!-- 右上：实习经历 -->
+        <div class="q-cell q-tr">
+          <h4>INTERNSHIP</h4>
+          <p><strong>第十五届全运会 · 好宝 BEE 吉祥物运营</strong></p>
+          <p>2025 · 实习经历</p>
+          <p>参与吉祥物 IP 运营，协助内容策划与社群互动，累计曝光 50 万+。</p>
+        </div>
+
+        <!-- 左下：项目经历 -->
+        <div class="q-cell q-bl">
+          <h4>PROJECTS</h4>
+          <p><strong>🎭 影灵灵 · AI 皮影文化 IP</strong></p>
+          <p>创始人 & AIGC 负责人 · 2025 – 至今</p>
+          <p>构建完整 AIGC 内容生产管线，产出两部 B 站原创短片。</p>
+          <br>
+          <p><strong>⚡ 飞书自动化拼单系统</strong></p>
+          <p>课程项目 · 数字化营销 · 2026.06</p>
+          <p>需求响应时间从 30 分钟压缩至 5 秒，拼单成功率提升 35%。</p>
+        </div>
+
+        <!-- 右下：志愿经历 -->
+        <div class="q-cell q-br">
+          <h4>VOLUNTEER</h4>
+          <p><strong>第十五届全运会 · 双语播报志愿者</strong></p>
+          <p>2025 · 志愿服务</p>
+          <p>为开幕式提供粤语和普通话双语播报服务，累计服务时长 120+ 小时。</p>
+        </div>
+
+
+      </div><!-- /.quadrant-grid -->
+    </div><!-- /.quadrant-wrap -->
+
 
     <div class="about-grid">
       <!-- Left: Photo + Name -->
@@ -926,7 +1023,7 @@
           <!-- JS will insert avatar image here -->
           <img src="" alt="曾银晶" id="aboutAvatarImg" 
                onerror="this.style.display='none'" style="opacity:0;">
-          <div class="avatar-placeholder" id="aboutPlaceholder" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display','Noto Serif SC',serif;font-size:64px;color:#ccc;">晶</div>
+          <div class="avatar-placeholder" id="aboutPlaceholder" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display','Noto Serif SC',serif;font-size:64px;color:#ccc;">曾</div>
         </div>
         <div class="about-name-badge">
           <h3>曾银晶 / Crystal</h3>
@@ -964,67 +1061,7 @@
     </div>
 
 
-    <!-- ===== EDUCATION & EXPERIENCE TIMELINE ===== -->
-    <div class="timeline-section fade-up">
-      <h3>Experience & Education</h3>
-
-      <div class="timeline">
-
-        <div class="timeline-item">
-          <div class="timeline-dot">🎭</div>
-          <div class="timeline-content">
-            <h4>影灵灵 &middot; AI 皮影文化 IP 创始人</h4>
-            <span class="timeline-org">独立项目 / AIGC 内容生产方向</span>
-            <span class="timeline-date">2025 — 至今</span>
-            <p>构建完整 AIGC 内容生产管线，实现皮影角色 AI 视觉一致性，
-              产出两部 B 站原创短片。从创意到成片的全链路 AIGC 内容生产。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot">⚡</div>
-          <div class="timeline-content">
-            <h4>飞书自动化拼单系统</h4>
-            <span class="timeline-org">课程项目 / 数字化营销</span>
-            <span class="timeline-date">2026 年 6 月</span>
-            <p>零代码设计「表单 → 自动化 → 卡片推送」闭环系统，
-              需求响应时间从 30 分钟压缩至 5 秒，拼单成功率提升 35%。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot">🏅</div>
-          <div class="timeline-content">
-            <h4>第十五届全运会 &middot; 好宝 BEE 吉祥物运营</h4>
-            <span class="timeline-org">实习经历</span>
-            <span class="timeline-date">2025</span>
-            <p>参与吉祥物 IP 运营，协助内容策划与社群互动，累计曝光 50 万+。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot">🤝</div>
-          <div class="timeline-content">
-            <h4>第十五届全运会 &middot; 双语播报志愿者</h4>
-            <span class="timeline-org">志愿服务</span>
-            <span class="timeline-date">2025</span>
-            <p>为开幕式提供粤语和普通话双语播报服务，累计服务时长 120+ 小时。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot">🎓</div>
-          <div class="timeline-content">
-            <h4>广东外语外贸大学 &middot; 市场营销专业</h4>
-            <span class="timeline-org">本科（2024–2028）</span>
-            <span class="timeline-date">预计毕业：2028 年 6 月</span>
-            <p>GPA 3.76 / 4.0（前 15%）· 主修市场营销，聚焦数字化营销与品牌管理。</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
+    
 
     <!-- ===== SKILLS ===== -->
     <div class="skills-section fade-up">
