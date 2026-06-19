@@ -9,129 +9,306 @@
   <title>影灵灵 · AI 皮影文化 IP — 曾银晶</title>
   <meta name="description" content="影灵灵项目 — AI 生成的皮影文化 IP">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --bg-primary: #f8f6f1;
-      --text-dark: #1a1a1a;
-      --text-medium: #4a4a4a;
-      --text-light: #888888;
-      --border-color: #e0dcd3;
-      --font-serif: 'Noto Serif SC', 'Playfair Display', serif;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body { font-family: var(--font-sans); background: var(--bg-primary); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-decoration: none; transition: opacity 0.25s ease; }
-    a:hover { opacity: 0.65; }
     img { max-width: 100%; display: block; }
 
-    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(248,246,241,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; transition: box-shadow 0.3s ease; }
-    .navbar.scrolled { box-shadow: 0 1px 20px rgba(0,0,0,0.06); }
-    .nav-logo { font-family: var(--font-serif); font-size: 15px; font-weight: 600; letter-spacing: 2px; }
-    .nav-links { display: flex; gap: 36px; align-items: center; }
-    .nav-link { font-size: 13px; font-weight: 500; letter-spacing: 0.5px; cursor: pointer; transition: opacity 0.25s; }
-    .nav-link:hover { opacity: 0.5; }
-    .nav-cta { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; padding: 8px 20px; border: 1.5px solid var(--text-dark); border-radius: 100px; transition: all 0.3s; }
-    .nav-cta:hover { background: var(--text-dark); color: var(--bg-primary); opacity: 1; }
-    .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
-    .menu-toggle span { display: block; width: 22px; height: 1.5px; background: var(--text-dark); transition: all 0.3s; }
-    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .menu-toggle.active span:nth-child(2) { opacity: 0; }
-    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-    .mobile-nav { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: var(--bg-primary); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
-    .mobile-nav.show { display: flex; animation: fadeIn 0.3s ease; }
-    .mobile-nav a { font-family: var(--font-serif); font-size: 28px; font-weight: 600; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    .back-link { position: fixed; top: 80px; left: 40px; z-index: 999; font-size: 12px; font-weight: 500; letter-spacing: 1px; color: var(--text-light); display: flex; align-items: center; gap: 6px; transition: color 0.25s; }
-    .back-link:hover { color: var(--text-dark); opacity: 1; }
-    .back-arrow { font-size: 18px; }
-
-    .project-hero { padding: 140px 40px 60px; max-width: 1200px; margin: 0 auto; }
-    .project-hero-label { font-size: 11px; font-weight: 500; letter-spacing: 4px; color: var(--text-light); margin-bottom: 12px; }
-    .project-hero-title { font-family: var(--font-serif); font-size: clamp(40px, 8vw, 88px); font-weight: 900; line-height: 1.05; letter-spacing: -2px; }
-    .project-hero-subtitle { font-family: var(--font-serif); font-size: clamp(16px, 2.5vw, 24px); font-weight: 400; font-style: italic; color: var(--text-medium); margin-top: 12px; }
-    .project-hero-meta { display: flex; gap: 32px; margin-top: 32px; flex-wrap: wrap; }
-    .meta-item { font-size: 12px; color: var(--text-light); }
-    .meta-item strong { color: var(--text-dark); font-weight: 600; }
-    .project-hero-desc { max-width: 640px; margin-top: 32px; font-size: 15px; line-height: 1.9; color: var(--text-medium); }
-    .project-hero-cover { margin-top: 48px; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #e8e4dc; position: relative; }
-    .project-hero-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-    .project-hero-cover:hover img { transform: scale(1.02); }
-    .cover-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 64px; background: linear-gradient(135deg, #e8e4dc 0%, #d8d2c4 100%); }
-    .section-divider { border: none; border-top: 1px solid var(--border-color); margin: 0 auto; width: calc(100% - 80px); max-width: 1120px; }
-
-    .films-section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
-    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 4px; color: var(--text-light); margin-bottom: 40px; }
-    .films-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
-    .film-embed { border: 1px solid var(--border-color); background: white; overflow: hidden; }
-    .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
-    .video-wrapper iframe {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: none;
+    :root {
+      --bg-primary: #FDFBF7;
+      --bg-secondary: #F5F1E9;
+      --text-dark: #1A1A1A;
+      --text-medium: #5C5548;
+      --text-light: #9C9488;
+      --text-faint: #C8C0B0;
+      --accent: #8B6F47;
+      --accent-soft: rgba(139,111,71,0.08);
+      --border: rgba(26,26,26,0.08);
+      --border-hover: rgba(26,26,26,0.18);
+      --font-serif: 'Noto Serif SC', serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 14px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --radius-pill: 100px;
+      --ease-lux: cubic-bezier(0.32,0.72,0,1);
+      --ease-expo: cubic-bezier(0.16,1,0.3,1);
+      --ease-spring: cubic-bezier(0.23,1,0.32,1);
     }
-    .film-caption { padding: 16px 20px 20px; }
-    .film-caption h4 { font-family: var(--font-serif); font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-sans); background: var(--bg-primary); color: var(--text-dark);
+      line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+    body::after {
+      content: ''; position: fixed; inset: 0; z-index: 50; pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+    }
+    body::before {
+      content: ''; position: fixed; top: -40%; left: 50%; transform: translateX(-50%);
+      width: 1000px; height: 800px; z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(139,111,71,0.06) 0%, transparent 70%);
+      filter: blur(80px);
+    }
+
+    a { color: inherit; text-decoration: none; transition: opacity 0.4s var(--ease-lux); }
+    a:hover { opacity: 0.6; }
+
+    /* ============ SCROLL PROGRESS ============ */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--text-dark); transform-origin: left;
+      transform: scaleX(0); z-index: 2000;
+      transition: transform 100ms linear;
+    }
+
+    /* ============ FLOATING GLASS NAV ============ */
+    .nav-glass {
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      z-index: 1000; width: calc(100% - 48px); max-width: 720px;
+      background: rgba(253,251,247,0.78);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 10px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: transform 0.5s var(--ease-lux), background 0.5s var(--ease-lux);
+    }
+    .nav-glass.scrolled { transform: translateX(-50%) translateY(-4px); background: rgba(253,251,247,0.92); }
+    .nav-brand {
+      font-family: var(--font-serif); font-size: 14px; font-weight: 600; letter-spacing: 2px;
+    }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-link {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.5px;
+      color: var(--text-medium); transition: color 0.35s var(--ease-lux);
+    }
+    .nav-link:hover { color: var(--text-dark); opacity: 1; }
+    .nav-cta {
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      padding: 7px 18px; border: 1px solid rgba(26,26,26,0.15);
+      border-radius: var(--radius-pill);
+      transition: all 0.4s var(--ease-lux);
+    }
+    .nav-cta:hover { background: var(--text-dark); color: var(--bg-primary); opacity: 1; }
+
+    /* Hamburger X morph */
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      padding: 6px; position: relative; width: 28px; height: 20px;
+    }
+    .menu-toggle span {
+      display: block; position: absolute; left: 4px; width: 20px; height: 1.5px;
+      background: var(--text-dark); transition: all 0.5s var(--ease-lux); border-radius: 1px;
+    }
+    .menu-toggle span:nth-child(1) { top: 4px; }
+    .menu-toggle span:nth-child(2) { top: 9px; }
+    .menu-toggle span:nth-child(3) { top: 14px; }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg); top: 9px; }
+    .menu-toggle.active span:nth-child(2) { transform: scaleX(0); opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg); top: 9px; }
+
+    /* Fullscreen glass mobile overlay */
+    .mobile-overlay {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(253,251,247,0.85);
+      backdrop-filter: blur(40px) saturate(180%);
+      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      flex-direction: column; align-items: center; justify-content: center;
+    }
+    .mobile-overlay.show { display: flex; }
+    .mobile-nav-link {
+      font-family: var(--font-serif); font-size: 32px; font-weight: 700;
+      color: var(--text-dark); margin: 12px 0;
+      opacity: 0; transform: translateY(20px);
+      transition: all 0.6s var(--ease-expo);
+    }
+    .mobile-overlay.show .mobile-nav-link { opacity: 1; transform: translateY(0); }
+    .mobile-nav-link:nth-child(1) { transition-delay: 100ms; }
+    .mobile-nav-link:nth-child(2) { transition-delay: 160ms; }
+    .mobile-nav-link:nth-child(3) { transition-delay: 220ms; }
+    .mobile-nav-link:nth-child(4) { transition-delay: 280ms; }
+
+    /* ============ BACK LINK ============ */
+    .back-link {
+      position: fixed; top: 88px; left: 40px; z-index: 900;
+      font-size: 12px; font-weight: 500; letter-spacing: 1px;
+      color: var(--text-light); display: flex; align-items: center; gap: 6px;
+      transition: color 0.35s var(--ease-lux);
+    }
+    .back-link:hover { color: var(--text-dark); opacity: 1; }
+
+    /* ============ HERO ============ */
+    .project-hero { padding: 180px 40px 80px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 10; }
+    .project-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 14px; border: 1px solid var(--border); border-radius: var(--radius-pill);
+      font-size: 10px; font-weight: 600; letter-spacing: 3px; color: var(--text-light);
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    .eyebrow-dot { width: 7px; height: 7px; background: #1D9E75; border-radius: 50%; }
+    .project-hero-title {
+      font-family: var(--font-serif); font-size: clamp(42px, 8vw, 80px); font-weight: 900;
+      line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .project-hero-subtitle {
+      font-family: var(--font-serif); font-size: clamp(17px, 2.5vw, 22px);
+      font-weight: 400; font-style: italic; color: var(--text-medium); margin-bottom: 36px; max-width: 600px;
+    }
+    .project-hero-meta { display: flex; gap: 36px; margin-bottom: 36px; flex-wrap: wrap; }
+    .meta-item { font-size: 12.5px; color: var(--text-light); }
+    .meta-item strong { color: var(--text-dark); font-weight: 600; }
+    .project-hero-desc {
+      max-width: 640px; font-size: 15px; line-height: 1.9; color: var(--text-medium);
+    }
+
+    /* Double-Bezel cover card */
+    .cover-shell {
+      margin-top: 56px; padding: 6px; border: 1px solid var(--border);
+      border-radius: var(--radius-lg); background: var(--border);
+      position: relative; overflow: hidden;
+    }
+    .cover-core {
+      border-radius: 22px; overflow: hidden; position: relative;
+      background: var(--bg-secondary);
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.3);
+    }
+    .cover-core img { width: 100%; height: auto; display: block; transition: transform 1.2s var(--ease-lux); }
+    .cover-core:hover img { transform: scale(1.03); }
+    .cover-placeholder {
+      width: 100%; min-height: 360px; display: flex; align-items: center; justify-content: center;
+      font-size: 72px; background: linear-gradient(135deg, #e8e4dc 0%, #d8d2c4 100%);
+    }
+
+    /* ============ SECTION DIVIDER ============ */
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 0 auto; width: calc(100% - 80px); max-width: 1120px; }
+
+    /* ============ SECTIONS ============ */
+    .films-section { padding: 128px 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 10; }
+    .gallery-section { padding: 128px 40px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; }
+    .section-label {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+      letter-spacing: 4px; color: var(--text-light); margin-bottom: 48px;
+      text-transform: uppercase;
+    }
+
+    /* Double-Bezel film cards */
+    .films-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .film-shell {
+      padding: 4px; border: 1px solid var(--border); border-radius: var(--radius-md);
+      background: var(--border); overflow: hidden;
+      transition: transform 0.6s var(--ease-lux), box-shadow 0.6s var(--ease-lux);
+    }
+    .film-shell:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.04); }
+    .film-core {
+      background: white; border-radius: 16px; overflow: hidden;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.3);
+    }
+    .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000; }
+    .video-wrapper iframe {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+    }
+    .film-caption { padding: 18px 22px 22px; }
+    .film-caption h4 { font-family: var(--font-serif); font-size: 17px; font-weight: 700; margin-bottom: 6px; }
     .film-caption p { font-size: 12.5px; color: var(--text-medium); line-height: 1.6; }
-    .film-meta { font-size: 11px; color: var(--text-light); margin-top: 8px; }
+    .film-meta {
+      font-family: var(--font-mono); font-size: 10px; color: var(--text-light);
+      margin-top: 10px; letter-spacing: 1px;
+    }
 
-    .gallery-section { padding: 80px 40px; max-width: 1400px; margin: 0 auto; }
-    .gallery-grid { columns: 3; column-gap: 20px; }
-    .gallery-item { break-inside: avoid; margin-bottom: 20px; cursor: pointer; overflow: hidden; background: #e8e4dc; position: relative; transition: transform 0.35s ease, box-shadow 0.35s ease; }
-    .gallery-item:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); opacity: 1; }
-    .gallery-item img { width: 100%; display: block; transition: transform 0.5s ease; }
-    .gallery-item:hover img { transform: scale(1.03); }
-    .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px 16px 12px; background: linear-gradient(transparent, rgba(0,0,0,0.5)); color: white; font-size: 12px; opacity: 0; transition: opacity 0.3s ease; }
+    /* Gallery — masonry columns */
+    .gallery-grid { columns: 3; column-gap: 18px; }
+    .gallery-item {
+      break-inside: avoid; margin-bottom: 18px; cursor: pointer; overflow: hidden;
+      background: #e8e4dc; position: relative;
+      transition: transform 0.6s var(--ease-lux), box-shadow 0.6s var(--ease-lux);
+    }
+    .gallery-item:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .gallery-item img { width: 100%; display: block; transition: transform 0.8s var(--ease-lux); }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 18px 14px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.55)); color: white;
+      font-size: 12px; opacity: 0; transition: opacity 0.4s var(--ease-lux);
+    }
     .gallery-item:hover .gallery-caption { opacity: 1; }
-    .gallery-placeholder { width: 100%; min-height: 160px; display: flex; align-items: center; justify-content: center; font-size: 36px; background: linear-gradient(135deg, #e8e4dc 0%, #d8d2c4 100%); }
+    .gallery-placeholder {
+      width: 100%; min-height: 160px; display: flex; align-items: center; justify-content: center;
+      font-size: 36px; background: linear-gradient(135deg, #e8e4dc 0%, #d8d2c4 100%);
+    }
 
-    .lightbox { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; cursor: zoom-out; animation: lbFadeIn 0.25s ease; }
+    /* Lightbox */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 10000;
+      background: rgba(0,0,0,0.94); align-items: center; justify-content: center; cursor: zoom-out;
+    }
     .lightbox.show { display: flex; }
-    @keyframes lbFadeIn { from { opacity: 0; } to { opacity: 1; } }
     .lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; border-radius: 4px; }
-    .lightbox-close { position: absolute; top: 20px; right: 28px; font-size: 32px; color: white; cursor: pointer; transition: opacity 0.2s; z-index: 10001; }
-    .lightbox-close:hover { opacity: 0.6; }
-    .lightbox-caption { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); font-size: 13px; text-align: center; }
+    .lightbox-close { position: absolute; top: 20px; right: 28px; font-size: 32px; color: white; cursor: pointer; transition: opacity 0.3s; z-index: 10001; font-weight: 300; line-height: 1; }
+    .lightbox-close:hover { opacity: 0.5; }
+    .lightbox-caption {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.6); font-family: var(--font-sans); font-size: 13px; text-align: center;
+    }
 
-    footer { border-top: 1px solid var(--border-color); padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-light); max-width: 1200px; margin: 0 auto; }
+    /* ============ FOOTER ============ */
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; color: var(--text-light); max-width: 1200px;
+      margin: 0 auto; position: relative; z-index: 10;
+    }
     .footer-links { display: flex; gap: 24px; }
-    .footer-links a { color: var(--text-medium); }
+    .footer-links a { color: var(--text-medium); transition: opacity 0.35s var(--ease-lux); font-size: 12px; }
     .footer-links a:hover { opacity: 0.6; }
 
+    /* ============ SCROLL REVEAL ============ */
+    .fade-up {
+      opacity: 0; transform: translateY(40px); filter: blur(8px);
+      transition: opacity 0.8s var(--ease-expo), transform 0.8s var(--ease-expo), filter 0.8s var(--ease-expo);
+      will-change: transform, opacity, filter;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+    .bilibili-link { text-align: center; margin-top: 40px; font-size: 12.5px; color: var(--text-light); font-weight: 500; }
+    .bilibili-link a { border-bottom: 1px solid var(--text-faint); padding-bottom: 2px; transition: border-color 0.35s var(--ease-lux); }
+    .bilibili-link a:hover { border-color: var(--text-dark); opacity: 1; }
+
+    /* ============ RESPONSIVE ============ */
     @media (max-width: 900px) {
-      .navbar { padding: 0 20px; }
       .nav-links { display: none; }
       .nav-cta { display: none; }
       .menu-toggle { display: flex; }
-      .back-link { left: 20px; }
-      .project-hero { padding: 120px 20px 40px; }
-      .films-section, .gallery-section { padding: 60px 20px; }
+      .nav-glass { width: calc(100% - 32px); top: 14px; padding: 8px 18px; }
+      .back-link { left: 18px; top: 78px; }
+      .project-hero { padding: 150px 20px 56px; }
+      .films-section, .gallery-section { padding: 80px 20px; }
       .section-divider { width: calc(100% - 40px); }
-      .films-grid { grid-template-columns: 1fr; }
-      .gallery-grid { columns: 2; column-gap: 14px; }
-      .gallery-item { margin-bottom: 14px; }
-      footer { flex-direction: column; gap: 12px; text-align: center; padding: 20px; }
+      .films-grid { grid-template-columns: 1fr; gap: 20px; }
+      .gallery-grid { columns: 2; column-gap: 12px; }
+      .gallery-item { margin-bottom: 12px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px; }
     }
     @media (max-width: 560px) {
-      .project-hero-title { letter-spacing: -1px; }
+      .project-hero-title { letter-spacing: -0.5px; }
       .project-hero-meta { gap: 16px; }
       .gallery-grid { columns: 1; }
     }
-
-    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--text-dark); color: white; padding: 12px 28px; border-radius: 100px; font-size: 13px; font-weight: 500; opacity: 0; transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 9999; pointer-events: none; }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
 
-  <nav class="navbar" id="navbar">
-    <a href="index.html" class="nav-logo">曾银晶</a>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ============ FLOATING GLASS NAV ============ -->
+  <nav class="nav-glass" id="navbar">
+    <a href="index.html" class="nav-brand">曾银晶</a>
     <div class="nav-links">
       <a href="index.html#hero" class="nav-link">首页</a>
       <a href="index.html#about" class="nav-link">关于</a>
@@ -141,19 +318,20 @@
     <a href="index.html#contact" class="nav-cta">联系我</a>
     <div class="menu-toggle" id="menuToggle" onclick="toggleMobileNav()"><span></span><span></span><span></span></div>
   </nav>
-  <div class="mobile-nav" id="mobileNav">
-    <a href="index.html#hero" onclick="closeMobileNav()">首页</a>
-    <a href="index.html#about" onclick="closeMobileNav()">关于</a>
-    <a href="index.html#projects" onclick="closeMobileNav()">项目</a>
-    <a href="index.html#contact" onclick="closeMobileNav()">联系</a>
+
+  <!-- Fullscreen glass mobile overlay -->
+  <div class="mobile-overlay" id="mobileOverlay">
+    <a href="index.html#hero" class="mobile-nav-link" onclick="closeMobileNav()">首页</a>
+    <a href="index.html#about" class="mobile-nav-link" onclick="closeMobileNav()">关于</a>
+    <a href="index.html#projects" class="mobile-nav-link" onclick="closeMobileNav()">项目</a>
+    <a href="index.html#contact" class="mobile-nav-link" onclick="closeMobileNav()">联系</a>
   </div>
 
-  <a href="index.html#projects" class="back-link">
-    <span class="back-arrow">←</span> 返回项目
-  </a>
+  <a href="index.html#projects" class="back-link"><span>←</span> 返回项目</a>
 
+  <!-- ============ HERO ============ -->
   <section class="project-hero">
-    <p class="project-hero-label">项目 — 01 / 02</p>
+    <span class="project-eyebrow"><span class="eyebrow-dot"></span>Project 01 / 02</span>
     <h1 class="project-hero-title">影灵灵</h1>
     <p class="project-hero-subtitle">AI 皮影文化 IP · 在传统与智能的交汇处设计。</p>
     <div class="project-hero-meta">
@@ -168,78 +346,77 @@
       并已产出两部 B 站原创短片及系列视觉资产，
       探索传统文化在数字时代的新叙事形式。
     </p>
-    <div class="project-hero-cover" id="heroCover">
+    <!-- Double-Bezel cover -->
+    <div class="cover-shell"><div class="cover-core" id="heroCover">
       <img src="images/yinglingling/yinglingling_views.png" alt="影灵灵三视图"
            onerror="this.parentElement.innerHTML='<div class=\'cover-placeholder\'>🎭</div>'">
-    </div>
+    </div></div>
   </section>
 
   <hr class="section-divider">
 
+  <!-- ============ FILMS ============ -->
   <section class="films-section" id="films">
-    <p class="section-label">影片作品</p>
+    <p class="section-label">Film Works</p>
     <div class="films-grid">
-
-      <!-- 影灵灵 · 第一章 — B 站 iframe 直接播放 -->
-      <div class="film-embed fade-up">
-        <div class="video-wrapper">
-          <iframe src="https://player.bilibili.com/player.html?bvid=BV14Zjw6FEfb&page=1&autoplay=0"
-                  scrolling="no" frameborder="no" allowfullscreen="true"
-                  loading="lazy"></iframe>
-        </div>
-        <div class="film-caption">
-          <h4>影灵灵 · 第一章</h4>
-          <p>首部 AIGC 短片，讲述影灵灵的诞生故事，探索皮影美学与 AI 生成的融合。</p>
-          <p class="film-meta">Bilibili · 2025</p>
-        </div>
-      </div>
-
-      <!-- 影灵灵 · 第二章 — B 站 iframe 直接播放 -->
-      <div class="film-embed fade-up">
-        <div class="video-wrapper">
-          <iframe src="https://player.bilibili.com/player.html?bvid=BV1NwjA64EE3&page=1&autoplay=0"
-                  scrolling="no" frameborder="no" allowfullscreen="true"
-                  loading="lazy"></iframe>
-        </div>
-        <div class="film-caption">
-          <h4>影灵灵 · 第二章</h4>
-          <p>延续视觉风格，通过更成熟的多模态管线，呈现更丰富的叙事场景与角色互动。</p>
-          <p class="film-meta">Bilibili · 2025</p>
+      <div class="film-shell fade-up">
+        <div class="film-core">
+          <div class="video-wrapper">
+            <iframe src="https://player.bilibili.com/player.html?bvid=BV14Zjw6FEfb&page=1&autoplay=0"
+                    scrolling="no" frameborder="no" allowfullscreen="true" loading="lazy"></iframe>
+          </div>
+          <div class="film-caption">
+            <h4>影灵灵 · 第一章</h4>
+            <p>首部 AIGC 短片，讲述影灵灵的诞生故事，探索皮影美学与 AI 生成的融合。</p>
+            <p class="film-meta">Bilibili · 2025</p>
+          </div>
         </div>
       </div>
-
+      <div class="film-shell fade-up">
+        <div class="film-core">
+          <div class="video-wrapper">
+            <iframe src="https://player.bilibili.com/player.html?bvid=BV1NwjA64EE3&page=1&autoplay=0"
+                    scrolling="no" frameborder="no" allowfullscreen="true" loading="lazy"></iframe>
+          </div>
+          <div class="film-caption">
+            <h4>影灵灵 · 第二章</h4>
+            <p>延续视觉风格，通过更成熟的多模态管线，呈现更丰富的叙事场景与角色互动。</p>
+            <p class="film-meta">Bilibili · 2025</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <p style="text-align:center;margin-top:32px;font-size:13px;color:var(--text-light);">
+    <p class="bilibili-link">
       <a href="https://space.bilibili.com/2031015294" target="_blank">在 B 站观看更多影灵灵作品 →</a>
     </p>
   </section>
 
   <hr class="section-divider">
 
+  <!-- ============ GALLERY ============ -->
   <section class="gallery-section" id="gallery">
-    <p class="section-label">照片画廊</p>
+    <p class="section-label">Photo Gallery</p>
     <div class="gallery-grid" id="galleryGrid"></div>
   </section>
 
+  <!-- ============ FOOTER ============ -->
   <footer>
-    <div>&copy; 2026 曾银晶 · 保留所有权利</div>
+    <div>&copy; 2026 曾银晶 &middot; All rights reserved.</div>
     <div class="footer-links">
-      <a href="mailto:LinWan1020@163.com">邮箱</a>
-      <a href="javascript:void(0);" onclick="copyWechat()">微信</a>
+      <a href="mailto:LinWan1020@163.com">Email</a>
       <a href="https://space.bilibili.com/2031015294" target="_blank">Bilibili</a>
     </div>
   </footer>
 
+  <!-- ============ LIGHTBOX ============ -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
     <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
     <img id="lightboxImg" src="" alt="">
     <p class="lightbox-caption" id="lightboxCaption"></p>
   </div>
 
-  <div class="toast" id="toast">微信号已复制 ✓</div>
-
   <script>
-    // 照片画廊数据
+    // === PHOTO GALLERY DATA ===
     var yinglingPics = [
       { file: 'yinglingling_views.png',      caption: '影灵灵 · 三视图' },
       { file: 'yinglingling_birth.png',       caption: '影灵灵 · 诞生' },
@@ -301,59 +478,46 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
-    function toggleMobileNav() {
-      document.getElementById('menuToggle').classList.toggle('active');
-      document.getElementById('mobileNav').classList.toggle('show');
-    }
-    function closeMobileNav() {
-      var t = document.getElementById('menuToggle');
-      if (t) t.classList.remove('active');
-      var n = document.getElementById('mobileNav');
-      if (n) n.classList.remove('show');
-    }
+    // === SCROLL PROGRESS ===
+    (function() {
+      var bar = document.getElementById('scrollProgress');
+      window.addEventListener('scroll', function() {
+        var h = document.documentElement;
+        var scrolled = h.scrollTop || document.body.scrollTop;
+        var max = (h.scrollHeight - h.clientHeight) || 1;
+        bar.style.transform = 'scaleX(' + Math.min(scrolled / max, 1) + ')';
+      }, { passive: true });
+    })();
 
-    function copyWechat() {
-      var wechatId = 'Zzing1018';
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(wechatId).then(function() { showToast(); });
-      } else {
-        var input = document.createElement('input');
-        input.value = wechatId;
-        document.body.appendChild(input);
-        input.select();
-        try { document.execCommand('copy'); showToast(); } catch(err) {}
-        document.body.removeChild(input);
-      }
-    }
-    function showToast() {
-      var t = document.getElementById('toast');
-      t.classList.add('show');
-      setTimeout(function() { t.classList.remove('show'); }, 2200);
-    }
-
-    function initScrollAnimations() {
-      var els = document.querySelectorAll('.fade-up');
-      if ('IntersectionObserver' in window) {
-        var obs = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) { entry.target.classList.add('visible'); }
-          });
-        }, { threshold: 0.1 });
-        els.forEach(function(el) { obs.observe(el); });
-      } else {
-        els.forEach(function(el) { el.classList.add('visible'); });
-      }
-    }
-
+    // === NAV SCROLLED STATE ===
     window.addEventListener('scroll', function() {
       var nb = document.getElementById('navbar');
       if (!nb) return;
-      if (window.scrollY > 80 || document.documentElement.scrollTop > 80) {
-        nb.classList.add('scrolled');
-      } else {
-        nb.classList.remove('scrolled');
-      }
-    });
+      if (window.scrollY > 40) nb.classList.add('scrolled');
+      else nb.classList.remove('scrolled');
+    }, { passive: true });
+
+    // === MOBILE NAV (X morph + fullscreen glass) ===
+    function toggleMobileNav() {
+      document.getElementById('menuToggle').classList.toggle('active');
+      document.getElementById('mobileOverlay').classList.toggle('show');
+    }
+    function closeMobileNav() {
+      document.getElementById('menuToggle').classList.remove('active');
+      document.getElementById('mobileOverlay').classList.remove('show');
+    }
+
+    // === INTERSECTION OBSERVER REVEALS ===
+    function initScrollAnimations() {
+      var els = document.querySelectorAll('.fade-up');
+      if (!('IntersectionObserver' in window)) { els.forEach(function(el) { el.classList.add('visible'); }); return; }
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function(el) { obs.observe(el); });
+    }
 
     document.addEventListener('DOMContentLoaded', function() {
       buildGallery();
