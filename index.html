@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/shader-effect.css">
   <!-- GSAP & SplitType for menu animation -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
@@ -316,6 +317,14 @@
     <p class="muted">广外市场营销 · AIGC 文化 IP 方向</p>
   </footer>
 
+  <!-- ========== SHADER EFFECT ========== -->
+  <div class="ripple-container" id="rippleContainer"></div>
+  <div class="shader-reveal" id="shaderReveal">
+    <div class="shader-reveal-close" onclick="closeShaderReveal()">&times;</div>
+    <img id="shaderRevealImg" src="" alt="">
+    <div class="shader-hint">点击任意位置关闭</div>
+  </div>
+
   <!-- ========== LIGHTBOX ========== -->
   <div class="lightbox" id="lightbox">
     <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
@@ -332,5 +341,6 @@
   <div class="toast" id="toast">微信号已复制 ✓</div>
 
   <script src="js/main.js"></script>
+  <script src="js/shader-effect.js"></script>
 </body>
 </html>
