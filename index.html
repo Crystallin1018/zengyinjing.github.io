@@ -583,139 +583,269 @@
     }
     .skill-list li:last-child { border-bottom: none; }
 
-    /* ========== PROJECTS SECTION (Archive Stack Style) ========== */
-    .projects-section { margin-top: 40px; }
-    .projects-section h3 {
-      font-family: var(--font-serif);
-      font-size: 28px; font-weight: 600;
-      margin-bottom: 40px;
-      text-align: center;
+    
+
+
+/* ========== END PROJECTS (EDITORIAL) ========== */
+
+
+    
+    /* ========== PROJECTS — FULL-SCREEN MAGAZINE SPREADS ========== */
+    .projects-section {
+      margin-top: 120px;
+      padding-top: 0;
     }
 
-    .projects-stack {
-      position: relative;
-      max-width: 1000px;
+    /* --- Editorial masthead --- */
+    .mag-masthead {
+      max-width: 1200px;
       margin: 0 auto;
-      padding-bottom: 80px; /* space for last card's hover lift */
-    }
-
-    /* Each card is a full-width horizontal bar */
-    .project-card {
-      position: relative;
+      padding: 0 48px 80px;
       display: flex;
-      align-items: stretch;
-      border: none;
-      margin-bottom: -32px; /* stacked overlap */
-      min-height: 240px;
-      transition:
-        transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        box-shadow 0.45s ease,
-        z-index 0s 0.3s;
-      z-index: 1;
-      overflow: visible;
+      align-items: baseline;
+      gap: 20px;
+      border-bottom: 1px solid #d9d5cc;
     }
-    .project-card:hover {
-      transform: translateY(-16px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-      z-index: 10;
-      transition:
-        transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-        box-shadow 0.45s ease,
-        z-index 0s 0s;
+    .mag-masthead-num {
+      font-family: 'Playfair Display', 'Noto Serif SC', serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #b5b0a6;
+      letter-spacing: 3px;
     }
-
-    /* Card 1 — warm white / cream */
-    .project-card:nth-child(1) {
-      background: linear-gradient(135deg, #f2efe9 0%, #e8e4db 100%);
+    .mag-masthead-text h2 {
+      font-family: 'Playfair Display', 'Noto Serif SC', serif;
+      font-size: clamp(32px, 3.6vw, 48px);
+      font-weight: 700;
+      letter-spacing: 8px;
+      color: #3a3632;
+      margin: 0 0 4px;
     }
-    /* Card 2 — warm brown (咖色) */
-    .project-card:nth-child(2) {
-      background: linear-gradient(135deg, #8B6F47 0%, #6B4F35 100%);
-      color: #fff;
-    }
-    .project-card:nth-child(2) .project-desc,
-    .project-card:nth-child(2) .project-meta {
-      color: rgba(255,255,255,0.85);
-    }
-    .project-card:nth-child(2) .project-readmore {
-      border-color: rgba(255,255,255,0.7);
-      color: #fff;
-    }
-    .project-card:nth-child(2) .project-readmore:hover {
-      background: rgba(255,255,255,0.95);
-      color: #8B6F47;
-      opacity: 1;
+    .mag-masthead-text p {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #a09b91;
+      text-transform: uppercase;
+      margin: 0;
     }
 
-    /* Left column: Title area */
-    .project-title-col {
-      width: 42%;
-      min-width: 280px;
+    /* --- Full-screen spread container --- */
+    .mag-spread {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 48px 44px;
-      flex-shrink: 0;
-    }
-    .project-title-col h4 {
-      font-family: var(--font-serif);
-      font-size: clamp(28px, 3vw, 42px);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.5px;
-    }
-    .project-title-col h4 span {
-      display: block;
-      font-family: var(--font-sans);
-      font-size: 0.38em;
-      font-weight: 400;
-      opacity: 0.55;
-      margin-top: 8px;
-      letter-spacing: 0.5px;
-    }
-
-    /* Right column: Description + READ MORE button */
-    .project-desc-col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
       justify-content: center;
-      padding: 36px 48px 36px 20px;
-      position: relative;
+      overflow: hidden;
     }
 
-    /* READ MORE button — positioned top-right inside desc col */
-    .project-readmore {
+    /* Image / visual area */
+    .mag-spread-img {
       position: absolute;
-      top: 24px; right: 32px;
-      font-size: 10px; font-weight: 600;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 7px 18px;
-      border: 1.5px solid var(--text-dark);
-      border-radius: 100px;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-      cursor: pointer;
+      inset: 0;
+      z-index: 0;
     }
-    .project-readmore:hover {
-      background: var(--text-dark);
-      color: white !important;
-      opacity: 1;
+    .mag-spread-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-
-    .project-desc {
-      font-size: 13.5px;
-      line-height: 1.85;
-      color: var(--text-medium);
-      max-width: 420px;
+    /* Gradient overlay for text readability */
+    .mag-spread-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.02) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .mag-spread--light .mag-spread-img::after {
+      background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
     }
 
-    .project-meta {
-      font-size: 11px;
-      color: var(--text-light);
-      margin-top: 12px;
+    /* Placeholder gradients (when no image available) */
+    .mag-spread-img--placeholder {
+      background: linear-gradient(170deg, #f5f1ea 0%, #ddd8c8 100%);
+    }
+    .mag-spread-img--placeholder--coral {
+      background: linear-gradient(170deg, #c85e4a 0%, #96402e 100%);
+    }
+    .mag-spread--light .mag-spread-img--placeholder--coral::after {
+      background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 100%);
+    }
+
+    /* Typography overlay block */
+    .mag-typo {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      width: 100%;
+      padding: 60px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+    }
+
+    /* Bottom-left overlay (default for spread 1) */
+    .mag-typo--bottom-left {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      align-items: end;
+    }
+
+    /* Center-right overlay (for spread 2) */
+    .mag-typo--center-right {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      align-items: center;
+    }
+
+    /* Project title (oversized serif) */
+    .mag-title {
+      font-family: 'Playfair Display', 'Noto Serif SC', serif;
+      font-size: clamp(56px, 9vw, 160px);
+      font-weight: 700;
+      letter-spacing: -5px;
+      line-height: 0.88;
+      color: #1a1a1a;
+    }
+    .mag-spread--light .mag-title {
+      color: #fff;
+    }
+    .mag-title-en {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(11px, 1vw, 15px);
+      font-weight: 400;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      color: #888;
+      margin-top: 16px;
+      line-height: 1.4;
     }
+    .mag-spread--light .mag-title-en {
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Description */
+    .mag-desc {
+      font-family: 'Noto Serif SC', 'Playfair Display', Georgia, serif;
+      font-size: clamp(14px, 1.3vw, 20px);
+      line-height: 2;
+      color: #4a4640;
+      max-width: 480px;
+    }
+    .mag-spread--light .mag-desc {
+      color: rgba(255,255,255,0.88);
+    }
+    .mag-desc-role {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #a09b91;
+      margin-top: 20px;
+    }
+    .mag-spread--light .mag-desc-role {
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* Minimal CTA */
+    .mag-cta {
+      display: inline-block;
+      margin-top: 28px;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #3a3632;
+      border-bottom: 1px solid #3a3632;
+      padding-bottom: 2px;
+      transition: opacity 0.3s;
+    }
+    .mag-cta:hover { opacity: 0.6; }
+    .mag-spread--light .mag-cta {
+      color: #fff;
+      border-bottom-color: rgba(255,255,255,0.6);
+    }
+
+    /* Decorative rule line */
+    .mag-rule {
+      width: 60px;
+      height: 1px;
+      background: #3a3632;
+      margin: 24px 0;
+    }
+    .mag-spread--light .mag-rule {
+      background: rgba(255,255,255,0.4);
+    }
+    .mag-rule--right {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    /* Page number mark */
+    .mag-page-mark {
+      position: absolute;
+      z-index: 3;
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: rgba(0,0,0,0.2);
+    }
+    .mag-spread--light .mag-page-mark {
+      color: rgba(255,255,255,0.35);
+    }
+    .mag-page-mark--top-right {
+      top: 32px;
+      right: 48px;
+    }
+
+    /* Whitespace */
+    .mag-whitespace { height: 200px; width: 100%; }
+    @media (min-width: 901px) { .mag-whitespace { height: 280px; } }
+
+    /* Scroll animation */
+    .mag-spread .mag-typo {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1.2s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1);
+    }
+    .mag-spread.visible .mag-typo {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mag-spread .mag-typo--center-right {
+      transform: translateY(calc(-50% + 50px));
+    }
+    .mag-spread.visible .mag-typo--center-right {
+      transform: translateY(-50%);
+    }
+    
+    /* Ken Burns effect on scroll */
+    .mag-spread-img img {
+      animation: none;
+      transition: transform 1.2s cubic-bezier(0.16,1,0.3,1);
+    }
+    .mag-spread.visible .mag-spread-img img {
+      transform: scale(1.05);
+    }
+    /* When no img, animate the placeholder gradient */
+    .mag-spread-img--placeholder,
+    .mag-spread-img--placeholder--coral {
+      transition: opacity 1.2s ease;
+    }
+    /* ========== END PROJECTS (MAGAZINE) ========== */
+
+    
 
     /* ========== DESIGN BEYOND — FLIP CARDS ========== */
     .beyond-section { margin-top: 80px; }
@@ -875,160 +1005,109 @@
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* ========== RESPONSIVE — TABLET ========== */
-    @media (max-width: 900px) {
-      .navbar { padding: 0 24px; }
-      .nav-links { display: none; }
-      .nav-cta { display: none; }
-      .menu-toggle { display: flex; }
-
-      .section { padding: 70px 24px; }
-      .section-divider { width: calc(100% - 48px); }
-
-      .about-grid { grid-template-columns: 1fr; gap: 36px; }
-
-      .projects-grid,
-      .project-card {
-        flex-direction: column;
-        min-height: auto;
-        margin-bottom: -20px;
-      }
-      .project-title-col {
-        width: 100%;
-        padding: 28px 28px 16px;
-        min-width: unset;
-      }
-      .project-title-col h4 { font-size: 26px; }
-      .project-desc-col {
-        padding: 0 28px 24px;
-      }
-      .project-readmore {
-        position: static;
-        align-self: flex-start;
-        margin-bottom: 10px;
-        display: inline-block;
-      }
-
-      .flip-cards { grid-template-columns: 1fr 1fr; gap: 16px; }
-
-      .timeline::before { left: 16px; }
-      .timeline-dot { width: 33px; min-width: 33px; font-size: 12px; }
-    }
-
-    /* ========== RESPONSIVE — MOBILE ========== */
     
-      /* Quadrant tablet */
-      .quadrant-wrap { padding: 24px 16px; }
-.q-center-circle { width: 90px; height: 90px; font-size: 32px; }
-      .qc-h, .qc-v { display: none; }
+  /* ========== RESPONSIVE — TABLET (900px) ========== */
+  @media (max-width: 900px) {
+    .navbar { padding: 0 24px; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .menu-toggle { display: flex; }
 
-@media (max-width: 560px) {
-      .navbar { padding: 0 16px; height: 56px; }
-      .mobile-nav { top: 56px; }
+    .section { padding: 70px 24px; }
+    .section-divider { width: calc(100% - 48px); }
 
-      .section { padding: 56px 20px; }
-      .section-divider { width: calc(100% - 40px); }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
 
-      .hero { padding: 100px 16px 60px; }
-      .hero-deco-wing { width: 60px; top: 12%; left: 6%; }
-      .hero-avatar { width: 110px; height: 110px; }
-      .avatar-placeholder { font-size: 32px; }
+    /* --- Editorial spread: tablet --- */
+    
+    
+    
 
-      .about-photo-frame { max-width: 260px; }
+    
+    
+    
+    
+    
 
-      .skills-grid { grid-template-columns: 1fr; }
-      .flip-cards { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
-      .flip-card { aspect-ratio: 3/4; }
+    .flip-cards { grid-template-columns: 1fr 1fr; gap: 16px; }
+    /* Magazine spreads: tablet */
+    .mag-masthead { flex-direction: column; align-items: flex-start; gap: 4px; padding: 0 32px 48px; }
+    .mag-masthead-num { font-size: 12px; }
+    .mag-masthead-text h2 { font-size: 28px; letter-spacing: 4px; }
+    .mag-spread { min-height: 80vh; }
+    .mag-typo { padding: 40px 32px; gap: 32px; }
+    .mag-typo mag-typo--center-left { transform: translateY(-50%); }
+    .mag-page-mark--top-right { right: 32px; top: 24px; font-size: 10px; }
 
-      footer { flex-direction: column; gap: 12px; text-align: center; padding: 20px; }
-      .footer-links { justify-content: center; }
 
-      .contact-deco-left,
-      .contact-deco-right { display: none; }
+    .timeline::before { left: 16px; }
+    .timeline-dot { width: 33px; min-width: 33px; font-size: 12px; }
+  }
+
+  /* ========== RESPONSIVE — MOBILE (560px) ========== */
+  @media (max-width: 560px) {
+    .navbar { padding: 0 16px; height: 56px; }
+    .mobile-nav { top: 56px; }
+
+    .section { padding: 56px 20px; }
+    .section-divider { width: calc(100% - 40px); }
+
+    .hero { padding: 100px 16px 60px; }
+    .hero-deco-wing { width: 60px; top: 12%; left: 6%; }
+    .hero-avatar { width: 110px; height: 110px; }
+    .avatar-placeholder { font-size: 32px; }
+
+    /* --- Editorial spread: mobile --- */
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    .about-photo-frame { max-width: 260px; }
+
+    .skills-grid { grid-template-columns: 1fr; }
+    .flip-cards { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
+    /* Magazine spreads: mobile */
+    .mag-masthead { flex-direction: column; align-items: flex-start; gap: 4px; padding: 0 20px 32px; }
+    .mag-masthead-num { font-size: 12px; }
+    .mag-masthead-text h2 { font-size: 24px; letter-spacing: 3px; }
+    .mag-spread { min-height: 70vh; }
+    .mag-spread .mag-typo,
+    .mag-spread .mag-typo mag-typo--center-left,
+    .mag-spread .mag-typo mag-typo--bottom-left,
+    .mag-spread .mag-typo mag-typo--bottom-right {
+      position: absolute !important;
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+      padding: 24px 20px !important;
     }
+    .mag-title { letter-spacing: -2px; }
+    .mag-title-en { font-size: 10px; letter-spacing: 2px; margin-top: 8px; }
+    .mag-desc p { font-size: 14px; line-height: 1.9; }
+    .mag-page-mark--top-right { right: 20px; top: 16px; font-size: 9px; }
+    .mag-whitespace { height: 80px; }
 
-    /* ========== ANIMATIONS ON SCROLL ========== */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  
-      /* Quadrant mobile */
-      .quadrant-wrap { padding: 16px; margin-top: 32px; }
-      .q-center-circle { width: 70px; height: 70px; font-size: 26px; }
+    .flip-card { aspect-ratio: 3/4; }
 
-/* -- next-card peek -- */
-body .poker-card.next {
-  opacity: 0.6 !important;
-  transform: translateX(16px) translateY(-12px) rotate(6deg) scale(0.96) !important;
-  z-index: 5 !important;
-  pointer-events: none;
-  box-shadow: 3px 5px 18px rgba(0,0,0,0.12);
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-body .poker-card.behind {
-  opacity: 0.18 !important;
-  transform: translateY(10px) scale(0.92) !important;
-  z-index: 2 !important;
-  pointer-events: none;
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 20px; }
+    .footer-links { justify-content: center; }
 
-/* -- card enlarge modal -- */
-.card-modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 9999;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-}
-.card-modal-overlay.open {
-  opacity: 1;
-  pointer-events: auto;
-}
-.card-modal-box {
-  background: #fefcf7;
-  border: 1px solid #d9d5cc;
-  border-radius: 12px;
-  max-width: 520px; width: 90%;
-  padding: 48px 40px;
-  position: relative;
-  transform: translateY(30px) scale(0.95);
-  transition: transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275);
-  text-align: center;
-}
-.card-modal-overlay.open .card-modal-box {
-  transform: translateY(0) scale(1);
-}
-.card-modal-close {
-  position: absolute; top: 14px; right: 18px;
-  background: none; border: none;
-  font-size: 22px; cursor: pointer;
-  color: #999; line-height: 1;
-}
-.card-modal-close:hover { color: #333; }
-.card-modal-box h4 {
-  font-family: 'Playfair Display', 'Noto Serif SC', serif;
-  font-size: 22px; font-weight: 700;
-  margin-bottom: 16px;
-  color: #3a3632;
-}
-.card-modal-box p {
-  font-size: 14px; line-height: 2;
-  color: #5a5652;
-}
-.card-modal-box .modal-icon {
-  font-size: 48px;
-  margin-bottom: 12px;
-}
-</style>
+    .contact-deco-left,
+    .contact-deco-right { display: none; }
+  }
+
+    </style>
 </head>
 
 <body>
@@ -1044,7 +1123,6 @@ body .poker-card.behind {
       <a class="nav-link" data-target="contact">Contact</a>
     </div>
 
-    <a href="#contact" class="nav-cta">CONTACT</a>
 
     <!-- Mobile hamburger -->
     <div class="menu-toggle" id="menuToggle" onclick="toggleMobileNav()">
@@ -1228,14 +1306,7 @@ body .poker-card.behind {
           负责文创产品数据分析与客群接待，具备扎实的商务沟通与运营支持能力。
         </p>
 
-        <div class="about-tags">
-          <span class="about-tag">AIGC 内容生产</span>
-          <span class="about-tag">Prompt 工程</span>
-          <span class="about-tag">自动化流程设计</span>
-          <span class="about-tag">文化 IP 运营</span>
-          <span class="about-tag">市场营销</span>
-          <span class="about-tag">英语 CET-6</span>
-        </div>
+
       </div>
     </div>
 
@@ -1246,44 +1317,17 @@ body .poker-card.behind {
     <div class="skills-section fade-up">
       <h3>Skills & Expertise</h3>
 
-      <div class="skills-grid">
-        <!-- Hard Skills -->
-        <div class="skill-category">
-          <h4>Hard Skills</h4>
-          <div class="skill-bar-group">
-            <div class="skill-bar-label"><span>Prompt 工程</span><span>90%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
-          </div>
-          <div class="skill-bar-group">
-            <div class="skill-bar-label"><span>AIGC 内容生产</span><span>85%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
-          </div>
-          <div class="skill-bar-group">
-            <div class="skill-bar-label"><span>视觉一致性控制</span><span>80%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
-          </div>
-          <div class="skill-bar-group">
-            <div class="skill-bar-label"><span>UI / 视觉设计</span><span>75%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
-          </div>
-          <div class="skill-bar-group">
-            <div class="skill-bar-label"><span>飞书自动化 / 低代码</span><span>82%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
-          </div>
-        </div>
-
-        <!-- Soft Skills -->
-        <div class="skill-category">
-          <h4>Soft Skills</h4>
-          <ul class="skill-list">
-            <li>跨团队协作与沟通</li>
-            <li>项目管理与执行</li>
-            <li>创意叙事能力</li>
-            <li>快速学习新技术工具</li>
-            <li>中英双语表达能力</li>
-            <li>用户研究与洞察</li>
-          </ul>
-        </div>
+      <div class="floating-tags" id="floatingTags">
+        <span class="float-tag tag-lg" data-delay="0">Prompt 工程</span>
+        <span class="float-tag tag-md" data-delay="1">AIGC 内容生产</span>
+        <span class="float-tag tag-sm" data-delay="2">视觉一致性控制</span>
+        <span class="float-tag tag-md" data-delay="3">飞书自动化 / 低代码</span>
+        <span class="float-tag tag-sm" data-delay="4">跨团队协作与沟通</span>
+        <span class="float-tag tag-lg" data-delay="5">项目管理与执行</span>
+        <span class="float-tag tag-md" data-delay="6">创意叙事能力</span>
+        <span class="float-tag tag-sm" data-delay="7">快速学习新技术工具</span>
+        <span class="float-tag tag-md" data-delay="8">中英双语表达能力</span>
+        <span class="float-tag tag-sm" data-delay="9">用户研究与洞察</span>
       </div>
     </div>
 
@@ -1292,122 +1336,87 @@ body .poker-card.behind {
   <hr class="section-divider">
 
 
-  <!-- ==================== 03 PROJECTS (Archive Style) ==================== -->
-  <section class="section projects-section" id="projects">
+        <!-- ==================== 03 PROJECTS (Magazine Spreads) ==================== -->
+  <section id="projects">
 
-    <h2 class="section-heading fade-up">PROJECTS</h2>
-    <p class="section-subheading fade-up">Selected work that I'm proud of.</p>
+    <!-- Minimal editorial masthead -->
+    <div class="mag-masthead fade-up">
+      <span class="mag-masthead-num">03</span>
+      <div class="mag-masthead-text">
+        <h2>PROJECTS</h2>
+        <p>Selected work &middot; 2025 &ndash; 2026</p>
+      </div>
+    </div>
 
-    <h3 class="fade-up">Featured Projects</h3>
+    <!-- ====== SPREAD 1: 影灵灵 ====== -->
+    <div class="mag-spread fade-up" id="spreadYingling">
 
-    <div class="projects-stack">
+      <!-- Immersive image area (placeholder) -->
+      <div class="mag-spread-img mag-spread-img--placeholder">
+        <!-- REPLACE WITH: <img src="images/projects/yingling-hero.jpg" alt="影灵灵"> -->
+      </div>
 
-      <!-- Project Card 1: 影灵灵 — warm white -->
-      <div class="project-card fade-up">
-        <div class="project-title-col">
-          <h4>影灵灵<span>AI 皮影文化 IP</span></h4>
+      <!-- Page mark (editorial) -->
+      <span class="mag-page-mark mag-page-mark--top-right">01 &mdash; 2025&ndash;2026</span>
+
+      <!-- Typography: overapping bottom-left -->
+      <div class="mag-typo mag-typo--bottom-left">
+        <div>
+          <div class="mag-rule"></div>
+          <span class="mag-title-en">AI Shadow Puppet Cultural IP</span>
+          <h2 class="mag-title">影灵灵</h2>
         </div>
-        <div class="project-desc-col">
-          <a href="yingling-project.html"
-             class="project-readmore">READ MORE</a>
-          <p class="project-desc">
-            通过结构化 Prompt 工程和多模态管线设计，让皮影角色「影灵灵」在不同场景中保持统一视觉形象，
+        <div>
+          <p class="mag-desc">
+            通过结构化 Prompt 工程和多模态管线设计，
+            让皮影角色在不同场景中保持统一视觉形象，
             构建从文本到图像再到视频的完整 AIGC 内容生产线。
-            已产出两部 B 站原创短片及系列视觉资产。
           </p>
-          <p class="project-meta">创始人 &amp; AIGC 负责人 &middot; 2025 – 至今</p>
+          <span class="mag-desc-role">Founder &amp; AIGC Lead &middot; 2025 &ndash; Present</span>
+          <br><br>
+          <a href="yingling-project.html" class="mag-cta">Read the story &rarr;</a>
         </div>
       </div>
+    </div>
 
-      <!-- Project Card 2: 飞书自动化 — coral red -->
-      <div class="project-card fade-up">
-        <div class="project-title-col">
-          <h4>飞书自动化<span>效率提升 90%</span></h4>
-        </div>
-        <div class="project-desc-col">
-          <a href="feishu-project.html"
-             class="project-readmore">READ MORE</a>
-          <p class="project-desc">
-            独立设计「表单 → 多维表格 → 自动化规则 → 群机器人卡片推送」零代码系统，
-            将校园拼单需求响应时间从 30 分钟压缩至 5 秒，
-            拼单成功率从 40% 提升至 75%，并沉淀为可复用知识库资产。
-          </p>
-          <p class="project-meta">独立完成全链路设计 &middot; 2026.06 &middot; Course Project</p>
-        </div>
+    <!-- Full-width whitespace divider (editorial feel) -->
+        <div class="mag-whitespace"></div>
+
+    <!-- ====== SPREAD 2: 飞书自动化 ====== -->
+    <div class="mag-spread mag-spread--light fade-up" id="spreadFeishu">
+
+      <!-- Immersive image area (placeholder) -->
+      <div class="mag-spread-img mag-spread-img--placeholder--coral">
+        <!-- REPLACE WITH: <img src="images/projects/feishu-hero.jpg" alt="飞书自动化"> -->
       </div>
 
+      <!-- Page mark (editorial) -->
+      <span class="mag-page-mark mag-page-mark--top-right">02 &mdash; 2026</span>
+
+      <!-- Typography: overapping center-right -->
+      <div class="mag-typo" style="position:absolute;top:50%;transform:translateY(-50%);grid-template-columns:1fr 1.2fr;align-items:center;">
+        <div></div><!-- spacer -->
+        <div>
+          <div class="mag-rule mag-rule--right"></div>
+          <span class="mag-title-en" style="color:rgba(255,255,255,0.5);">Feishu Automation System</span>
+          <h2 class="mag-title" style="color:#fff;">飞书自动化</h2>
+          <p class="mag-desc" style="color:rgba(255,255,255,0.85);max-width:420px;margin-left:auto;">
+            设计零代码自动化拼单系统，
+            将需求响应时间从 30 分钟压缩至 5 秒，
+            成功率由 40% 提升至 75%。
+          </p>
+          <span class="mag-desc-role" style="color:rgba(255,255,255,0.45);display:block;text-align:right;">Project Lead &middot; Jun 2026</span>
+          <br>
+          <a href="feishu-project.html" class="mag-cta" style="color:#fff;border-bottom-color:rgba(255,255,255,0.6);float:right;">View case study &rarr;</a>
+        </div>
+      </div>
     </div>
 
   </section>
 
   <hr class="section-divider">
 
-
-  <!-- ==================== 04 DESIGN BEYOND — FLIP CARDS ==================== -->
-  <section class="section beyond-section" id="beyond">
-
-    <h3 class="fade-up">Beyond Design</h3>
-    <p class="beyond-subtitle fade-up">Hover to flip &middot; click to enlarge</p>
-
-    <div class="flip-cards">
-
-      <!-- Card 1: Hobbies -->
-      <div class="flip-card" onclick="openCardModal(this)">
-        <div class="flip-face flip-front">
-          <div class="flip-front-icon">✨</div>
-          <h4>个人爱好</h4>
-          <p>Hobbies & Interests</p>
-        </div>
-        <div class="flip-face flip-back">
-          <h4>生活之外</h4>
-          <p>喜欢探索城市里的隐藏角落，用镜头记录日常中的不平凡。<br><br>
-             热衷于将传统手工艺与现代设计语言结合，相信每一件旧物都有自己的故事。<br><br>
-             闲暇时也会研究咖啡冲煮和胶片摄影，享受慢节奏的创作过程。</p>
-          <p class="flip-hint">Click to enlarge ↗</p>
-        </div>
-      </div>
-
-      <!-- Card 2: 小红书博主 -->
-      <div class="flip-card" onclick="openCardModal(this)">
-        <div class="flip-face flip-front">
-          <div class="flip-front-icon">📕</div>
-          <h4>小红书博主</h4>
-          <p>Xiaohongshu Creator</p>
-        </div>
-        <div class="flip-face flip-back">
-          <h4>自媒体日常</h4>
-          <p>在小红书上分享设计灵感、AIGC 创作过程和文化探索笔记。<br><br>
-             记录从灵感萌芽到作品落地的完整心路历程，<br>
-             也分享作为大学生创作者的成长故事。<br><br>
-             相信好的内容是真诚的表达。</p>
-          <p class="flip-hint">Click to enlarge ↗</p>
-        </div>
-      </div>
-
-      <!-- Card 3: Vibecoding -->
-      <div class="flip-card" onclick="openCardModal(this)">
-        <div class="flip-face flip-front">
-          <div class="flip-front-icon">💻</div>
-          <h4>Vibe Coding</h4>
-          <p>Creative Coding Works</p>
-        </div>
-        <div class="flip-face flip-back">
-          <h4>编程创作</h4>
-          <p>Vibe Coding 让我用自然语言和 AI 协作完成创意落地。<br><br>
-             这个网站本身就是 Vibe Coding 的产物——<br>
-             从设计到实现，全程由 AI 辅助完成。<br><br>
-             技术不是门槛，创意才是核心。</p>
-          <p class="flip-hint">Click to enlarge ↗</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <hr class="section-divider">
-
-
-  <!-- ==================== 05 CONTACT ==================== -->
+<!-- ==================== 05 CONTACT ==================== -->
   <section class="section contact-section" id="contact" style="position:relative;overflow:hidden;">
 
     <!-- Decorative SVG: Stack of books (left) -->
@@ -1806,5 +1815,13 @@ body .poker-card.behind {
       if (e.target === this) closeCardModal();
     });
   </script>
+
+  /* -- floating tags stagger delay -- */
+  (function() {
+    var tags = document.querySelectorAll('.float-tag');
+    tags.forEach(function(tag, i) {
+      tag.style.setProperty('--d', i);
+    });
+  })();
 </body>
 </html>
