@@ -2,6 +2,40 @@
    MAIN.JS — Fullscreen Menu + Site Logic
    ===================================== */
 
+/* ==========================================
+   0. PROJECT TAB SWITCHER — Global Scope
+   ========================================== */
+function switchProject(projectId, btn) {
+  // Hide all project content
+  var contents = document.querySelectorAll(".project-content");
+  contents.forEach(function(el) {
+    el.classList.add("hidden");
+  });
+
+  // Remove active from all tabs
+  var tabs = document.querySelectorAll(".project-tab");
+  tabs.forEach(function(el) {
+    el.classList.remove("active");
+  });
+
+  // Show target project
+  var target = document.getElementById("project-" + projectId);
+  if (target) {
+    target.classList.remove("hidden");
+  }
+
+  // Activate the correct tab
+  if (btn) {
+    btn.classList.add("active");
+  } else {
+    var targetTab = document.getElementById("tab-" + projectId);
+    if (targetTab) {
+      targetTab.classList.add("active");
+    }
+  }
+}
+window.switchProject = switchProject;
+
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ==========================================
@@ -411,4 +445,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Hash-based project tab switching
+  function checkProjectHash() {
+    var hash = window.location.hash;
+    if (hash === "#project-feishu") {
+      switchProject("feishu", null);
+    } else if (hash === "#project-yinglingling" || hash === "#project-yingling") {
+      switchProject("yinglingling", null);
+    }
+  }
+  checkProjectHash();
+  window.addEventListener("hashchange", checkProjectHash);
 });

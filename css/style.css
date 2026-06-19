@@ -325,7 +325,98 @@ img{ max-width:100%; display:block; }
   transform:scale(1.04);
 }
 
-/* Scroll hint */
+/* ======================================
+   HERO CARDS
+   ====================================== */
+.hero_cards{
+  display:flex;
+  gap:24px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:40px;
+  max-width:900px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.hero_card{
+  flex:1;
+  min-width:200px;
+  max-width:280px;
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.9);
+  border-radius:20px;
+  padding:36px 28px;
+  text-align:center;
+  transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero_card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(109,94,252,0.08), rgba(0,188,212,0.06));
+  opacity:0;
+  transition:opacity 0.4s;
+  border-radius:20px;
+}
+
+.hero_card:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 20px 60px rgba(109,94,252,0.15);
+  border-color:rgba(109,94,252,0.3);
+}
+
+.hero_card:hover::before{
+  opacity:1;
+}
+
+.hero_card-icon{
+  font-size:48px;
+  margin-bottom:16px;
+  position:relative;
+  z-index:1;
+}
+
+.hero_card-title{
+  font-family:"Noto Serif SC","Space Grotesk",serif;
+  font-size:24px;
+  font-weight:700;
+  color:#1d1d1f;
+  margin-bottom:8px;
+  position:relative;
+  z-index:1;
+}
+
+.hero_card-desc{
+  font-size:14px;
+  color:#515154;
+  line-height:1.5;
+  position:relative;
+  z-index:1;
+}
+
+/* Hero card images */
+.hero_card-img{
+  width:80px;
+  height:80px;
+  object-fit:cover;
+  border-radius:50%;
+  margin:0 auto 16px;
+  display:block;
+  box-shadow:0 8px 24px rgba(0,0,0,0.12);
+  position:relative;
+  z-index:1;
+}
+
+/* ======================================
+   SCROLL HINT
+   ====================================== */
 .scroll-hint{
   position:absolute;
   bottom:36px;
@@ -957,6 +1048,80 @@ img{ max-width:100%; display:block; }
 .tech-card{
   cursor:pointer;
 }
+
+/* ======================================
+   CONTACT SECTION
+   ====================================== */
+.contact-section{
+  padding:120px 8% 80px;
+  background:#f5f5f7;
+  position:relative;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  max-width:900px;
+  margin:0 auto;
+}
+
+.contact-card{
+  background:#fff;
+  border-radius:20px;
+  padding:36px 28px;
+  text-align:center;
+  border:1px solid rgba(0,0,0,0.06);
+  transition:all 0.35s;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+
+.contact-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(109,94,252,0.05), rgba(0,188,212,0.05));
+  opacity:0;
+  transition:opacity 0.35s;
+  border-radius:20px;
+}
+
+.contact-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 60px rgba(109,94,252,0.12);
+  border-color:rgba(109,94,252,0.2);
+}
+
+.contact-card:hover::before{
+  opacity:1;
+}
+
+.contact-icon{
+  font-size:48px;
+  margin-bottom:16px;
+  position:relative;
+  z-index:1;
+}
+
+.contact-card h3{
+  font-family:"Noto Serif SC","Space Grotesk",serif;
+  font-size:20px;
+  font-weight:700;
+  color:#1d1d1f;
+  margin-bottom:8px;
+  position:relative;
+  z-index:1;
+}
+
+.contact-card p{
+  font-size:14px;
+  color:#515154;
+  position:relative;
+  z-index:1;
+}
+
 .toast{
   position:fixed;
   bottom:32px;
@@ -999,4 +1164,455 @@ img{ max-width:100%; display:block; }
 @media(max-width:640px){
   .hero_title{ font-size:32px; }
   .demo-grid{ grid-template-columns:1fr; }
+}
+
+/* ======================================
+   PROJECT TABS — Switch Between Projects
+   ====================================== */
+.hidden{ display:none !important; }
+
+.project-tabs{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin-bottom:48px;
+  flex-wrap:wrap;
+}
+.project-tab{
+  font-family:"Space Grotesk","Noto Serif SC",sans-serif;
+  font-size:15px;
+  font-weight:600;
+  padding:12px 28px;
+  border-radius:30px;
+  border:2px solid rgba(0,0,0,0.1);
+  background:transparent;
+  color:#515a6e;
+  cursor:pointer;
+  transition:all 0.3s;
+}
+.project-tab:hover{
+  border-color:#6d5efc;
+  color:#6d5efc;
+}
+.project-tab.active{
+  background:#6d5efc;
+  border-color:#6d5efc;
+  color:#fff;
+}
+
+/* ======================================
+   FEISHU PROJECT — Styles
+   Primary: #3370FF (Feishu Blue)
+   ====================================== */
+
+/* Problem Cards */
+.feishu-problem-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-bottom:28px;
+}
+.feishu-problem-card{
+  background:#f5f5f7;
+  border-radius:16px;
+  padding:28px 20px;
+  text-align:center;
+  transition:transform 0.3s, box-shadow 0.3s;
+}
+.feishu-problem-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 30px rgba(51,112,255,0.10);
+}
+.feishu-problem-icon{
+  font-size:32px;
+  margin-bottom:12px;
+}
+.feishu-problem-card h4{
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:8px;
+  color:#1d1d1f;
+}
+.feishu-problem-card p{
+  font-size:13px;
+  color:#515a6e;
+  line-height:1.6;
+}
+.feishu-problem-card strong{
+  color:#3370FF;
+}
+
+.feishu-question{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:rgba(51,112,255,0.06);
+  border-left:4px solid #3370FF;
+  border-radius:0 12px 12px 0;
+  padding:20px 24px;
+  margin-bottom:48px;
+}
+.feishu-question span{
+  font-size:24px;
+  flex-shrink:0;
+}
+.feishu-question p{
+  font-size:16px;
+  font-weight:600;
+  color:#1d1d1f;
+}
+
+/* Flow Diagram */
+.feishu-flow{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  overflow-x:auto;
+  padding:20px 0 36px;
+  margin-bottom:36px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.feishu-flow-item{
+  flex:0 0 auto;
+  background:#fff;
+  border:2px solid rgba(51,112,255,0.18);
+  border-radius:12px;
+  padding:14px 18px;
+  text-align:center;
+  min-width:100px;
+  transition:border-color 0.3s, box-shadow 0.3s;
+}
+.feishu-flow-item:hover{
+  border-color:#3370FF;
+  box-shadow:0 4px 16px rgba(51,112,255,0.10);
+}
+.feishu-flow-icon{
+  font-size:24px;
+  margin-bottom:6px;
+}
+.feishu-flow-item p{
+  font-size:12px;
+  font-weight:600;
+  color:#1d1d1f;
+  white-space:nowrap;
+}
+.feishu-flow-arrow{
+  font-size:18px;
+  color:#3370FF;
+  font-weight:700;
+  flex-shrink:0;
+}
+
+/* Steps */
+.feishu-steps{
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+  margin-bottom:48px;
+}
+.feishu-step{
+  background:#fff;
+  border-radius:16px;
+  padding:32px;
+  border:1px solid rgba(0,0,0,0.06);
+}
+.feishu-step-header{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:14px;
+}
+.feishu-step-num{
+  font-family:"Space Grotesk",monospace;
+  font-size:12px;
+  font-weight:700;
+  color:#3370FF;
+  background:rgba(51,112,255,0.08);
+  border-radius:8px;
+  padding:4px 10px;
+}
+.feishu-step-header h4{
+  font-size:17px;
+  font-weight:700;
+  color:#1d1d1f;
+}
+.feishu-step p{
+  font-size:14px;
+  color:#515a6e;
+  line-height:1.8;
+  margin-bottom:20px;
+}
+.feishu-step-placeholder{
+  background:#f5f5f7;
+  border:2px dashed rgba(51,112,255,0.25);
+  border-radius:12px;
+  padding:36px 20px;
+  text-align:center;
+  color:#86868b;
+  transition:border-color 0.3s;
+}
+.feishu-step-placeholder:hover{
+  border-color:#3370FF;
+}
+.feishu-step-placeholder span{
+  display:block;
+  font-size:28px;
+  margin-bottom:8px;
+}
+.feishu-step-placeholder p{
+  font-size:13px;
+  margin-bottom:0;
+}
+
+/* Results Table */
+.feishu-results-table{
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,0.08);
+  margin-bottom:40px;
+}
+.feishu-rt-header{
+  display:grid;
+  grid-template-columns:1.5fr repeat(3,1fr);
+  background:#3370FF;
+  color:#fff;
+  font-weight:700;
+  font-size:13px;
+}
+.feishu-rt-header .feishu-rt-cell{
+  padding:14px 16px;
+}
+.feishu-rt-row{
+  display:grid;
+  grid-template-columns:1.5fr repeat(3,1fr);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  font-size:13px;
+  transition:background 0.2s;
+}
+.feishu-rt-row:last-child{ border-bottom:none; }
+.feishu-rt-row:hover{ background:#f5f5f7; }
+.feishu-rt-cell{
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+}
+.feishu-rt-label{
+  font-weight:600;
+  color:#1d1d1f;
+}
+.feishu-rt-highlight{
+  color:#3370FF;
+  font-weight:700;
+}
+.feishu-rt-up{
+  color:#00b365;
+  font-weight:700;
+}
+
+/* Highlights */
+.feishu-highlights{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-bottom:48px;
+}
+.feishu-rh-card{
+  background:#f5f5f7;
+  border-radius:16px;
+  padding:24px 20px;
+  transition:transform 0.3s, box-shadow 0.3s;
+}
+.feishu-rh-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 30px rgba(51,112,255,0.10);
+}
+.feishu-rh-icon{
+  font-size:28px;
+  margin-bottom:12px;
+}
+.feishu-rh-card h4{
+  font-size:15px;
+  font-weight:700;
+  color:#1d1d1f;
+  margin-bottom:6px;
+}
+.feishu-rh-card p{
+  font-size:13px;
+  color:#515a6e;
+  line-height:1.6;
+}
+
+/* Tech Grid */
+.feishu-tech-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:16px;
+  margin-bottom:48px;
+}
+.feishu-tech-card{
+  background:#fff;
+  border-radius:14px;
+  padding:24px 16px;
+  text-align:center;
+  border:1px solid rgba(0,0,0,0.06);
+  transition:transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.feishu-tech-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 30px rgba(51,112,255,0.10);
+  border-color:rgba(51,112,255,0.3);
+}
+.feishu-tech-icon{
+  font-size:28px;
+  margin-bottom:10px;
+}
+.feishu-tech-card h4{
+  font-size:14px;
+  font-weight:700;
+  color:#1d1d1f;
+  margin-bottom:4px;
+}
+.feishu-tech-card p{
+  font-size:12px;
+  color:#86868b;
+  line-height:1.5;
+}
+
+/* Role List */
+.feishu-role-list{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin-bottom:48px;
+}
+.feishu-role-item{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  font-size:14px;
+  color:#515a6e;
+  line-height:1.7;
+  padding:16px 20px;
+  background:#f5f5f7;
+  border-radius:12px;
+  transition:background 0.3s;
+}
+.feishu-role-item:hover{ background:#f0f4ff; }
+.feishu-role-dot{
+  width:9px;
+  height:9px;
+  background:#3370FF;
+  border-radius:50%;
+  flex-shrink:0;
+  margin-top:6px;
+}
+.feishu-role-item strong{ color:#1d1d1f; }
+.feishu-role-item p{ margin:0; }
+
+/* Reflection */
+.feishu-reflect{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  margin-bottom:48px;
+}
+.feishu-reflect-block{
+  background:#fff;
+  border-radius:16px;
+  padding:28px 32px;
+  border:1px solid rgba(0,0,0,0.06);
+}
+.feishu-reflect-block h4{
+  font-size:16px;
+  font-weight:700;
+  color:#1d1d1f;
+  margin-bottom:16px;
+}
+.feishu-reflect-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.feishu-reflect-item{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  font-size:14px;
+  color:#515a6e;
+  line-height:1.7;
+}
+.feishu-reflect-item span{
+  font-weight:700;
+  color:#3370FF;
+  flex-shrink:0;
+}
+
+/* Summary */
+.feishu-summary{
+  max-width:680px;
+  margin:0 auto;
+  background:linear-gradient(135deg, #f0f4ff, #e8f0fe);
+  border-radius:20px;
+  padding:40px 36px;
+}
+.feishu-summary-quote{
+  font-family:"Noto Serif SC",serif;
+  font-size:56px;
+  color:#3370FF;
+  opacity:0.3;
+  line-height:1;
+  margin-bottom:4px;
+}
+.feishu-summary p{
+  font-size:16px;
+  color:#1d1d1f;
+  line-height:1.8;
+  font-weight:500;
+}
+.feishu-summary p strong{ font-weight:700; }
+
+/* Feishu Responsive */
+@media(max-width:900px){
+  .feishu-problem-grid,
+  .feishu-highlights{
+    grid-template-columns:1fr;
+  }
+  .feishu-tech-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+  .feishu-flow{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .feishu-flow-arrow{
+    text-align:center;
+    transform:rotate(90deg);
+  }
+  .feishu-rt-header,
+  .feishu-rt-row{
+    grid-template-columns:1fr;
+  }
+  .feishu-rt-header .feishu-rt-cell,
+  .feishu-rt-cell{
+    padding:8px 14px;
+    border-bottom:1px solid rgba(255,255,255,0.15);
+  }
+  .feishu-rt-row .feishu-rt-cell{
+    border-bottom:1px solid rgba(0,0,0,0.06);
+  }
+  .feishu-rt-header .feishu-rt-cell:last-child,
+  .feishu-rt-row .feishu-rt-cell:last-child{
+    border-bottom:none;
+  }
+  .feishu-step{ padding:20px; }
+  .feishu-reflect-block{ padding:20px; }
+  .feishu-summary{ padding:28px 24px; }
+}
+@media(max-width:640px){
+  .feishu-tech-grid{
+    grid-template-columns:1fr 1fr;
+  }
+  .project-tabs{ gap:8px; }
+  .project-tab{ font-size:13px; padding:10px 18px; }
 }

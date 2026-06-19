@@ -99,13 +99,27 @@
   <section class="hero" id="hero">
     <div class="hero_bg"></div>
     <div class="hero_content">
-      <p class="hero_eyebrow">AI · 文化 IP · AIGC</p>
-      <h1 class="hero_title">
-        <span class="hero_title-line">用生成式 AI</span>
-        <span class="hero_title-line">重构<span class="text-gradient">文化叙事</span></span>
-      </h1>
-      <p class="hero_sub">影灵灵 — AI 皮影文化 IP</p>
-      <a href="#project" class="hero_cta">查看作品 ↓</a>
+      <div class="hero_cards">
+        <a href="#about" class="hero_card">
+          <div class="hero_card-icon">
+            <img src="images/about/photo.jpg" alt="曾银晶" class="hero_card-img">
+          </div>
+          <h3 class="hero_card-title">About Me</h3>
+          <p class="hero_card-desc">个人简介 · 教育背景 · 核心项目</p>
+        </a>
+        <a href="#project" class="hero_card">
+          <div class="hero_card-icon">
+            <img src="images/yinglingling/yinglingling_small.png" alt="影灵灵" class="hero_card-img">
+          </div>
+          <h3 class="hero_card-title">Project</h3>
+          <p class="hero_card-desc">影灵灵 · AIGC 内容生产</p>
+        </a>
+        <a href="#contact" class="hero_card">
+          <div class="hero_card-icon">📧</div>
+          <h3 class="hero_card-title">Contact Me</h3>
+          <p class="hero_card-desc">Email · 微信 · 简历下载</p>
+        </a>
+      </div>
     </div>
     <div class="scroll-hint">
       <div class="scroll-hint-line"></div>
@@ -130,19 +144,6 @@
         <div class="photo-info">
           <p class="photo-name">曾银晶</p>
           <p class="about-bio">广东外语外贸大学 · 市场营销（2024–2028）<br>GPA 3.76/4.0 · 前15%</p>
-          <br><br>
-          <p class="contact-label">Contact Me</p>
-          <div class="intro-contact" id="contact">
-            <a class="intro-contact-item" href="mailto:LinWan1020@163.com">
-              <span>📧</span><span>Email</span>
-            </a>
-            <div class="intro-contact-item" onclick="copyWechat()">
-              <span>💬</span><span>微信</span>
-            </div>
-            <a class="intro-contact-item" href="曾银晶_简历.pdf" download>
-              <span>📄</span><span>简历</span>
-            </a>
-          </div>
         </div>
       </div>
 
@@ -152,7 +153,16 @@
         <h3 class="core-project-name">影灵灵</h3>
         <p class="core-project-tagline">AI 皮影文化 IP</p>
         <p class="core-project-desc">通过 AI 提示词设计，让影灵灵角色在不同场景中保持统一形象，并实现从创意到成片的完整 AI 内容生产。</p>
-        <a href="#project" class="card-link">查看详情 →</a>
+        <a href="javascript:void(0);" class="card-link" onclick="switchProject('yinglingling',document.getElementById('tab-yinglingling'));document.getElementById('project').scrollIntoView({behavior:'smooth'});">查看详情 →</a>
+      </div>
+
+      <!-- Feishu Project -->
+      <div class="about-card core-project-card" style="border-color:rgba(51,112,255,0.25);">
+        <div class="core-project-badge" style="background:rgba(51,112,255,0.10);color:#3370FF;">课程项目</div>
+        <h3 class="core-project-name">飞书自动化</h3>
+        <p class="core-project-tagline" style="color:#3370FF;">拼单效率提升 90%</p>
+        <p class="core-project-desc">设计「表单 → 自动化 → 卡片推送」零代码系统，将需求响应时间从 30 分钟压缩至 5 秒，并沉淀为可复用知识库资产。</p>
+        <a href="javascript:void(0);" class="card-link" style="color:#3370FF;" onclick="switchProject('feishu',document.getElementById('tab-feishu'));document.getElementById('project').scrollIntoView({behavior:'smooth'});">查看详情 →</a>
       </div>
 
       <!-- Internship -->
@@ -205,109 +215,382 @@
     <div class="section-header">
       <span class="section-number">02</span>
       <h2 class="section-title">Project</h2>
-      <p class="section-desc">影灵灵 · AI 皮影文化 IP — 完整创作过程</p>
+      <p class="section-desc">精选作品 · 点击切换查看</p>
     </div>
 
-    <!-- Project Intro -->
-    <div class="project-intro">
-      <div class="project-role">
-        <span class="label">我的角色</span>
-        <span>创始人 & AIGC 内容负责人</span>
+    <!-- Project Tabs -->
+    <div class="project-tabs">
+        <button id="tab-yinglingling" class="project-tab active" onclick="window.switchProject('yinglingling',this)">🎭 影灵灵 · AI 皮影文化 IP</button>
+        <button id="tab-feishu" class="project-tab" onclick="window.switchProject('feishu',this)">⚡ 飞书自动化 · 拼单效率提升 90%</button>
+    </div>
+
+    <!-- ===== Project: 影灵灵 ===== -->
+    <div class="project-content" id="project-yinglingling">
+      <div class="project-intro">
+        <div class="project-role">
+          <span class="label">我的角色</span>
+          <span>创始人 & AIGC 内容负责人</span>
+        </div>
+        <div class="project-role">
+          <span class="label">时间</span>
+          <span>2025 — 至今</span>
+        </div>
+        <div class="project-highlights">
+          <div class="highlight-item">🎯 构建完整 AIGC 内容生产管线</div>
+          <div class="highlight-item">🎨 实现皮影角色 AI 视觉一致性</div>
+          <div class="highlight-item">📹 产出两部 B站 原创短片</div>
+        </div>
       </div>
-      <div class="project-role">
-        <span class="label">时间</span>
-        <span>2025 — 至今</span>
+
+      <!-- 01 Films -->
+      <div class="project-section-label">
+        <span class="psl-number">01</span>
+        <span class="psl-text">/ Films</span>
       </div>
-      <div class="project-highlights">
-        <div class="highlight-item">🎯 构建完整 AIGC 内容生产管线</div>
-        <div class="highlight-item">🎨 实现皮影角色 AI 视觉一致性</div>
-        <div class="highlight-item">📹 产出两部 B站 原创短片</div>
+      <div class="video-grid">
+        <div class="video-item">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV14Zjw6FEfb&page=1&autoplay=0"
+                  frameborder="0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  allowfullscreen="true"></iframe>
+          <p>影灵灵登场</p>
+        </div>
+        <div class="video-item">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV1NwjA64EE3&page=1&autoplay=0"
+                  frameborder="0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  allowfullscreen="true"></iframe>
+          <p>影灵灵诞生故事</p>
+        </div>
+      </div>
+
+      <!-- 02 Visual Assets -->
+      <div class="project-section-label">
+        <span class="psl-number">02</span>
+        <span class="psl-text">/ Visual Assets</span>
+      </div>
+      <div class="demo-grid">
+        <div class="demo-item">
+          <img src="images/yinglingling/yinglingling_views.png" alt="影灵灵三视图" loading="lazy">
+          <p>影灵灵三视图</p>
+        </div>
+        <div class="demo-item">
+          <img src="images/yinglingling/making_piying.png" alt="做皮影" loading="lazy">
+          <p>做皮影</p>
+        </div>
+        <div class="demo-item">
+          <img src="images/yinglingling/yinglingling_birth.png" alt="影灵灵诞生" loading="lazy">
+          <p>影灵灵诞生</p>
+        </div>
+        <div class="demo-item">
+          <img src="images/yinglingling/yinglingling_projection.png" alt="皮影投影" loading="lazy">
+          <p>皮影投影</p>
+        </div>
+        <div class="demo-item">
+          <img src="images/yinglingling/yinglingling_small.png" alt="小皮影" loading="lazy">
+          <p>小皮影</p>
+        </div>
+      </div>
+
+      <!-- 03 Method -->
+      <div class="project-section-label">
+        <span class="psl-number">03</span>
+        <span class="psl-text">/ Method</span>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-card" onclick="openMethodDetail(0)">
+          <div class="tech-icon">🎯</div>
+          <h4>Prompt 工程</h4>
+          <p>通过结构化 Prompt 设计，实现皮影角色在多场景下的视觉一致性，建立可复用的提示词模板库。</p>
+          <span class="card-link" style="margin-top:12px;display:inline-block;">查看具体做法 →</span>
+        </div>
+        <div class="tech-card" onclick="openMethodDetail(1)">
+          <div class="tech-icon">🎨</div>
+          <h4>视觉一致性控制</h4>
+          <p>结合 LoRA 微调与风格锚定技术，确保影灵灵角色在不同生成任务中保持核心特征稳定。</p>
+          <span class="card-link" style="margin-top:12px;display:inline-block;">查看具体做法 →</span>
+        </div>
+        <div class="tech-card" onclick="openMethodDetail(2)">
+          <div class="tech-icon">🔗</div>
+          <h4>多模态管线设计</h4>
+          <p>整合文本→图像→视频的生成管线，实现从创意构思到成片输出的一站式 AIGC 内容生产。</p>
+          <span class="card-link" style="margin-top:12px;display:inline-block;">查看具体做法 →</span>
+        </div>
       </div>
     </div>
 
-    <!-- 01 Films -->
-    <div class="project-section-label">
-      <span class="psl-number">01</span>
-      <span class="psl-text">/ Films</span>
-    </div>
-    <div class="video-grid">
-      <div class="video-item">
-        <iframe src="https://player.bilibili.com/player.html?bvid=BV14Zjw6FEfb&page=1&autoplay=0"
-                frameborder="0"
-                allow="autoplay; fullscreen; encrypted-media"
-                allowfullscreen="true"></iframe>
-        <p>影灵灵登场</p>
+    <!-- ===== Project: 飞书自动化 ===== -->
+    <div class="project-content hidden" id="project-feishu">
+
+      <!-- Project Intro -->
+      <div class="project-intro">
+        <div class="project-role">
+          <span class="label">我的角色</span>
+          <span>知识库 + 自动化</span>
+        </div>
+        <div class="project-role">
+          <span class="label">时间</span>
+          <span>2026 年 6 月</span>
+        </div>
+        <div class="project-role">
+          <span class="label">类型</span>
+          <span>课程项目 · 数字化营销</span>
+        </div>
+        <div class="project-highlights">
+          <div class="highlight-item">⚡ 需求响应时间从 30 分钟压缩至 5 秒</div>
+          <div class="highlight-item">📊 拼单成功率从 40% 提升至 75%</div>
+          <div class="highlight-item">🔄 释放群主每日 1–2 小时人工成本</div>
+        </div>
       </div>
-      <div class="video-item">
-        <iframe src="https://player.bilibili.com/player.html?bvid=BV1NwjA64EE3&page=1&autoplay=0"
-                frameborder="0"
-                allow="autoplay; fullscreen; encrypted-media"
-                allowfullscreen="true"></iframe>
-        <p>影灵灵诞生故事</p>
+
+      <!-- 01 问题背景 -->
+      <div class="project-section-label">
+        <span class="psl-number">01</span>
+        <span class="psl-text">/ 问题背景</span>
+      </div>
+      <div class="feishu-problem-grid">
+        <div class="feishu-problem-card">
+          <div class="feishu-problem-icon">⏱</div>
+          <h4>时效性差</h4>
+          <p>从发出到被看到，平均延迟 <strong>20–30 分钟</strong></p>
+        </div>
+        <div class="feishu-problem-card">
+          <div class="feishu-problem-icon">📉</div>
+          <h4>信息遗漏</h4>
+          <p>刷屏后需求无人汇总，<strong>过期失效</strong></p>
+        </div>
+        <div class="feishu-problem-card">
+          <div class="feishu-problem-icon">🔄</div>
+          <h4>人工成本高</h4>
+          <p>群主每天花 <strong>1–2 小时</strong>做重复转发</p>
+        </div>
+      </div>
+      <div class="feishu-question">
+        <span>❓</span>
+        <p>我能否用零代码工具，把这一整套流程自动化？</p>
+      </div>
+
+      <!-- 02 解决方案 -->
+      <div class="project-section-label">
+        <span class="psl-number">02</span>
+        <span class="psl-text">/ 解决方案</span>
+      </div>
+      <div class="feishu-flow">
+        <div class="feishu-flow-item">
+          <div class="feishu-flow-icon">📝</div>
+          <p>用户填写表单</p>
+        </div>
+        <div class="feishu-flow-arrow">→</div>
+        <div class="feishu-flow-item">
+          <div class="feishu-flow-icon">🗂</div>
+          <p>多维表格新增记录</p>
+        </div>
+        <div class="feishu-flow-arrow">→</div>
+        <div class="feishu-flow-item">
+          <div class="feishu-flow-icon">⚡</div>
+          <p>自动化规则触发</p>
+        </div>
+        <div class="feishu-flow-arrow">→</div>
+        <div class="feishu-flow-item">
+          <div class="feishu-flow-icon">💬</div>
+          <p>群机器人推送卡片</p>
+        </div>
+        <div class="feishu-flow-arrow">→</div>
+        <div class="feishu-flow-item">
+          <div class="feishu-flow-icon">✅</div>
+          <p>用户点击按钮加入拼单</p>
+        </div>
+      </div>
+
+      <div class="feishu-steps">
+        <div class="feishu-step">
+          <div class="feishu-step-header">
+            <span class="feishu-step-num">Step 01</span>
+            <h4>建立数据入口</h4>
+          </div>
+          <p>设计飞书多维表格作为拼单需求的数据中台，字段包括：拼单类型、需求详情、缺几人、开始/截止时间、联系方式等。生成表单视图作为用户入口。</p>
+          <div class="feishu-step-placeholder">
+            <span>📊</span>
+            <p>此处插入表格字段截图</p>
+          </div>
+        </div>
+        <div class="feishu-step">
+          <div class="feishu-step-header">
+            <span class="feishu-step-num">Step 02</span>
+            <h4>配置自动化触发器</h4>
+          </div>
+          <p>在多维表格中创建自动化规则，触发条件设为「添加记录时」，执行操作选择「发送飞书消息」至群机器人 Webhook 地址。</p>
+          <div class="feishu-step-placeholder">
+            <span>⚙️</span>
+            <p>此处插入自动化规则配置截图</p>
+          </div>
+        </div>
+        <div class="feishu-step">
+          <div class="feishu-step-header">
+            <span class="feishu-step-num">Step 03</span>
+            <h4>设计消息卡片</h4>
+          </div>
+          <p>使用飞书消息卡片搭建工具设计结构化推送卡片。通过 ⊕ 按钮引用表格字段变量，实现消息内容的动态渲染。卡片底部嵌入「我要拼单」按钮，点击后直接跳转回表单，完成闭环。</p>
+          <div class="feishu-step-placeholder">
+            <span>💳</span>
+            <p>此处插入群内收到的消息卡片截图</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 成果与数据 -->
+      <div class="project-section-label">
+        <span class="psl-number">03</span>
+        <span class="psl-text">/ 成果与数据</span>
+      </div>
+      <div class="feishu-results-table">
+        <div class="feishu-rt-header">
+          <div class="feishu-rt-cell">指标</div>
+          <div class="feishu-rt-cell">优化前（人工）</div>
+          <div class="feishu-rt-cell">优化后（自动化）</div>
+          <div class="feishu-rt-cell">提升</div>
+        </div>
+        <div class="feishu-rt-row">
+          <div class="feishu-rt-cell feishu-rt-label">需求触达时间</div>
+          <div class="feishu-rt-cell">20–30 分钟</div>
+          <div class="feishu-rt-cell feishu-rt-highlight">3–5 秒</div>
+          <div class="feishu-rt-cell feishu-rt-up">↑ 约 90%</div>
+        </div>
+        <div class="feishu-rt-row">
+          <div class="feishu-rt-cell feishu-rt-label">信息遗漏率</div>
+          <div class="feishu-rt-cell">约 30%（刷屏丢失）</div>
+          <div class="feishu-rt-cell feishu-rt-highlight">0%</div>
+          <div class="feishu-rt-cell feishu-rt-up">↓ 100%</div>
+        </div>
+        <div class="feishu-rt-row">
+          <div class="feishu-rt-cell feishu-rt-label">群主每日耗时</div>
+          <div class="feishu-rt-cell">1–2 小时</div>
+          <div class="feishu-rt-cell feishu-rt-highlight">0 小时</div>
+          <div class="feishu-rt-cell feishu-rt-up">释放人力</div>
+        </div>
+        <div class="feishu-rt-row">
+          <div class="feishu-rt-cell feishu-rt-label">拼单成功率</div>
+          <div class="feishu-rt-cell">约 40%</div>
+          <div class="feishu-rt-cell feishu-rt-highlight">约 75%</div>
+          <div class="feishu-rt-cell feishu-rt-up">↑ 35%</div>
+        </div>
+      </div>
+
+      <div class="feishu-highlights">
+        <div class="feishu-rh-card">
+          <div class="feishu-rh-icon">🔄</div>
+          <h4>营销资产循环模型</h4>
+          <p>形成「内容发布 → 社群互动 → 数据沉淀 → 自动化反哺」的闭环</p>
+        </div>
+        <div class="feishu-rh-card">
+          <div class="feishu-rh-icon">📚</div>
+          <h4>知识库沉淀</h4>
+          <p>完整配置文档已沉淀至团队知识库，15 分钟可复用到任意拼单场景</p>
+        </div>
+        <div class="feishu-rh-card">
+          <div class="feishu-rh-icon">🚀</div>
+          <h4>可扩展架构</h4>
+          <p>具备迁移至企业微信或接入 AI 智能匹配的可扩展性</p>
+        </div>
+      </div>
+
+      <!-- 04 技术栈 -->
+      <div class="project-section-label">
+        <span class="psl-number">04</span>
+        <span class="psl-text">/ 技术栈与工具</span>
+      </div>
+      <div class="feishu-tech-grid">
+        <div class="feishu-tech-card">
+          <div class="feishu-tech-icon">🗂</div>
+          <h4>数据中台</h4>
+          <p>飞书多维表格</p>
+        </div>
+        <div class="feishu-tech-card">
+          <div class="feishu-tech-icon">📋</div>
+          <h4>用户入口</h4>
+          <p>飞书表单视图</p>
+        </div>
+        <div class="feishu-tech-card">
+          <div class="feishu-tech-icon">⚡</div>
+          <h4>自动化引擎</h4>
+          <p>飞书自动化规则（低代码）</p>
+        </div>
+        <div class="feishu-tech-card">
+          <div class="feishu-tech-icon">🤖</div>
+          <h4>消息推送</h4>
+          <p>飞书自定义机器人 Webhook</p>
+        </div>
+        <div class="feishu-tech-card">
+          <div class="feishu-tech-icon">🎴</div>
+          <h4>视觉呈现</h4>
+          <p>飞书消息卡片搭建工具</p>
+        </div>
+      </div>
+
+      <!-- 05 我的贡献 -->
+      <div class="project-section-label">
+        <span class="psl-number">05</span>
+        <span class="psl-text">/ 我的角色与贡献</span>
+      </div>
+      <div class="feishu-role-list">
+        <div class="feishu-role-item">
+          <span class="feishu-role-dot"></span>
+          <p><strong>独立完成：</strong>流程从 0 到 1 的全链路设计、搭建与测试</p>
+        </div>
+        <div class="feishu-role-item">
+          <span class="feishu-role-dot"></span>
+          <p><strong>方案决策：</strong>在飞书与企业微信之间选择飞书，理由是零门槛、无需企业资质、自动化功能对个人用户完全开放</p>
+        </div>
+        <div class="feishu-role-item">
+          <span class="feishu-role-dot"></span>
+          <p><strong>知识沉淀：</strong>撰写完整配置文档，存入团队飞书知识库「工具库」，实现标准化复用</p>
+        </div>
+        <div class="feishu-role-item">
+          <span class="feishu-role-dot"></span>
+          <p><strong>经验迁移：</strong>验证了「表单 + 自动化 + 机器人」模式的可复制性，可推广至二手交易、活动报名等校园场景</p>
+        </div>
+      </div>
+
+      <!-- 总结 -->
+      <div class="feishu-summary">
+        <p class="feishu-summary-quote">"</p>
+        <p>用飞书原生功能设计了一套完整的营销自动化闭环，将需求响应时间从 30 分钟压缩至 5 秒，并沉淀为可复用的知识库资产。</p>
       </div>
     </div>
 
-    <!-- 02 Visual Assets -->
-    <div class="project-section-label">
-      <span class="psl-number">02</span>
-      <span class="psl-text">/ Visual Assets</span>
-    </div>
-    <div class="demo-grid">
-      <div class="demo-item">
-        <img src="images/yinglingling/yinglingling_views.png" alt="影灵灵三视图" loading="lazy">
-        <p>影灵灵三视图</p>
-      </div>
-      <div class="demo-item">
-        <img src="images/yinglingling/making_piying.png" alt="做皮影" loading="lazy">
-        <p>做皮影</p>
-      </div>
-      <div class="demo-item">
-        <img src="images/yinglingling/yinglingling_birth.png" alt="影灵灵诞生" loading="lazy">
-        <p>影灵灵诞生</p>
-      </div>
-      <div class="demo-item">
-        <img src="images/yinglingling/yinglingling_projection.png" alt="皮影投影" loading="lazy">
-        <p>皮影投影</p>
-      </div>
-      <div class="demo-item">
-        <img src="images/yinglingling/yinglingling_small.png" alt="小皮影" loading="lazy">
-        <p>小皮影</p>
-      </div>
-    </div>
-
-    <!-- 03 Method -->
-    <div class="project-section-label">
-      <span class="psl-number">03</span>
-      <span class="psl-text">/ Method</span>
-    </div>
-    <div class="tech-grid">
-      <div class="tech-card" onclick="openMethodDetail(0)">
-        <div class="tech-icon">🎯</div>
-        <h4>Prompt 工程</h4>
-        <p>通过结构化 Prompt 设计，实现皮影角色在多场景下的视觉一致性，建立可复用的提示词模板库。</p>
-        <span class="card-link" style="margin-top:12px;display:inline-block;">查看具体做法 →</span>
-      </div>
-      <div class="tech-card" onclick="openMethodDetail(1)">
-        <div class="tech-icon">🎨</div>
-        <h4>视觉一致性控制</h4>
-        <p>结合 LoRA 微调与风格锚定技术，确保影灵灵角色在不同生成任务中保持核心特征稳定。</p>
-        <span class="card-link" style="margin-top:12px;display:inline-block;">查看具体做法 →</span>
-      </div>
-      <div class="tech-card" onclick="openMethodDetail(2)">
-        <div class="tech-icon">🔗</div>
-        <h4>多模态管线设计</h4>
-        <p>整合文本→图像→视频的生成管线，实现从创意构思到成片输出的一站式 AIGC 内容生产。</p>
-        <span class="card-link" style="margin-top:12px;display:inline-block;">查看具体做法 →</span>
-      </div>
-    </div>
-
-    <!-- Method Detail Lightbox -->
+    <!-- Method Detail Lightbox (for 影灵灵 project) -->
     <div class="method-lightbox" id="methodLightbox">
       <div class="method-lightbox-close" onclick="closeMethodDetail()">&times;</div>
       <div class="method-lightbox-content">
         <h3 id="method-title"></h3>
         <div id="method-body"></div>
       </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ME ========== -->
+  <section class="contact-section" id="contact">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Contact Me</h2>
+      <p class="section-desc">期待与您交流 · 欢迎联系</p>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:LinWan1020@163.com">
+        <div class="contact-icon">📧</div>
+        <h3>Email</h3>
+        <p>LinWan1020@163.com</p>
+      </a>
+      <div class="contact-card" onclick="copyWechat()">
+        <div class="contact-icon">💬</div>
+        <h3>微信</h3>
+        <p>Zzing1018</p>
+      </div>
+      <a class="contact-card" href="曾银晶_简历.pdf" download>
+        <div class="contact-icon">📄</div>
+        <h3>简历</h3>
+        <p>点击下载 PDF</p>
+      </a>
     </div>
   </section>
 
