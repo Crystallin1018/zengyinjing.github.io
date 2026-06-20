@@ -227,41 +227,101 @@
     .data-label { font-size: 13px; color: var(--text-medium); margin-top: 12px; line-height: 1.6; }
     .data-before { font-size: 11px; color: var(--text-light); margin-top: 8px; text-decoration: line-through; }
 
-    /* Flow chart — Z-Axis Cascade */
+    /* Process Flow — Horizontal Grid */
     .flow-chart {
-      position: relative; display: flex; align-items: center; 
-      justify-content: center; min-height: 380px; padding: 40px 20px;
-      perspective: 800px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      padding: 20px 0;
+    }
+    /* Connecting line through step numbers */
+    .flow-chart::after {
+      content: '';
+      position: absolute;
+      top: 44px;
+      left: calc(12.5% + 24px);
+      right: calc(12.5% + 24px);
+      height: 2px;
+      background: linear-gradient(to right,
+        var(--border) 0%, var(--accent) 35%, var(--accent) 65%, var(--border) 100%);
+      z-index: 0;
+      border-radius: 1px;
     }
     .flow-node {
-      position: relative; background: white; 
-      border: 1px solid var(--border); border-radius: var(--radius-md);
-      padding: 28px 36px; text-align: center; min-width: 170px;
-      transition: transform 0.7s var(--ease-lux), box-shadow 0.7s var(--ease-lux), border-color 0.5s var(--ease-lux);
+      position: relative;
       z-index: 1;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03), 0 0 0 1px rgba(26,26,26,0.04);
+      padding: 90px 20px 32px;
+      text-align: center;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      transition: transform 0.45s var(--ease-lux);
     }
-    .flow-node:nth-child(1) { transform: translateX(0) rotate(-1.5deg); z-index: 4; margin-right: -12px; }
-    .flow-node:nth-child(2) { transform: translateX(0) rotate(0.8deg); z-index: 3; margin-right: -12px; margin-top: 12px; }
-    .flow-node:nth-child(3) { transform: translateX(0) rotate(-0.6deg); z-index: 2; margin-right: -12px; margin-top: -6px; }
-    .flow-node:nth-child(4) { transform: translateX(0) rotate(1.2deg); z-index: 1; margin-top: 12px; }
-    .flow-node:hover { 
-      transform: translateX(0) rotate(0deg) translateY(-8px) scale(1.03); 
-      z-index: 10 !important;
-      box-shadow: 0 20px 48px rgba(0,0,0,0.08), 0 0 0 1px rgba(26,26,26,0.08);
-      border-color: var(--accent);
+    .flow-node:hover {
+      transform: translateY(-6px);
     }
-    .flow-node-icon { font-size: 34px; margin-bottom: 10px; transition: transform 0.5s var(--ease-spring); }
-    .flow-node:hover .flow-node-icon { transform: scale(1.12); }
-    .flow-node-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; letter-spacing: 1px; }
-    .flow-node-desc { font-size: 11px; color: var(--text-light); line-height: 1.5; }
+    .flow-node-num {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--bg-primary);
+      border: 2.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-medium);
+      z-index: 2;
+      transition: all 0.45s var(--ease-lux);
+      box-shadow: 0 0 0 8px var(--bg-primary);
+    }
+    /* Step line label */
+    .flow-node-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      transition: color 0.45s var(--ease-lux);
+    }
+    .flow-node:hover .flow-node-label { color: var(--accent); }
+    .flow-node-icon {
+      font-size: 56px;
+      margin-bottom: 18px;
+      display: block;
+      transition: transform 0.5s var(--ease-spring);
+    }
+    .flow-node:hover .flow-node-icon { transform: scale(1.08); }
+    .flow-node-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+    .flow-node-desc {
+      font-size: 13px;
+      color: var(--text-medium);
+      line-height: 1.75;
+      max-width: 220px;
+      margin: 0 auto;
+    }
     .flow-arrow { 
-      display: none; /* Hidden in cascade — nodes connect visually via overlap */
+      display: none;
     }
-    /* Cascade connecting dots between nodes */
     .flow-cascade-dot {
-      position: absolute; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent); opacity: 0.35; pointer-events: none;
+      display: none;
     }
 
     /* Comparison table — editorial magazine spread */
@@ -351,11 +411,11 @@
       .data-grid .fade-up:nth-child(1),
       .data-grid .fade-up:nth-child(2),
       .data-grid .fade-up:nth-child(3) { transition-delay: 0ms; }
-      .flow-chart { flex-direction: column; min-height: auto; padding: 0; perspective: none; }
-      .flow-node:nth-child(1),
-      .flow-node:nth-child(2),
-      .flow-node:nth-child(3),
-      .flow-node:nth-child(4) { transform: none; margin: 0 0 12px 0; }
+      .flow-chart { grid-template-columns: repeat(2, 1fr); gap: 24px 12px; padding: 20px 0; }
+      .flow-chart::after { display: none; }
+      .flow-node { padding: 70px 12px 24px; }
+      .flow-node-num { width: 42px; height: 42px; font-size: 13px; top: 16px; }
+      .flow-node-icon { font-size: 44px; }
       .comparison-table { font-size: 12px; }
       .comparison-table th, .comparison-table td { padding: 14px 12px; }
       .comparison-table td:first-child, .comparison-table th:first-child { padding-left: 16px; }
@@ -370,6 +430,15 @@
       .data-shell:hover { transform: translateY(-2px); }
       .data-shell:hover .data-core { transform: none; }
       .data-shell:hover .data-number { transform: none; }
+      .flow-chart { grid-template-columns: 1fr; gap: 12px 0; }
+      .flow-chart::after { display: none; }
+      .flow-node { padding: 12px 12px 20px 72px; text-align: left; }
+      .flow-node-num { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; }
+      .flow-node-label { margin-bottom: 4px; }
+      .flow-node-icon { font-size: 36px; margin-bottom: 6px; }
+      .flow-node-desc { max-width: none; }
+      .flow-actions { flex-direction: column; align-items: stretch; margin-top: 28px; }
+      .btn-flow-action { justify-content: center; }
     }
 
     /* ============ FORM MODAL ============ */
@@ -442,18 +511,96 @@
     .btn-submit:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(139,111,71,0.25); }
 
     /* Flow node active state */
-    .flow-node.flow-active {
-      border-color: #1D9E75 !important;
-      box-shadow: 0 0 0 5px rgba(29,158,117,0.08), 0 8px 24px rgba(29,158,117,0.08) !important;
-      background: linear-gradient(135deg, #F6FCF9 0%, #EDF7F3 100%);
-      transform: translateX(0) rotate(0deg) translateY(-4px) scale(1.02) !important;
-      z-index: 10 !important;
+    .flow-node.flow-active .flow-node-num {
+      background: #1D9E75;
+      border-color: #1D9E75;
+      color: white;
+      box-shadow: 0 0 0 10px rgba(29,158,117,0.12), 0 0 0 8px var(--bg-primary);
     }
+    .flow-node.flow-active .flow-node-label { color: #1D9E75; }
     .flow-node.flow-active .flow-node-icon { animation: popIn 0.4s var(--ease-spring); }
     @keyframes popIn {
       0% { transform: scale(0.8); opacity: 0.5; }
       60% { transform: scale(1.15); }
       100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Clickable flow node */
+    .flow-node-clickable { cursor: pointer; }
+    .flow-node-clickable .flow-node-num {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 0 8px var(--bg-primary), 0 0 0 10px rgba(139,111,71,0.08);
+    }
+    .flow-node-clickable:hover .flow-node-num {
+      border-color: var(--text-dark);
+      color: var(--text-dark);
+      box-shadow: 0 0 0 8px var(--bg-primary), 0 0 0 10px rgba(26,26,26,0.08);
+    }
+
+    /* ============================================
+       FLOW ACTION BUTTONS — below process cards
+       ============================================ */
+    .flow-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 44px;
+    }
+    .btn-flow-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 36px;
+      border-radius: var(--radius-pill);
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.45s var(--ease-lux);
+    }
+    .btn-flow-primary {
+      background: linear-gradient(135deg, #1D9E75 0%, #14855C 100%);
+      color: white;
+      box-shadow: 0 2px 16px rgba(29,158,117,0.22);
+    }
+    .btn-flow-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(29,158,117,0.32);
+    }
+    .btn-flow-primary:active {
+      transform: translateY(0) scale(0.97);
+      transition: transform 0.1s;
+    }
+    .btn-flow-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+      animation: pulseDot 1.8s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.4); }
+    }
+    .btn-flow-reset {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      color: var(--text-medium);
+    }
+    .btn-flow-reset:hover {
+      border-color: var(--text-dark);
+      color: var(--text-dark);
+      background: var(--bg-warm);
+      transform: translateY(-1px);
+    }
+    .btn-flow-reset:active {
+      transform: translateY(0) scale(0.97);
+      transition: transform 0.1s;
     }
 
     /* Message card overlay */
@@ -466,64 +613,120 @@
     }
     .msg-card-overlay.active { opacity: 1; pointer-events: auto; }
     .msg-card {
-      background: transparent; border-radius: var(--radius-lg); max-width: 420px; width: calc(100% - 40px);
+      background: white;
+      border-radius: 20px;
+      max-width: 440px;
+      width: calc(100% - 40px);
       overflow: hidden;
       transform: translateY(30px) scale(0.96);
       transition: transform 0.6s var(--ease-spring);
-      padding: 4px; border: 1px solid var(--border); background: var(--border);
+      box-shadow: 0 32px 96px rgba(0,0,0,0.16), 0 8px 32px rgba(0,0,0,0.08);
     }
     .msg-card-overlay.active .msg-card { transform: translateY(0) scale(1); }
-    .msg-card-inner {
-      background: white; border-radius: 24px; overflow: hidden;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.3);
-    }
-    .msg-card-top {
+    /* Header */
+    .msg-card-header {
       background: linear-gradient(135deg, #1D9E75 0%, #14855C 100%);
-      padding: 16px 20px; display: flex; align-items: center; gap: 10px;
+      padding: 22px 28px;
+      display: flex; align-items: center; gap: 14px;
     }
-    .msg-card-bot-icon {
-      width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center; font-size: 16px;
+    .msg-card-bot-avatar {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(255,255,255,0.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      backdrop-filter: blur(4px);
     }
-    .msg-card-bot-name { font-size: 13px; font-weight: 600; color: white; }
-    .msg-card-bot-sub { font-size: 10px; color: rgba(255,255,255,0.7); }
-    .msg-card-body { padding: 20px; }
-    .msg-card-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
-    .msg-card-field { display: flex; justify-content: space-between; padding: 6px 0; font-size: 12px; border-bottom: 1px solid var(--border); }
-    .msg-card-field:last-child { border-bottom: none; }
-    .msg-card-field-label { color: var(--text-light); }
-    .msg-card-field-value { color: var(--text-dark); font-weight: 500; text-align: right; }
-    .msg-card-actions {
-      display: flex; gap: 10px; padding: 0 20px 16px;
+    .msg-card-bot-info { color: white; }
+    .msg-card-bot-name { font-size: 15px; font-weight: 600; line-height: 1.3; }
+    .msg-card-bot-sub { font-size: 11.5px; opacity: 0.7; }
+    /* Body */
+    .msg-card-body { padding: 28px 28px 0; }
+    /* Order banner */
+    .msg-card-order-banner {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 24px; padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
     }
-    .btn-join {
-      flex: 1; padding: 12px; border: none; border-radius: var(--radius-pill);
+    .msg-card-order-icon { font-size: 32px; line-height: 1; }
+    .msg-card-order-title {
+      font-family: var(--font-serif); font-size: 19px; font-weight: 700;
+      color: var(--text-dark); line-height: 1.3;
+    }
+    .msg-card-order-badge {
+      display: inline-block; margin-top: 4px;
+      font-family: var(--font-sans); font-size: 10px; font-weight: 600;
+      padding: 3px 10px; border-radius: 6px;
+      background: rgba(29,158,117,0.08); color: #1D9E75;
+      letter-spacing: 1px;
+    }
+    /* Detail highlight box */
+    .msg-card-detail-box {
+      background: var(--bg-secondary);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+    .msg-card-detail-box .msg-card-detail-type {
+      font-size: 11px; font-weight: 600; color: var(--accent);
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .msg-card-detail-box .msg-card-detail-text {
+      font-size: 15px; font-weight: 600; color: var(--text-dark); line-height: 1.4;
+    }
+    /* Info rows in a clean grid */
+    .msg-card-info-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px 24px; margin-bottom: 6px;
+    }
+    .msg-card-info-item {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .msg-card-info-label {
+      font-size: 10.5px; font-weight: 600; letter-spacing: 1.2px;
+      color: var(--text-light); text-transform: uppercase;
+    }
+    .msg-card-info-value {
+      font-size: 13.5px; font-weight: 500; color: var(--text-dark);
+    }
+    .msg-card-info-value.highlight { color: #1D9E75; font-weight: 600; }
+    /* Footer actions */
+    .msg-card-footer {
+      padding: 20px 28px 28px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .msg-card-actions-row {
+      display: flex; gap: 10px;
+    }
+    .btn-msg-primary {
+      flex: 1; padding: 14px 20px; border: none; border-radius: 14px;
       background: linear-gradient(135deg, #1D9E75 0%, #14855C 100%);
-      font-family: var(--font-sans); font-size: 13px; font-weight: 600;
-      color: white; cursor: pointer; letter-spacing: 1px;
+      font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+      color: white; cursor: pointer; letter-spacing: 0.5px;
       transition: all 0.35s var(--ease-lux);
     }
-    .btn-join:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(29,158,117,0.3); }
-    .btn-join.joined { background: #C8C0B0; pointer-events: none; }
-    .btn-launch {
-      flex: 1; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius-pill);
-      background: white; font-family: var(--font-sans); font-size: 13px; font-weight: 600;
-      color: var(--text-dark); cursor: pointer; letter-spacing: 1px;
+    .btn-msg-primary:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(29,158,117,0.3); }
+    .btn-msg-primary.joined { background: #C8C0B0; pointer-events: none; opacity: 0.7; }
+    .btn-msg-secondary {
+      flex: 1; padding: 14px 20px; border: 1px solid var(--border); border-radius: 14px;
+      background: white; font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+      color: var(--text-dark); cursor: pointer; letter-spacing: 0.5px;
       transition: all 0.35s var(--ease-lux);
     }
-    .btn-launch:hover { background: var(--bg-secondary); }
-    .msg-card-reset {
-      display: block; width: calc(100% - 40px); margin: 0 auto 20px;
-      padding: 11px; border: 1px solid var(--border); border-radius: var(--radius-pill);
-      background: white; font-family: var(--font-sans); font-size: 12px; font-weight: 600;
-      color: var(--text-medium); cursor: pointer; text-align: center;
-      transition: all 0.35s var(--ease-lux);
+    .btn-msg-secondary:hover { background: var(--bg-secondary); border-color: var(--accent); }
+    .btn-msg-reset {
+      padding: 8px; border: none; background: transparent;
+      font-size: 12px; color: var(--text-light); cursor: pointer;
+      text-align: center; letter-spacing: 0.5px;
+      transition: color 0.3s;
     }
-    .msg-card-reset:hover { background: var(--bg-secondary); color: var(--text-dark); }
-
-    /* Clickable flow node */
-    .flow-node-clickable { cursor: pointer; }
-    .flow-node-clickable:hover { border-color: var(--accent) !important; }
+    .btn-msg-reset:hover { color: var(--text-medium); }
+    /* Join confirmation line */
+    .join-confirm {
+      margin-top: 14px; padding: 12px 16px;
+      background: #F6FCF9; border-radius: 12px;
+      font-size: 12.5px; color: #14855C;
+      border: 1px solid rgba(29,158,117,0.12);
+    }
   </style>
 </head>
 <body>
@@ -578,28 +781,44 @@
     <span class="section-chip">Design Process</span>
     <div class="flow-chart fade-up">
       <div class="flow-node">
-        <div class="flow-node-icon">📋</div>
+        <span class="flow-node-num">01</span>
+        <span class="flow-node-label">Collect</span>
+        <span class="flow-node-icon">📋</span>
         <div class="flow-node-title">信息收集</div>
-        <div class="flow-node-desc">飞书表单<br><span style="font-size:10px;color:var(--accent);cursor:pointer;">点击体验 →</span></div>
+        <div class="flow-node-desc">用户通过飞书表单提交拼单需求，填写类型、详情、人数及联系方式</div>
       </div>
-      <div class="flow-arrow">→</div>
       <div class="flow-node">
-        <div class="flow-node-icon">🗄️</div>
+        <span class="flow-node-num">02</span>
+        <span class="flow-node-label">Store</span>
+        <span class="flow-node-icon">🗄️</span>
         <div class="flow-node-title">数据存储</div>
-        <div class="flow-node-desc">多维表格<br>自动建记录</div>
+        <div class="flow-node-desc">表单数据自动写入飞书多维表格，建立结构化拼单记录并实时更新</div>
       </div>
-      <div class="flow-arrow">→</div>
       <div class="flow-node">
-        <div class="flow-node-icon">⚙️</div>
+        <span class="flow-node-num">03</span>
+        <span class="flow-node-label">Automate</span>
+        <span class="flow-node-icon">⚙️</span>
         <div class="flow-node-title">自动化规则</div>
-        <div class="flow-node-desc">触发条件<br>执行动作</div>
+        <div class="flow-node-desc">新增记录触发 webhook，群机器人将数据自动封装为消息卡片</div>
       </div>
-      <div class="flow-arrow">→</div>
       <div class="flow-node">
-        <div class="flow-node-icon">🤖</div>
+        <span class="flow-node-num">04</span>
+        <span class="flow-node-label">Notify</span>
+        <span class="flow-node-icon">🤖</span>
         <div class="flow-node-title">消息推送</div>
-        <div class="flow-node-desc">群机器人<br>卡片通知</div>
+        <div class="flow-node-desc">结构化卡片实时推送至群聊，成员可直接加入拼单或发起新需求</div>
       </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="flow-actions">
+      <button class="btn-flow-action btn-flow-primary" onclick="openFormModal()">
+        <span class="btn-flow-dot"></span>
+        点击体验
+      </button>
+      <button class="btn-flow-action btn-flow-reset" onclick="resetExperience()">
+        重置体验
+      </button>
     </div>
   </section>
 
@@ -766,23 +985,23 @@
   <!-- ============ MESSAGE CARD OVERLAY ============ -->
   <div class="msg-card-overlay" id="msgCardOverlay">
     <div class="msg-card">
-      <div class="msg-card-inner">
-      <div class="msg-card-top">
-        <div class="msg-card-bot-icon">🤖</div>
-        <div>
+      <div class="msg-card-header">
+        <div class="msg-card-bot-avatar">🤖</div>
+        <div class="msg-card-bot-info">
           <div class="msg-card-bot-name">群机器人 · 速拼校园</div>
           <div class="msg-card-bot-sub">拼单推送通知</div>
         </div>
       </div>
       <div class="msg-card-body" id="msgCardBody">
-        <div class="msg-card-title">🛒 新拼单请求</div>
+        <!-- Dynamically filled by JS -->
       </div>
-      <div class="msg-card-actions">
-        <button class="btn-join" id="btnJoin" onclick="joinOrder()">我要拼单</button>
-        <button class="btn-launch" onclick="launchNew()">发起拼单</button>
+      <div class="msg-card-footer">
+        <div class="msg-card-actions-row">
+          <button class="btn-msg-primary" id="btnJoin" onclick="joinOrder()">我要拼单</button>
+          <button class="btn-msg-secondary" id="btnLaunch" onclick="launchNew()">发起拼单</button>
+        </div>
+        <button class="btn-msg-reset" onclick="resetExperience()">← 重置体验</button>
       </div>
-      <button class="msg-card-reset" onclick="resetExperience()">← 重置体验</button>
-      </div><!-- .msg-card-inner -->
     </div>
   </div>
 
@@ -900,16 +1119,46 @@
     function showMsgCard(fd) {
       var formatDT = function(dt) { return dt ? dt.replace('T',' ') : '-'; };
       var typeMap = { '外卖': '🍔', '拼车': '🚗', '教材打印': '📚', '门票演出': '🎫' };
+      var typeIcon = typeMap[fd.type] || '📋';
       var body = document.getElementById('msgCardBody');
-      body.innerHTML = '<div class="msg-card-title">' + (typeMap[fd.type]||'📋') + ' 新拼单请求</div>' +
-        '<div class="msg-card-field"><span class="msg-card-field-label">拼单类型</span><span class="msg-card-field-value">' + fd.type + '</span></div>' +
-        '<div class="msg-card-field"><span class="msg-card-field-label">需求详情</span><span class="msg-card-field-value">' + fd.detail + '</span></div>' +
-        '<div class="msg-card-field"><span class="msg-card-field-label">当前缺几人</span><span class="msg-card-field-value">' + fd.lack + ' 人</span></div>' +
-        '<div class="msg-card-field"><span class="msg-card-field-label">开始时间</span><span class="msg-card-field-value">' + formatDT(fd.start) + '</span></div>' +
-        '<div class="msg-card-field"><span class="msg-card-field-label">截止时间</span><span class="msg-card-field-value">' + formatDT(fd.end) + '</span></div>' +
-        '<div class="msg-card-field"><span class="msg-card-field-label">联系方式</span><span class="msg-card-field-value">' + fd.contact + '</span></div>' +
-        '<div class="msg-card-field"><span class="msg-card-field-label">姓名</span><span class="msg-card-field-value">' + fd.name + '</span></div>' +
-        '<div class="msg-card-field"><span class="msg-card-field-label">创建时间</span><span class="msg-card-field-value">' + fd.created + '</span></div>';
+      body.innerHTML =
+        '<div class="msg-card-order-banner">' +
+          '<span class="msg-card-order-icon">' + typeIcon + '</span>' +
+          '<div>' +
+            '<div class="msg-card-order-title">新拼单请求</div>' +
+            '<span class="msg-card-order-badge">' + fd.type + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="msg-card-detail-box">' +
+          '<div class="msg-card-detail-type">需求详情</div>' +
+          '<div class="msg-card-detail-text">' + fd.detail + '</div>' +
+        '</div>' +
+        '<div class="msg-card-info-grid">' +
+          '<div class="msg-card-info-item">' +
+            '<span class="msg-card-info-label">还需人数</span>' +
+            '<span class="msg-card-info-value highlight">' + fd.lack + ' 人</span>' +
+          '</div>' +
+          '<div class="msg-card-info-item">' +
+            '<span class="msg-card-info-label">联系方式</span>' +
+            '<span class="msg-card-info-value">' + fd.contact + '</span>' +
+          '</div>' +
+          '<div class="msg-card-info-item">' +
+            '<span class="msg-card-info-label">开始时间</span>' +
+            '<span class="msg-card-info-value">' + formatDT(fd.start) + '</span>' +
+          '</div>' +
+          '<div class="msg-card-info-item">' +
+            '<span class="msg-card-info-label">截止时间</span>' +
+            '<span class="msg-card-info-value">' + formatDT(fd.end) + '</span>' +
+          '</div>' +
+          '<div class="msg-card-info-item">' +
+            '<span class="msg-card-info-label">发起人</span>' +
+            '<span class="msg-card-info-value">' + fd.name + '</span>' +
+          '</div>' +
+          '<div class="msg-card-info-item">' +
+            '<span class="msg-card-info-label">创建时间</span>' +
+            '<span class="msg-card-info-value">' + fd.created + '</span>' +
+          '</div>' +
+        '</div>';
       document.getElementById('msgCardOverlay').style.display = '';
       document.getElementById('msgCardOverlay').classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -987,7 +1236,7 @@
       btn.classList.add('joined');
 
       // Update the lack count in the message card
-      var lackEl = document.querySelector('.msg-card-field:nth-child(3) .msg-card-field-value');
+      var lackEl = document.querySelector('.msg-card-info-value.highlight');
       if (lackEl) {
         var currentLack = parseInt(lackEl.textContent) || 1;
         var newLack = Math.max(currentLack - 1, 0);
