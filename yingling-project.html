@@ -168,6 +168,23 @@
       max-width: 640px; font-size: 15px; line-height: 1.9; color: var(--text-medium);
     }
 
+    /* Floating IP character — right side of hero */
+    .hero-float-ip {
+      position: absolute; right: -100px; top: 50%; transform: translateY(-50%);
+      width: clamp(280px, 35vw, 500px); z-index: 5; pointer-events: none;
+      animation: breathe 5s ease-in-out infinite;
+      filter: drop-shadow(0 16px 40px rgba(139,111,71,0.15));
+    }
+    .hero-float-ip img { width: 100%; display: block; }
+    @keyframes breathe {
+      0%   { transform: translateY(-50%) translateY(0px); }
+      40%  { transform: translateY(-50%) translateY(-14px); }
+      60%  { transform: translateY(-50%) translateY(-14px); }
+      100% { transform: translateY(-50%) translateY(0px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-float-ip { animation: none; }
+    }
 
     /* ============ SECTION DIVIDER ============ */
     .section-divider { border: none; border-top: 1px solid var(--border); margin: 0 auto; width: calc(100% - 80px); max-width: 1120px; }
@@ -317,7 +334,7 @@
       .menu-toggle { display: flex; }
       .nav-glass { width: calc(100% - 32px); top: 14px; padding: 8px 18px; }
       .back-link { left: 18px; top: 78px; }
-      .project-hero { padding: 150px 20px 56px; }
+      .project-hero { padding: 150px 20px 56px; overflow: hidden; }
       .films-section, .gallery-section, .pipeline-section { padding: 80px 20px; }
       .section-divider { width: calc(100% - 40px); }
       .films-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -325,6 +342,7 @@
       .gallery-item { margin-bottom: 12px; }
       .pipeline-flow { grid-template-columns: repeat(2, 1fr); gap: 36px 0; }
       .pipeline-flow::before { display: none; }
+      .hero-float-ip { right: -20px; width: 220px; }
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 22px; }
     }
     @media (max-width: 560px) {
@@ -333,6 +351,7 @@
       .gallery-grid { columns: 1; }
       .pipeline-flow { grid-template-columns: 1fr; gap: 28px 0; }
       .pipeline-dot { display: none; }
+      .hero-float-ip { right: -10px; width: 160px; opacity: 0.7; }
     }
   </style>
 </head>
@@ -369,8 +388,8 @@
     <h1 class="project-hero-title">影灵灵</h1>
     <p class="project-hero-subtitle">AI 皮影文化 IP · 在传统与智能的交汇处设计。</p>
     <div class="project-hero-meta">
-      <div class="meta-item">角色：<strong>创始人 & AIGC 负责人</strong></div>
-      <div class="meta-item">时间：<strong>2025 — 至今</strong></div>
+      <div class="meta-item">角色：<strong>项目负责人</strong></div>
+      <div class="meta-item">时间：<strong>2026.3 — 2026.6</strong></div>
       <div class="meta-item">类别：<strong>AIGC 内容生产</strong></div>
     </div>
     <p class="project-hero-desc">
@@ -380,6 +399,9 @@
       并已产出两部 B 站原创短片及系列视觉资产，
       探索传统文化在数字时代的新叙事形式。
     </p>
+    <div class="hero-float-ip">
+      <img src="images/yinglingling/yinglingling_ip_float.png" alt="影灵灵">
+    </div>
   </section>
 
   <hr class="section-divider">
