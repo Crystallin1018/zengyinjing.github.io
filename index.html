@@ -30,6 +30,7 @@
       --text-medium: #4A4A4A;
       --text-light: #8A8580;
       --text-faint: #B8B3AC;
+      --text-muted: #A09B95;
       --accent-blue: #3370FF;
       --accent-yellow: #F5C542;
       --accent-coral: #E85D4C;
@@ -385,16 +386,16 @@
 
     .section-heading {
       font-family: var(--font-serif);
-      font-size: clamp(40px, 7vw, 72px);
+      font-size: clamp(36px, 6vw, 64px);
       font-weight: 700;
       text-align: center;
       letter-spacing: -1px;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
     .section-eyebrow-wrap {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 12px;
     }
 
     .section-subheading {
@@ -408,173 +409,49 @@
       margin-bottom: 64px;
     }
 
-    /* ============================================
-       ABOUT — Quadrant + Poker Stack
-       ============================================ */
-    .quadrant-wrap {
-      max-width: 900px;
-      margin: 0 auto 80px;
-      padding: 0;
-    }
+#about { padding-top: 56px; padding-bottom: 56px; }
 
-    /* Double-Bezel wrapper for quadrant */
-    .quadrant-bezel {
-      padding: 4px;
-      background: var(--bg-shell);
-      border: 1px solid var(--border-hairline);
-      border-radius: var(--radius-bezel-outer);
-      box-shadow: var(--shadow-ambient);
-    }
-    .quadrant-core {
+    /* About Card — clean 2×2 grid */
+    .about-card {
+      max-width: 960px;
+      margin: 32px auto 0;
       background: var(--bg-primary);
-      border-radius: var(--radius-bezel-inner);
-      box-shadow: var(--shadow-bezel-inset);
+      border: 1px solid var(--border-hairline);
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
       overflow: hidden;
     }
-
-    .quadrant-grid {
+    .about-card-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      position: relative;
     }
-    .q-cell { padding: 36px 32px; }
-    .q-cell h4 {
+    .about-card-col {
+      padding: 28px 32px;
+    }
+    .about-card-col:nth-child(1) { border-right: 1px solid var(--border-hairline); border-bottom: 1px solid var(--border-hairline); }
+    .about-card-col:nth-child(2) { border-bottom: 1px solid var(--border-hairline); }
+    .about-card-col:nth-child(3) { border-right: 1px solid var(--border-hairline); }
+    .about-card-col h4 {
       font-family: var(--font-sans);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
       color: var(--text-light);
       margin-bottom: 14px;
     }
-    .q-cell p {
-      font-size: 13px;
-      line-height: 1.7;
+    .about-card-col p {
+      font-size: 12.5px;
+      line-height: 1.65;
       color: var(--text-medium);
-      margin-bottom: 6px;
+      margin-bottom: 3px;
     }
-    .q-cell strong { color: var(--text-dark); font-weight: 600; }
-    .q-tl { border-right: 1px solid var(--border-hairline); border-bottom: 1px solid var(--border-hairline); }
-    .q-tr { border-bottom: 1px solid var(--border-hairline); }
-    .q-bl { border-right: 1px solid var(--border-hairline); }
-
-    /* About grid */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: start;
-    }
-
-    .about-photo-col {
-      display: flex; flex-direction: column; align-items: center; gap: 28px;
-    }
-
-    /* Poker Stack — Double-Bezel */
-    .poker-stack {
-      position: relative;
-      width: 260px; height: 340px;
-      cursor: pointer;
-      perspective: 1000px;
-    }
-    .poker-card {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border-radius: 1rem;
-      overflow: hidden;
-      background: #fff;
-      box-shadow: var(--shadow-ambient);
-      transition: all 0.6s var(--ease-lux);
-      opacity: 0;
-      transform: translateY(12px) scale(0.95) rotate(-2deg);
-      pointer-events: none;
-      z-index: 1;
-    }
-    .poker-card.active {
-      opacity: 1;
-      transform: translateY(0) scale(1) rotate(0deg);
-      z-index: 10;
-      pointer-events: auto;
-      box-shadow: var(--shadow-floating);
-    }
-    .poker-card:not(.active) {
-      opacity: 0.7;
-      transform: translateY(-6px) scale(0.96) rotate(1.5deg);
-      z-index: 5;
-    }
-    .poker-stack:hover .poker-card.active {
-      box-shadow: 0 4px 12px rgba(26,26,26,0.06), 0 30px 80px rgba(26,26,26,0.14);
-    }
-    .poker-card img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      user-select: none; -webkit-user-drag: none;
-    }
-    .poker-card-border {
-      position: absolute; inset: 6px;
-      border: 1px solid rgba(180,170,150,0.2);
-      border-radius: 0.75rem; pointer-events: none;
-    }
-    .poker-dots {
-      position: absolute; bottom: -32px; left: 50%;
-      transform: translateX(-50%);
-      display: flex; gap: 8px; z-index: 20;
-    }
-    .poker-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--border-hairline-strong);
-      cursor: pointer;
-      transition: all 0.4s var(--ease-lux);
-    }
-    .poker-dot:hover { background: var(--text-light); }
-    .poker-dot.active {
-      background: var(--text-dark);
-      transform: scale(1.4);
-    }
-
-    .about-name-badge { text-align: center; }
-    .about-name-badge h3 {
-      font-family: var(--font-serif);
-      font-size: 24px; font-weight: 700;
-    }
-    .about-name-badge p {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--text-light);
-      margin-top: 4px;
-    }
-
-    .about-info-col p {
-      font-size: 14px;
-      line-height: 1.9;
-      color: var(--text-medium);
-      margin-bottom: 16px;
-    }
-    .about-info-col strong { color: var(--text-dark); font-weight: 600; }
-
-    .about-tags {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      margin-top: 24px;
-    }
-    .about-tag {
-      font-size: 12px;
-      padding: 6px 14px;
-      border: 1px solid var(--border-hairline);
-      border-radius: var(--radius-pill);
-      color: var(--text-medium);
-      transition: all 0.4s var(--ease-lux);
-    }
-    .about-tag:hover {
-      border-color: var(--text-dark);
-      color: var(--text-dark);
-      opacity: 1;
-    }
+    .about-card-col strong { color: var(--text-dark); font-weight: 600; }
 
     /* ============================================
        SKILLS — Glassmorphism Floating Nebula
        ============================================ */
-    .skills-section { margin-top: 96px; }
+    .skills-section { margin-top: 40px; }
     .skills-section h3 {
       font-family: var(--font-serif);
       font-size: 28px; font-weight: 600;
@@ -768,27 +645,6 @@
       margin: 0 auto 28px;
     }
 
-    .skill-popup-close {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 24px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-hairline);
-      background: var(--bg-primary);
-      font-family: var(--font-sans);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-medium);
-      cursor: pointer;
-      transition: all 0.4s var(--ease-lux);
-    }
-    .skill-popup-close:hover {
-      border-color: var(--text-dark);
-      color: var(--text-dark);
-      background: var(--bg-warm);
-    }
-
     /* ============================================
        PROJECTS — Magazine Spreads (Double-Bezel)
        ============================================ */
@@ -800,166 +656,186 @@
     .mag-masthead {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 48px 80px;
+      padding: 0 48px 16px;
       display: flex;
+      justify-content: center;
       align-items: baseline;
-      gap: 20px;
+      gap: 14px;
       border-bottom: 1px solid var(--border-hairline);
     }
     .mag-masthead-num {
       font-family: var(--font-serif);
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 400;
       color: var(--text-faint);
-      letter-spacing: 3px;
+      letter-spacing: 2px;
     }
     .mag-masthead-text h2 {
       font-family: var(--font-serif);
-      font-size: clamp(32px, 3.6vw, 48px);
+      font-size: clamp(36px, 6vw, 64px);
       font-weight: 700;
-      letter-spacing: 8px;
+      letter-spacing: -1px;
       color: var(--text-dark);
-      margin: 0 0 4px;
+      margin: 0 0 2px;
     }
     .mag-masthead-text p {
       font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 2px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
       color: var(--text-light);
       text-transform: uppercase;
       margin: 0;
     }
 
-    /* Magazine spread — Double-Bezel architecture */
-    .mag-spread {
+    /* Project Cards — side-by-side row */
+    #projects { padding-top: 52px; padding-bottom: 52px; }
+    .projects-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
       max-width: 1200px;
-      width: calc(100% - 96px);
-      margin: 0 auto 32px;
-      aspect-ratio: 16 / 9;
+      width: calc(100% - 48px);
+      margin: 0 auto;
+      align-items: stretch;
+    }
+    .project-card {
+      flex: 0 0 380px;
+      max-width: 420px;
+      min-width: 0;
       border-radius: var(--radius-bezel-outer);
       overflow: hidden;
       box-shadow: var(--shadow-ambient);
-      position: relative;
-      /* Outer shell */
-      padding: 5px;
-      background: var(--bg-shell);
+      background: var(--bg-primary);
       border: 1px solid var(--border-hairline);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.5s var(--ease-lux), transform 0.5s var(--ease-lux);
     }
-    .mag-spread-inner {
-      position: relative;
-      width: 100%; height: 100%;
-      border-radius: var(--radius-bezel-inner);
-      overflow: hidden;
-      box-shadow: var(--shadow-bezel-inset);
+    .project-card:hover {
+      box-shadow: 0 12px 48px rgba(0,0,0,0.12);
+      transform: translateY(-4px);
     }
 
-    .mag-spread-img {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
+    .project-card-img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #f5f1ea;
     }
-    .mag-spread-img img {
+    .project-card-img img {
       width: 100%; height: 100%;
       object-fit: cover;
+      transition: transform 0.8s var(--ease-lux);
     }
-    .mag-spread::after {
-      content: "";
-      position: absolute;
-      bottom: 5px; right: 5px;
-      width: 60%; height: 70%;
-      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 60%, transparent 100%);
-      z-index: 1;
-      pointer-events: none;
-      border-radius: 0 0 var(--radius-bezel-inner) 0;
+    .project-card:hover .project-card-img img {
+      transform: scale(1.04);
     }
-    .mag-spread--light::after {
-      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
-    }
-    .mag-spread-img--placeholder {
-      background: linear-gradient(170deg, #f5f1ea 0%, #ddd8c8 100%);
-    }
-    .mag-spread-img--placeholder--coral {
+    .project-card-img--placeholder {
       background: linear-gradient(170deg, #c85e4a 0%, #96402e 100%);
     }
 
-    .mag-typo {
+    .project-card-badge {
       position: absolute;
-      bottom: 0; right: 0;
-      z-index: 2;
-      padding: 48px 56px 44px;
+      top: 8px; right: 10px;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(8px);
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+    .project-card--coral .project-card-badge {
+      background: rgba(255,255,255,0.18);
+    }
+
+    .project-card-body {
+      padding: 14px 16px 18px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      max-width: 55%;
-      align-items: flex-end;
-      text-align: right;
+      gap: 4px;
+      flex: 1;
     }
-
-    .mag-title {
+    .project-card-en {
       font-family: var(--font-serif);
-      font-size: clamp(72px, 11vw, 200px);
-      font-weight: 700;
-      letter-spacing: -5px;
-      line-height: 0.88;
-      color: #fff;
-    }
-    /* Chinese titles need smaller size — CJK glyphs are wider */
-    .mag-title--zh {
-      font-size: clamp(36px, 5.5vw, 72px) !important;
-      letter-spacing: -1px !important;
-      line-height: 1.15 !important;
-    }
-    .mag-title-en {
-      display: block;
-      font-family: var(--font-serif);
-      font-size: clamp(13px, 1.3vw, 17px);
-      font-weight: 400;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
-      margin-top: 16px;
-      line-height: 1.4;
-    }
-    .mag-desc {
-      font-family: var(--font-serif);
-      font-size: clamp(17px, 1.6vw, 24px);
-      line-height: 2;
-      color: rgba(255,255,255,0.95);
-      max-width: 480px;
-    }
-    .mag-desc-role {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      margin-top: 20px;
+      color: var(--text-muted);
     }
-
-    /* CTA — Button-in-Button pattern */
-    .mag-cta {
+    .project-card-title {
+      font-family: var(--font-serif);
+      font-size: clamp(17px, 1.5vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text-dark);
+      margin: 0;
+    }
+    .project-card-desc {
+      font-family: var(--font-serif);
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--text-medium);
+      flex: 1;
+    }
+    .project-card-role {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .project-card-cta {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      margin-top: 28px;
-      font-family: var(--font-serif);
-      font-size: 18px;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 4px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-warm);
+      font-family: var(--font-sans);
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: all 0.4s var(--ease-lux);
+      align-self: center;
+    }
+    .project-card-cta:hover {
+      background: var(--text-dark);
       color: #fff;
-      transition: all 0.5s var(--ease-lux);
+      border-color: var(--text-dark);
     }
-    .mag-cta-arrow {
-      width: 32px; height: 32px;
+    .project-card-cta--coral {
+      background: transparent;
+      border-color: rgba(200,94,74,0.3);
+      color: #c85e4a;
+    }
+    .project-card-cta--coral:hover {
+      background: #c85e4a;
+      color: #fff;
+      border-color: #c85e4a;
+    }
+    .project-card-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px; height: 20px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.25);
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.5s var(--ease-lux);
-      font-size: 14px;
+      background: rgba(0,0,0,0.06);
+      font-size: 11px;
+      transition: background 0.4s;
     }
+    .project-card-cta:hover .project-card-arrow {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .mag-whitespace { display: none; }
     .mag-cta:hover { opacity: 1; }
     .mag-cta:hover .mag-cta-arrow {
       transform: translate(3px, -2px) scale(1.08);
@@ -997,29 +873,23 @@
     }
     .mag-page-mark--top-right { top: 32px; right: 48px; }
 
-    .mag-whitespace { height: 24px; width: 100%; }
-    @media (min-width: 901px) { .mag-whitespace { height: 280px; } }
-
-    /* Magazine scroll reveal — blur + translate + opacity */
-    .mag-spread {
+    /* Project card scroll reveal — blur + translate + opacity */
+    .project-card {
       opacity: 0;
       transform: translateY(50px);
       filter: blur(8px);
       transition: opacity 1.2s var(--ease-expo), transform 1.2s var(--ease-expo), filter 1.2s var(--ease-expo), box-shadow 0.5s var(--ease-lux);
     }
-    .mag-spread.visible {
+    .project-card.visible {
       opacity: 1;
       transform: translateY(0);
       filter: blur(0);
     }
-    .mag-spread-img img {
+    .project-card-img img {
       transition: transform 1.2s var(--ease-expo);
     }
-    .mag-spread.visible .mag-spread-img img {
+    .project-card.visible .project-card-img img {
       transform: scale(1.05);
-    }
-    .mag-spread:hover {
-      box-shadow: 0 4px 12px rgba(26,26,26,0.06), 0 30px 80px rgba(26,26,26,0.14);
     }
 
     .mag-intro {
@@ -1030,98 +900,6 @@
       max-width: 480px;
       margin-top: 16px;
       text-shadow: 0 1px 10px rgba(0,0,0,0.4);
-    }
-
-    /* ============================================
-       DESIGN BEYOND — Flip Cards (Double-Bezel)
-       ============================================ */
-    .beyond-section { margin-top: 96px; }
-    .beyond-section > h3 {
-      font-family: var(--font-serif);
-      font-size: 28px; font-weight: 600;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-    .beyond-subtitle {
-      text-align: center;
-      font-size: 14px; color: var(--text-light);
-      margin-bottom: 48px;
-      font-style: italic;
-    }
-
-    .flip-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      perspective: 1200px;
-    }
-
-    /* Double-Bezel wrapper for flip cards */
-    .flip-card-bezel {
-      padding: 4px;
-      background: var(--bg-shell);
-      border: 1px solid var(--border-hairline);
-      border-radius: 1.25rem;
-      box-shadow: var(--shadow-ambient);
-    }
-
-    .flip-card {
-      aspect-ratio: 4/5;
-      cursor: pointer;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.7s var(--ease-spring);
-    }
-    .flip-card.flipped { transform: rotateY(180deg); }
-
-    .flip-face {
-      position: absolute; inset: 0;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      border-radius: 1rem;
-      overflow: hidden;
-      display: flex; flex-direction: column;
-    }
-    .flip-front {
-      background: var(--bg-primary);
-      align-items: center; justify-content: center;
-      padding: 32px;
-      text-align: center;
-      box-shadow: var(--shadow-bezel-inset);
-    }
-    .flip-front-icon { font-size: 48px; margin-bottom: 16px; }
-    .flip-front h4 {
-      font-family: var(--font-serif);
-      font-size: 20px; font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .flip-front p { font-size: 16px; color: var(--text-light); }
-
-    .flip-back {
-      background: var(--text-dark);
-      color: white;
-      transform: rotateY(180deg);
-      padding: 32px;
-      justify-content: center;
-    }
-    .flip-back h4 {
-      font-family: var(--font-serif);
-      font-size: 18px; font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--accent-yellow);
-    }
-    .flip-back p {
-      font-size: 13px;
-      line-height: 1.8;
-      opacity: 0.85;
-    }
-    .flip-back .flip-hint {
-      margin-top: 16px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      opacity: 0.5;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
     }
 
     /* ============================================
@@ -1261,17 +1039,15 @@
       .section { padding: 80px 24px; }
       .section-divider { width: calc(100% - 48px); }
 
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-card-col { padding: 18px 20px; }
 
-      .flip-cards { grid-template-columns: 1fr 1fr; gap: 20px; }
-
-      .mag-masthead { flex-direction: column; align-items: flex-start; gap: 4px; padding: 0 32px 48px; }
-      .mag-masthead-num { font-size: 12px; }
-      .mag-masthead-text h2 { font-size: 28px; letter-spacing: 4px; }
-      .mag-spread { width: calc(100% - 64px); }
-      .mag-typo { padding: 36px 40px 32px; max-width: 65%; }
-      .mag-spread::after { width: 70%; }
-      .mag-page-mark--top-right { right: 32px; top: 24px; font-size: 10px; }
+      .mag-masthead { flex-direction: column; align-items: center; gap: 4px; padding: 0 32px 16px; }
+      .mag-masthead-num { font-size: 11px; }
+      .projects-row { width: calc(100% - 40px); gap: 20px; }
+      .project-card-badge { right: 10px; top: 8px; font-size: 7px; }
+      .project-card-body { padding: 12px 14px 16px; }
+      .project-card-title { font-size: 16px; }
+      .project-card-desc { font-size: 12px; line-height: 1.55; }
 
       .timeline::before { left: 16px; }
       .timeline-dot { width: 33px; min-width: 33px; font-size: 12px; }
@@ -1294,20 +1070,15 @@
 
       .about-photo-frame { max-width: 260px; }
       .skills-grid { grid-template-columns: 1fr; }
-      .flip-cards { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
 
-      .mag-masthead { flex-direction: column; align-items: flex-start; gap: 4px; padding: 0 20px 20px; }
-      .mag-masthead-num { font-size: 12px; }
-      .mag-masthead-text h2 { font-size: 24px; letter-spacing: 3px; }
-      .mag-spread { width: calc(100% - 32px); }
-      .mag-typo { padding: 24px 20px 20px; max-width: 100% !important; top: auto !important; bottom: 0 !important; left: 0 !important; right: 0 !important; transform: none !important; text-align: left !important; align-items: flex-start !important; display: flex !important; flex-direction: column !important; }
-      .mag-spread::after { width: 85%; height: 85%; }
-      .mag-title { font-size: clamp(20px, 5vw, 26px); letter-spacing: 0px; }
-      .mag-desc p { font-size: 13px; line-height: 1.7; }
-      .mag-page-mark--top-right { right: 20px; top: 16px; font-size: 9px; }
-      .mag-whitespace { height: 80px; }
-
-      .flip-card { aspect-ratio: 3/4; }
+      .mag-masthead { flex-direction: column; align-items: center; gap: 4px; padding: 0 16px 16px; }
+      .mag-masthead-num { font-size: 10px; }
+      .projects-row { flex-direction: column; width: calc(100% - 24px); gap: 16px; }
+      .project-card { flex: 0 0 auto; max-width: 100%; }
+      .project-card-body { padding: 12px 14px 16px; }
+      .project-card-title { font-size: 16px; }
+      .project-card-desc { font-size: 12px; line-height: 1.55; }
+      .project-card-badge { right: 8px; top: 8px; font-size: 7px; }
 
       footer { flex-direction: column; gap: 12px; text-align: center; padding: 20px; }
       .footer-links { justify-content: center; }
@@ -1317,7 +1088,7 @@
       .quadrant-grid { grid-template-columns: 1fr; }
       .q-tl, .q-tr, .q-bl { border-right: none; border-bottom: 1px solid var(--border-hairline); }
       .q-br { border-bottom: none; }
-      .q-cell { padding: 28px 20px; }
+      .about-card-col { padding: 16px 18px; }
 
       .skill-nebula { height: 340px; }
       .skill-tag--lg { padding: 8px 18px; }
@@ -1446,124 +1217,62 @@
     </div>
     <h2 class="section-heading fade-up">ABOUT ME</h2>
 
-    <!-- Quadrant — Double-Bezel -->
-    <div class="quadrant-wrap fade-up">
-      <div class="quadrant-bezel">
-        <div class="quadrant-core">
-          <div class="quadrant-grid">
-            <!-- 左上：教育背景 -->
-            <div class="q-cell q-tl">
-              <h4>EDUCATION</h4>
-              <p><strong>广东外语外贸大学 · 商学院</strong></p>
-              <p>市场营销专业 · 本科（2024 – 2028）</p>
-              <p>GPA <strong>3.76 / 4.0</strong>（前 15%）</p>
-              <p>相关课程：电子商务、市场营销学、营销英语、商务英语</p>
-              <p>荣誉奖励：优秀学生三等奖学金</p>
-            </div>
-            <!-- 右上：实习经历 -->
-            <div class="q-cell q-tr">
-              <h4>INTERNSHIP</h4>
-              <p><strong>中国对外贸易广州物业发展有限公司</strong></p>
-              <p>贸易促进部 · 文创门店实习生（2026.04 – 2026.05）</p>
-              <p>负责文创产品销量与库存数据统计，梳理热销及滞销单品特点，为选品与补货提供参考依据。</p>
-              <p>协助门店日常运营、货品统筹及客群接待，面向海内外参展客商进行产品讲解与推介。</p>
-            </div>
-            <!-- 左下：项目经历 -->
-            <div class="q-cell q-bl">
-              <h4>PROJECTS</h4>
-              <p><strong>🎭 影灵灵 · AI 皮影文化 IP</strong></p>
-              <p>AIGC × 非遗皮影戏 · 2025 – 至今</p>
-              <p>设计角色一致性控制系统（Role Lock + Style Anchor），搭建多模态内容生产流程，产出角色设定手册、宣传海报及 B 站原创短片。</p>
-              <br>
-              <p><strong>⚡ 飞书自动化拼单通知系统</strong></p>
-              <p>项目负责人 · 2026.06</p>
-              <p>设计「飞书表单→多维表格→群机器人」自动化链路，需求响应时间从 30 分钟压缩至 5 秒，建立标准化运营工具资产。</p>
-            </div>
-            <!-- 右下：个人技能 -->
-            <div class="q-cell q-br">
-              <h4>SKILLS</h4>
-              <p><strong>英语水平</strong></p>
-              <p>CET-6（550+），具备良好的英语读写与口语交流能力。</p>
-              <br>
-              <p><strong>办公软件</strong></p>
-              <p>熟练使用 Word、Excel、PowerPoint 等办公软件，具备数据分析与文档排版能力。</p>
-              <br>
-              <p><strong>AIGC 工具</strong></p>
-              <p>熟练使用 Midjourney、Runway、即梦等 AI 创作工具，具备 Prompt 工程与多模态内容生产能力。</p>
-            </div>
-          </div><!-- /.quadrant-grid -->
-        </div><!-- /.quadrant-core -->
-      </div><!-- /.quadrant-bezel -->
-    </div><!-- /.quadrant-wrap -->
-
-
-    <div class="about-grid">
-      <!-- Left: Photo + Name -->
-      <div class="about-photo-col fade-up">
-        <!-- Poker Card Stack -->
-        <div class="poker-stack" id="pokerStack">
-          <div class="poker-card active" data-index="0" data-label="ID Photo">
-            <img src="images/about/photo.jpg" alt="证件照" draggable="false">
-            <div class="poker-card-border"></div></div>
-          <div class="poker-card" data-index="1" data-label="Haobao BEE">
-            <img src="images/about/haobao-bee.jpg" alt="好宝 BEE 合照" draggable="false">
-            <div class="poker-card-border"></div></div>
-          <div class="poker-card" data-index="2" data-label="Pink Jacket">
-            <img src="images/about/pink-jacket.jpg" alt="粉色外套" draggable="false">
-            <div class="poker-card-border"></div></div>
-          <div class="poker-card" data-index="3" data-label="Bear Photo">
-            <img src="images/about/bear-photo.jpg" alt="小熊合照" draggable="false">
-            <div class="poker-card-border"></div></div>
-          <div class="poker-dots">
-            <span class="poker-dot active" data-target="0"></span>
-            <span class="poker-dot" data-target="1"></span>
-            <span class="poker-dot" data-target="2"></span>
-            <span class="poker-dot" data-target="3"></span>
-          </div>
+    <!-- About Card -->
+    <div class="about-card fade-up">
+      <div class="about-card-inner">
+        <!-- 左上：教育背景 -->
+        <div class="about-card-col">
+          <h4>EDUCATION</h4>
+          <p><strong>广东外语外贸大学 · 商学院</strong></p>
+          <p>市场营销专业 · 本科（2024 – 2028）</p>
+          <p>GPA <strong>3.76 / 4.0</strong>（前 15%）</p>
+          <p>相关课程：电子商务、市场营销学、营销英语、商务英语</p>
+          <p>荣誉奖励：优秀学生三等奖学金</p>
         </div>
-        <div class="about-name-badge">
-          <h3>曾银晶 / Crystal</h3>
-          <p>Zeng Yinjing &middot; Guangzhou</p>
+        <!-- 右上：实习经历 -->
+        <div class="about-card-col">
+          <h4>INTERNSHIP</h4>
+          <p><strong>中国对外贸易广州物业发展有限公司</strong></p>
+          <p>贸易促进部 · 文创门店实习生（2026.04 – 2026.05）</p>
+          <p>负责文创产品销量与库存数据统计，梳理热销及滞销单品特点，为选品与补货提供参考依据。</p>
+          <p>协助门店日常运营、货品统筹及客群接待，面向海内外参展客商进行产品讲解与推介。</p>
         </div>
-      </div>
-
-      <!-- Right: Info -->
-      <div class="about-info-col fade-up">
-        <p>
-          你好，我是<strong>曾银晶</strong>，广东外语外贸大学商学院
-          市场营销专业（2024–2028），GPA <strong>3.76 / 4.0</strong>（前 15%），
-          获优秀学生三等奖学金。
-        </p>
-        <p>
-          核心项目「<strong>影灵灵 · AI 皮影文化 IP</strong>」，
-          从角色设计到 B 站原创短片，完整实践了 AIGC 内容生产全流程。
-          另有<strong>飞书自动化拼单系统</strong>项目，
-          通过零代码自动化设计，将需求响应时间从 30 分钟压缩至 5 秒。
-        </p>
-        <p>
-          曾在<strong>中国对外贸易广州物业发展有限公司</strong>实习，
-          负责文创产品数据分析与客群接待，具备扎实的商务沟通与运营支持能力。
-        </p>
+        <!-- 左下：项目经历 -->
+        <div class="about-card-col">
+          <h4>PROJECTS</h4>
+          <p><strong>🎭 影灵灵 · AI 皮影文化 IP</strong></p>
+          <p>AIGC × 非遗皮影戏 · 2025 – 至今</p>
+          <p>设计角色一致性控制系统（Role Lock + Style Anchor），搭建多模态内容生产流程，产出角色设定手册、宣传海报及 B 站原创短片。</p>
+          <p><strong>⚡ 飞书自动化拼单通知系统</strong></p>
+          <p>项目负责人 · 2026.06</p>
+          <p>设计「飞书表单→多维表格→群机器人」自动化链路，需求响应时间从 30 分钟压缩至 5 秒，建立标准化运营工具资产。</p>
+        </div>
+        <!-- 右下：个人技能 -->
+        <div class="about-card-col">
+          <h4>SKILLS</h4>
+          <p><strong>英语水平</strong></p>
+          <p>CET-6（550+），具备良好的英语读写与口语交流能力。</p>
+          <p><strong>办公软件</strong></p>
+          <p>熟练使用 Word、Excel、PowerPoint 等办公软件，具备数据分析与文档排版能力。</p>
+          <p><strong>AIGC 工具</strong></p>
+          <p>熟练使用 Midjourney、Runway、即梦等 AI 创作工具，具备 Prompt 工程与多模态内容生产能力。</p>
+        </div>
       </div>
     </div>
 
-    <!-- ===== SKILLS — Glassmorphism Nebula ===== -->
+    <!-- Skills Nebula -->
     <div class="skills-section fade-up">
-      <h3>Skills</h3>
-      <p class="skills-subtitle">Hover to feel the pull. Click to explore.</p>
-
-      <div class="skill-nebula" id="skillNebula">
-        <!-- Tags rendered by JS -->
-      </div>
+      <h3>SKILLS</h3>
+      <p class="skills-subtitle">Hover to interact · Click to explore</p>
+      <div class="skill-nebula" id="skillNebula"></div>
     </div>
 
-    <!-- Skill Detail Popup -->
+    <!-- Skill Popup Overlay -->
     <div class="skill-popup-overlay" id="skillPopupOverlay">
       <div class="skill-popup">
-        <span class="skill-popup-icon" id="skillPopupIcon"></span>
-        <div class="skill-popup-name" id="skillPopupName"></div>
-        <p class="skill-popup-desc" id="skillPopupDesc"></p>
-        <button class="skill-popup-close" onclick="closeSkillPopup()">关闭 · Close</button>
+        <span class="skill-popup-icon" id="skillPopupIcon">🤖</span>
+        <div class="skill-popup-name" id="skillPopupName">Prompt 工程</div>
+        <p class="skill-popup-desc" id="skillPopupDesc">构建三层 Prompt 架构，实现 AIGC 内容生产的精准控制。</p>
       </div>
     </div>
 
@@ -1583,56 +1292,37 @@
       </div>
     </div>
 
-    <!-- SPREAD 1: 影灵灵 -->
-    <div class="mag-spread fade-up" id="spreadYingling">
-      <div class="mag-spread-inner">
-        <div class="mag-spread-img" style="background:none;overflow:hidden;">
+    <!-- Projects row: two cards side by side -->
+    <div class="projects-row fade-up">
+      <!-- CARD 1: 影灵灵 -->
+      <div class="project-card" id="spreadYingling">
+        <div class="project-card-img">
           <img src="images/projects/yingling-hero.jpg" alt="影灵灵">
+          <span class="project-card-badge">01 &mdash; 2025&ndash;2026</span>
         </div>
-        <span class="mag-page-mark mag-page-mark--top-right">01 &mdash; 2025&ndash;2026</span>
-        <div class="mag-typo mag-typo--bottom-left">
-          <div>
-            <div class="mag-rule"></div>
-            <span class="mag-title-en">AI Shadow Puppet Cultural IP</span>
-            <p class="mag-intro">通过结构化 Prompt 工程和多模态管线设计，让皮影角色在不同场景中保持统一视觉形象，构建从文本到图像再到视频的完整 AIGC 内容生产线。</p>
-          </div>
-          <div>
-            <br>
-            <a href="yingling-project.html" class="mag-cta mag-cta--pill" style="display:inline-flex;align-items:center;gap:10px;margin-top:8px;padding:12px 28px;background:rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.1);border-radius:100px;font-size:13px;font-weight:600;letter-spacing:0.5px;text-decoration:none;transition:all 0.5s var(--ease-lux);">
-              查看项目详情
-              <span class="mag-cta-arrow" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--text-dark);color:#fff;border:none;font-size:14px;">→</span>
-            </a>
-          </div>
+        <div class="project-card-body">
+          <span class="project-card-en">AI Shadow Puppet Cultural IP</span>
+          <h3 class="project-card-title">影灵灵</h3>
+          <p class="project-card-desc">通过结构化 Prompt 工程和多模态管线设计，让皮影角色在不同场景中保持统一视觉形象，构建从文本到图像再到视频的完整 AIGC 内容生产线。</p>
+          <a href="yingling-project.html" class="project-card-cta">
+            查看项目详情 <span class="project-card-arrow">→</span>
+          </a>
         </div>
       </div>
-    </div>
 
-    <div class="mag-whitespace"></div>
-
-    <!-- SPREAD 2: 飞书自动化 -->
-    <div class="mag-spread mag-spread--light fade-up" id="spreadFeishu">
-      <div class="mag-spread-inner">
-        <div class="mag-spread-img mag-spread-img--placeholder--coral">
+      <!-- CARD 2: 飞书自动化 -->
+      <div class="project-card project-card--coral" id="spreadFeishu">
+        <div class="project-card-img project-card-img--placeholder">
+          <span class="project-card-badge">02 &mdash; 2026</span>
         </div>
-        <span class="mag-page-mark mag-page-mark--top-right">02 &mdash; 2026</span>
-        <div class="mag-typo" style="position:absolute;top:50%;transform:translateY(-50%);grid-template-columns:1fr 1.2fr;align-items:center;">
-          <div></div>
-          <div>
-            <div class="mag-rule mag-rule--right"></div>
-            <span class="mag-title-en" style="color:rgba(255,255,255,0.5);">Feishu Automation System</span>
-            <h2 class="mag-title mag-title--zh" style="color:#fff;">飞书自动化</h2>
-            <p class="mag-desc" style="color:rgba(255,255,255,0.85);max-width:420px;margin-left:auto;">
-              设计零代码自动化拼单系统，
-              将需求响应时间从 30 分钟压缩至 5 秒，
-              成功率由 40% 提升至 75%。
-            </p>
-            <span class="mag-desc-role" style="color:rgba(255,255,255,0.45);display:block;text-align:right;">Project Lead &middot; Jun 2026</span>
-            <!-- Button-in-Button: View Details -->
-            <a href="feishu-project.html" class="mag-cta mag-cta--pill" style="color:#fff;display:inline-flex;align-items:center;gap:10px;margin-top:12px;padding:12px 28px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);border-radius:100px;font-size:13px;font-weight:600;letter-spacing:0.5px;text-decoration:none;float:none;backdrop-filter:blur(8px);transition:all 0.5s var(--ease-lux);">
-              查看项目详情
-              <span class="mag-cta-arrow" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);font-size:14px;">→</span>
-            </a>
-          </div>
+        <div class="project-card-body">
+          <span class="project-card-en">Feishu Automation System</span>
+          <h3 class="project-card-title">飞书自动化</h3>
+          <p class="project-card-desc">设计零代码自动化拼单系统，将需求响应时间从 30 分钟压缩至 5 秒，成功率由 40% 提升至 75%。</p>
+          <span class="project-card-role">Project Lead · Jun 2026</span>
+          <a href="feishu-project.html" class="project-card-cta project-card-cta--coral">
+            查看项目详情 <span class="project-card-arrow">→</span>
+          </a>
         </div>
       </div>
     </div>
@@ -1642,7 +1332,7 @@
   <hr class="section-divider">
 
 
-  <!-- ==================== 05 CONTACT ==================== -->
+  <!-- ==================== 04 CONTACT ==================== -->
   <section class="section contact-section" id="contact" style="position:relative;overflow:hidden;">
 
     <!-- Decorative SVG: Stack of books (left) -->
@@ -1758,8 +1448,25 @@
       var targetEl = document.getElementById(targetId);
       if (targetEl) {
         closeMobileNav();
-        var offsetTop = targetEl.getBoundingClientRect().top + window.pageYOffset - 80;
-        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+        var sectionTop = targetEl.getBoundingClientRect().top + window.pageYOffset;
+        var scrollTo = sectionTop - 80; // default: 80px nav offset
+
+        // For "about" / "projects": try to fit entire section in viewport
+        if (targetId === 'about' || targetId === 'projects') {
+          var sectionH = targetEl.offsetHeight;
+          var vh = window.innerHeight;
+          var navH = 80;
+          var availH = vh - navH;
+          if (sectionH <= availH) {
+            // Fits in one screen — center it with a slight downward shift
+            scrollTo = sectionTop - (availH - sectionH) / 2 - navH * 0.6;
+          } else {
+            // Too tall — just align top with nav, show as much as possible
+            scrollTo = sectionTop - navH + 20;
+          }
+        }
+
+        window.scrollTo({ top: Math.max(0, scrollTo), behavior: 'smooth' });
       }
     });
 
@@ -1786,8 +1493,8 @@
         elements.forEach(function(el) { el.classList.add('visible'); });
       }
 
-      // Magazine spread reveal
-      var spreads = document.querySelectorAll('.mag-spread');
+      // Project card reveal
+      var spreads = document.querySelectorAll('.project-card');
       if ('IntersectionObserver' in window) {
         var spreadObserver = new IntersectionObserver(function(entries) {
           entries.forEach(function(entry) {
@@ -1836,30 +1543,6 @@
     });
 
     if (document.readyState !== 'loading') { loadAvatar(); }
-
-    // =====================================================
-    //  FLIP CARD HOVER CONTROL
-    // =====================================================
-    (function() {
-      var cards = document.querySelectorAll('.flip-card');
-      for (var i = 0; i < cards.length; i++) {
-        (function(c) {
-          var flipping = false;
-          c.addEventListener('mouseenter', function() {
-            if (flipping) return;
-            flipping = true;
-            c.classList.add('flipped');
-            setTimeout(function() { flipping = false; }, 450);
-          });
-          c.addEventListener('mouseleave', function() {
-            if (flipping) return;
-            flipping = true;
-            c.classList.remove('flipped');
-            setTimeout(function() { flipping = false; }, 450);
-          });
-        })(cards[i]);
-      }
-    })();
 
     // =====================================================
     //  POKER STACK SWITCH
@@ -1965,7 +1648,8 @@
         el.setAttribute('data-index', idx);
         el.setAttribute('data-desc', s.desc);
         el.innerHTML = '<span class="skill-tag-text">' + s.text + '</span>';
-        el.addEventListener('click', function(e) { e.stopPropagation(); openSkillPopup(s.icon, s.text, s.desc); });
+        el.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); openSkillPopup(s.icon, s.text, s.desc); });
+        el.addEventListener('pointerdown', function(e) { e.preventDefault(); e.stopPropagation(); openSkillPopup(s.icon, s.text, s.desc); });
         nebula.appendChild(el);
         tagEls.push(el);
       });
@@ -2127,17 +1811,23 @@
       var magnetRAF;
       function magnetLoop() {
         if (magnetActive) {
-          tagEls.forEach(function(tag) {
-            var cx = tag._currentX !== undefined ? tag._currentX + tag.getBoundingClientRect().width / 2 : 0;
-            var cy = tag._currentY !== undefined ? tag._currentY + tag.getBoundingClientRect().height / 2 : 0;
+          // Build snapshot of all current rects (in nebula space) for collision check
+          var snapshots = tagEls.map(function(t) {
+            var r = t.getBoundingClientRect();
+            return { x: r.left - nebulaRect.left, y: r.top - nebulaRect.top, w: r.width, h: r.height };
+          });
+
+          tagEls.forEach(function(tag, i) {
+            var r = tag.getBoundingClientRect();
+            var cx = r.left - nebulaRect.left + r.width / 2;
+            var cy = r.top - nebulaRect.top + r.height / 2;
             var dx = mouseX - cx;
             var dy = mouseY - cy;
             var dist = Math.sqrt(dx * dx + dy * dy);
-            var maxDist = 180; // magnetic radius
+            var maxDist = 180;
 
             if (dist < maxDist && dist > 0) {
-              // Inverse-square attraction, stronger when closer
-              var force = (1 - dist / maxDist) * (1 - dist / maxDist) * 18;
+              var force = (1 - dist / maxDist) * (1 - dist / maxDist) * 8;
               var pullX = (dx / dist) * force;
               var pullY = (dy / dist) * force;
 
@@ -2146,6 +1836,17 @@
               var ny = (tag._currentY || 0) + pullY;
               nx = Math.max(b.minX, Math.min(b.maxX, nx));
               ny = Math.max(b.minY, Math.min(b.maxY, ny));
+
+              // Check collision with all OTHER tags' current positions
+              var overlaps = false;
+              for (var j = 0; j < snapshots.length; j++) {
+                if (j === i) continue;
+                if (tagsOverlap(nx, ny, r.width, r.height, snapshots[j].x, snapshots[j].y, snapshots[j].w, snapshots[j].h)) {
+                  overlaps = true;
+                  break;
+                }
+              }
+              if (overlaps) return; // skip — don't merge into another tag
 
               gsap.to(tag, {
                 x: nx, y: ny,

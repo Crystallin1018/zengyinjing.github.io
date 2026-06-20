@@ -430,16 +430,33 @@
       .data-shell:hover { transform: translateY(-2px); }
       .data-shell:hover .data-core { transform: none; }
       .data-shell:hover .data-number { transform: none; }
-      .flow-chart { grid-template-columns: 1fr; gap: 16px 0; padding: 20px 0; }
+      .flow-chart { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 12px 0; }
       .flow-chart::after { display: none; }
-      .flow-node { padding: 56px 20px 24px; text-align: center; border-radius: 16px; position: relative; }
-      .flow-node-num { position: absolute; left: 50%; top: -22px; transform: translateX(-50%); width: 44px; height: 44px; }
-      .flow-node-label { margin-bottom: 8px; }
-      .flow-node-icon { font-size: 40px; margin-bottom: 8px; display: block; }
-      .flow-node-desc { max-width: 100%; font-size: 13.5px; }
-      .flow-node-title { margin-bottom: 4px; }
-      .flow-actions { flex-direction: column; align-items: stretch; margin-top: 28px; }
-      .btn-flow-action { justify-content: center; }
+      .flow-node { padding: 38px 14px 16px; text-align: center; border-radius: 14px; position: relative; }
+      .flow-node-num { position: absolute; left: 50%; top: -18px; transform: translateX(-50%); width: 36px; height: 36px; font-size: 12px; }
+      .flow-node-label { margin-bottom: 4px; font-size: 8px; letter-spacing: 2px; }
+      .flow-node-icon { font-size: 28px; margin-bottom: 4px; display: block; }
+      .flow-node-desc { max-width: 100%; font-size: 12px; line-height: 1.55; }
+      .flow-node-title { margin-bottom: 2px; font-size: 14px; }
+      .flow-actions { flex-direction: row; justify-content: center; margin-top: 20px; gap: 20px; }
+      .btn-flow-action { width: 56px; height: 56px; }
+      .btn-flow-primary .btn-flow-dot { width: 10px; height: 10px; }
+      .btn-flow-reset { font-size: 18px; }
+
+      .comparison-table, .comparison-table thead, .comparison-table tbody,
+      .comparison-table th, .comparison-table td, .comparison-table tr { display: block; }
+      .comparison-table thead { display: none; }
+      .comparison-table tbody tr {
+        padding: 16px 16px 14px; border-bottom: 1px solid rgba(26,26,26,0.06);
+      }
+      .comparison-table tbody tr:last-child { border-bottom: none; }
+      .comparison-table td {
+        padding: 4px 0; font-size: 12.5px; line-height: 1.65; border-bottom: none;
+      }
+      .comparison-table td:first-child {
+        padding-left: 0; font-size: 13px; font-weight: 700; margin-bottom: 4px;
+      }
+      .tag-before, .tag-after { font-size: 9px; padding: 3px 10px; margin-right: 6px; }
     }
 
     /* ============ FORM MODAL ============ */
@@ -453,37 +470,37 @@
     .form-modal-overlay.active { opacity: 1; pointer-events: auto; }
     .form-modal {
       background: transparent; padding: 5px; border: 1px solid var(--border);
-      border-radius: var(--radius-lg); max-width: 520px; width: calc(100% - 40px);
-      max-height: 85vh; overflow-y: auto; background: var(--border);
+      border-radius: var(--radius-lg); max-width: 480px; width: calc(100% - 40px);
+      background: var(--border);
       box-shadow: 0 32px 96px rgba(0,0,0,0.14), 0 0 0 1px rgba(26,26,26,0.04);
       transform: translateY(20px) scale(0.97);
       transition: transform 0.5s var(--ease-spring);
     }
     .form-modal-overlay.active .form-modal { transform: translateY(0) scale(1); }
     .form-modal-inner {
-      background: white; border-radius: 23px; padding: 40px 36px 32px;
+      background: white; border-radius: 23px; padding: 28px 28px 24px;
       box-shadow: inset 0 1px 1px rgba(255,255,255,0.4);
     }
     .form-modal-header {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;
     }
-    .form-modal-title { font-family: var(--font-serif); font-size: 20px; font-weight: 700; }
+    .form-modal-title { font-family: var(--font-serif); font-size: 18px; font-weight: 700; }
     .form-modal-close {
-      width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 50%;
-      background: none; cursor: pointer; font-size: 16px; color: var(--text-light);
+      width: 32px; height: 32px; border: 1px solid var(--border); border-radius: 50%;
+      background: none; cursor: pointer; font-size: 14px; color: var(--text-light);
       display: flex; align-items: center; justify-content: center;
       transition: all 0.3s var(--ease-lux);
     }
     .form-modal-close:hover { background: var(--text-dark); color: white; border-color: var(--text-dark); }
-    .form-group { margin-bottom: 20px; }
+    .form-group { margin-bottom: 12px; }
     .form-label {
-      display: block; font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
-      color: var(--text-medium); margin-bottom: 6px; text-transform: uppercase;
+      display: block; font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+      color: var(--text-medium); margin-bottom: 4px; text-transform: uppercase;
     }
     .form-required { color: #E05050; margin-left: 2px; }
     .form-input, .form-select, .form-datetime {
-      width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm);
-      font-family: var(--font-sans); font-size: 14px; color: var(--text-dark);
+      width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+      font-family: var(--font-sans); font-size: 13px; color: var(--text-dark);
       background: var(--bg-primary); outline: none;
       transition: border-color 0.3s var(--ease-lux), box-shadow 0.3s var(--ease-lux);
     }
@@ -493,19 +510,19 @@
     .form-input::placeholder { color: var(--text-faint); }
     .form-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%239C9488' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
     .form-readonly { background: var(--bg-secondary); color: var(--text-light); cursor: not-allowed; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-actions { display: flex; gap: 12px; margin-top: 32px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-actions { display: flex; gap: 10px; margin-top: 20px; }
     .btn-clear {
-      flex: 1; padding: 13px 24px; border: 1px solid var(--border); border-radius: var(--radius-pill);
-      background: white; font-family: var(--font-sans); font-size: 13px; font-weight: 600;
+      flex: 1; padding: 11px 20px; border: 1px solid var(--border); border-radius: var(--radius-pill);
+      background: white; font-family: var(--font-sans); font-size: 12px; font-weight: 600;
       color: var(--text-medium); cursor: pointer; transition: all 0.35s var(--ease-lux);
       letter-spacing: 0.5px;
     }
     .btn-clear:hover { background: #fff0f0; border-color: #E05050; color: #E05050; }
     .btn-submit {
-      flex: 1.5; padding: 13px 24px; border: none; border-radius: var(--radius-pill);
+      flex: 1.5; padding: 11px 20px; border: none; border-radius: var(--radius-pill);
       background: linear-gradient(135deg, #8B6F47 0%, #6B4F35 100%);
-      font-family: var(--font-sans); font-size: 13px; font-weight: 600;
+      font-family: var(--font-sans); font-size: 12px; font-weight: 600;
       color: white; cursor: pointer; transition: all 0.35s var(--ease-lux);
       letter-spacing: 0.5px;
     }
@@ -539,28 +556,62 @@
       box-shadow: 0 0 0 8px var(--bg-primary), 0 0 0 10px rgba(26,26,26,0.08);
     }
 
+    /* 4th node — reopen message card after close */
+    .flow-node-reopen { cursor: pointer; }
+    .flow-node-reopen .flow-node-icon {
+      transition: transform 0.3s var(--ease-lux);
+    }
+    .flow-node-reopen:hover .flow-node-icon {
+      transform: scale(1.12) rotate(5deg);
+    }
+    .flow-node-reopen .flow-node-num {
+      border-color: rgba(29,158,117,0.4);
+      color: #1D9E75;
+      box-shadow: 0 0 0 8px var(--bg-primary), 0 0 0 10px rgba(29,158,117,0.06);
+    }
+    .flow-node-reopen:hover .flow-node-num {
+      border-color: #1D9E75;
+      background: rgba(29,158,117,0.06);
+    }
+
     /* ============================================
        FLOW ACTION BUTTONS — below process cards
        ============================================ */
     .flow-actions {
       display: flex;
-      gap: 14px;
+      gap: 24px;
       justify-content: center;
       margin-top: 44px;
+    }
+    .flow-action-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .flow-action-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-light);
+      letter-spacing: 1px;
+      text-align: center;
     }
     .btn-flow-action {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 15px 36px;
-      border-radius: var(--radius-pill);
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
       border: none;
       font-family: var(--font-sans);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       letter-spacing: 1px;
       cursor: pointer;
       transition: all 0.45s var(--ease-lux);
+      flex-shrink: 0;
     }
     .btn-flow-primary {
       background: linear-gradient(135deg, #1D9E75 0%, #14855C 100%);
@@ -568,20 +619,20 @@
       box-shadow: 0 2px 16px rgba(29,158,117,0.22);
     }
     .btn-flow-primary:hover {
-      transform: translateY(-2px);
+      transform: translateY(-2px) scale(1.05);
       box-shadow: 0 6px 28px rgba(29,158,117,0.32);
     }
     .btn-flow-primary:active {
-      transform: translateY(0) scale(0.97);
+      transform: translateY(0) scale(0.95);
       transition: transform 0.1s;
     }
     .btn-flow-dot {
       display: inline-block;
-      width: 9px;
-      height: 9px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.85);
-      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 0 14px rgba(255,255,255,0.6);
       animation: pulseDot 1.8s ease-in-out infinite;
     }
     @keyframes pulseDot {
@@ -590,17 +641,19 @@
     }
     .btn-flow-reset {
       background: var(--bg-primary);
-      border: 1px solid var(--border);
+      border: 1.5px solid var(--border);
       color: var(--text-medium);
+      font-size: 20px;
+      font-weight: 400;
     }
     .btn-flow-reset:hover {
       border-color: var(--text-dark);
       color: var(--text-dark);
       background: var(--bg-warm);
-      transform: translateY(-1px);
+      transform: translateY(-2px) scale(1.05);
     }
     .btn-flow-reset:active {
-      transform: translateY(0) scale(0.97);
+      transform: translateY(0) scale(0.95);
       transition: transform 0.1s;
     }
 
@@ -618,130 +671,134 @@
       border-radius: 20px;
       max-width: 440px;
       width: calc(100% - 40px);
-      max-height: calc(100vh - 80px);
-      overflow-y: auto;
-      overflow-x: hidden;
       transform: translateY(30px) scale(0.96);
       transition: transform 0.6s var(--ease-spring);
       box-shadow: 0 32px 96px rgba(0,0,0,0.16), 0 8px 32px rgba(0,0,0,0.08);
-      scrollbar-width: thin;
-      scrollbar-color: transparent transparent;
     }
-    .msg-card::-webkit-scrollbar { width: 4px; }
-    .msg-card::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
-    .msg-card::-webkit-scrollbar-track { background: transparent; }
     .msg-card-overlay.active .msg-card { transform: translateY(0) scale(1); }
     /* Header */
     .msg-card-header {
       background: linear-gradient(135deg, #1D9E75 0%, #14855C 100%);
-      padding: 22px 28px;
-      display: flex; align-items: center; gap: 14px;
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 12px;
+      position: relative;
     }
+    .msg-card-close {
+      position: absolute; top: 12px; right: 14px;
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.1);
+      color: white; font-size: 14px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+      line-height: 1;
+    }
+    .msg-card-close:hover { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.6); }
     .msg-card-bot-avatar {
-      width: 44px; height: 44px; border-radius: 12px;
+      width: 36px; height: 36px; border-radius: 10px;
       background: rgba(255,255,255,0.18);
       display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
+      font-size: 18px;
       backdrop-filter: blur(4px);
     }
     .msg-card-bot-info { color: white; }
-    .msg-card-bot-name { font-size: 15px; font-weight: 600; line-height: 1.3; }
-    .msg-card-bot-sub { font-size: 11.5px; opacity: 0.7; }
+    .msg-card-bot-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
+    .msg-card-bot-sub { font-size: 10px; opacity: 0.7; }
     /* Body */
-    .msg-card-body { padding: 28px 28px 20px; }
+    .msg-card-body { padding: 20px 20px 16px; }
     /* Order banner */
     .msg-card-order-banner {
-      display: flex; align-items: center; gap: 12px;
-      margin-bottom: 24px; padding-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px; padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
     }
-    .msg-card-order-icon { font-size: 32px; line-height: 1; }
+    .msg-card-order-icon { font-size: 24px; line-height: 1; }
     .msg-card-order-title {
-      font-family: var(--font-serif); font-size: 19px; font-weight: 700;
+      font-family: var(--font-serif); font-size: 16px; font-weight: 700;
       color: var(--text-dark); line-height: 1.3;
     }
     .msg-card-order-badge {
-      display: inline-block; margin-top: 4px;
-      font-family: var(--font-sans); font-size: 10px; font-weight: 600;
-      padding: 3px 10px; border-radius: 6px;
+      display: inline-block; margin-top: 2px;
+      font-family: var(--font-sans); font-size: 9px; font-weight: 600;
+      padding: 2px 8px; border-radius: 5px;
       background: rgba(29,158,117,0.08); color: #1D9E75;
       letter-spacing: 1px;
     }
     /* Detail highlight box */
     .msg-card-detail-box {
       background: var(--bg-secondary);
-      border-radius: 14px;
-      padding: 18px 20px;
-      margin-bottom: 18px;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
     }
     .msg-card-detail-box .msg-card-detail-type {
-      font-size: 11px; font-weight: 600; color: var(--accent);
-      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;
+      font-size: 9px; font-weight: 600; color: var(--accent);
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px;
     }
     .msg-card-detail-box .msg-card-detail-text {
-      font-size: 15px; font-weight: 600; color: var(--text-dark); line-height: 1.4;
+      font-size: 13px; font-weight: 600; color: var(--text-dark); line-height: 1.35;
     }
     /* Info rows in a clean grid */
     .msg-card-info-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 12px 24px; margin-bottom: 6px;
+      gap: 8px 16px; margin-bottom: 4px;
     }
     .msg-card-info-item {
-      display: flex; flex-direction: column; gap: 2px;
+      display: flex; flex-direction: column; gap: 1px;
     }
     .msg-card-info-label {
-      font-size: 10.5px; font-weight: 600; letter-spacing: 1.2px;
+      font-size: 9px; font-weight: 600; letter-spacing: 1.2px;
       color: var(--text-light); text-transform: uppercase;
     }
     .msg-card-info-value {
-      font-size: 13.5px; font-weight: 500; color: var(--text-dark);
+      font-size: 12px; font-weight: 500; color: var(--text-dark);
     }
     .msg-card-info-value.highlight { color: #1D9E75; font-weight: 600; }
     /* Footer actions */
     .msg-card-footer {
-      padding: 20px 28px 28px;
-      display: flex; flex-direction: column; gap: 10px;
+      padding: 14px 20px 20px;
+      display: flex; flex-direction: column; gap: 8px;
     }
     .msg-card-actions-row {
-      display: flex; gap: 10px;
+      display: flex; gap: 8px;
     }
     .btn-msg-primary {
-      flex: 1; padding: 14px 20px; border: none; border-radius: 14px;
+      flex: 1; padding: 11px 16px; border: none; border-radius: 12px;
       background: linear-gradient(135deg, #1D9E75 0%, #14855C 100%);
-      font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+      font-family: var(--font-sans); font-size: 13px; font-weight: 600;
       color: white; cursor: pointer; letter-spacing: 0.5px;
       transition: all 0.35s var(--ease-lux);
     }
     .btn-msg-primary:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(29,158,117,0.3); }
     .btn-msg-primary.joined { background: #C8C0B0; pointer-events: none; opacity: 0.7; }
     .btn-msg-secondary {
-      flex: 1; padding: 14px 20px; border: 1px solid var(--border); border-radius: 14px;
-      background: white; font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+      flex: 1; padding: 11px 16px; border: 1px solid var(--border); border-radius: 12px;
+      background: white; font-family: var(--font-sans); font-size: 13px; font-weight: 600;
       color: var(--text-dark); cursor: pointer; letter-spacing: 0.5px;
       transition: all 0.35s var(--ease-lux);
     }
     .btn-msg-secondary:hover { background: var(--bg-secondary); border-color: var(--accent); }
     .btn-msg-reset {
-      padding: 8px; border: none; background: transparent;
-      font-size: 12px; color: var(--text-light); cursor: pointer;
+      padding: 6px; border: none; background: transparent;
+      font-size: 11px; color: var(--text-light); cursor: pointer;
       text-align: center; letter-spacing: 0.5px;
       transition: color 0.3s;
     }
     .btn-msg-reset:hover { color: var(--text-medium); }
     /* Join confirmation line */
     .join-confirm {
-      margin-top: 10px; padding: 10px 14px;
-      background: #F6FCF9; border-radius: 10px;
-      font-size: 12px; color: #14855C;
+      margin-top: 8px; padding: 8px 12px;
+      background: #F6FCF9; border-radius: 8px;
+      font-size: 11px; color: #14855C;
       border: 1px solid rgba(29,158,117,0.12);
     }
 
     /* Join success banner — prominent success notification */
     .join-success-banner {
-      margin-top: 16px; padding: 16px 18px;
+      margin-top: 10px; padding: 12px 14px;
       background: linear-gradient(135deg, #F0FBF7 0%, #E7F7F0 100%);
       border: 1px solid rgba(29,158,117,0.16);
-      border-radius: 14px;
+      border-radius: 12px;
       text-align: center;
       animation: successIn 0.5s var(--ease-spring);
     }
@@ -751,8 +808,8 @@
     }
     .join-success-icon {
       display: block;
-      font-size: 32px;
-      margin-bottom: 6px;
+      font-size: 24px;
+      margin-bottom: 4px;
       animation: successBounce 0.6s var(--ease-spring) 0.15s both;
     }
     @keyframes successBounce {
@@ -762,40 +819,40 @@
     }
     .join-success-title {
       font-family: var(--font-serif);
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 700;
       color: #14855C;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
       letter-spacing: 0.5px;
     }
     .join-success-info {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
       text-align: left;
     }
     .join-success-row {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
+      gap: 6px;
+      padding: 5px 10px;
       background: rgba(255,255,255,0.7);
-      border-radius: 8px;
-      font-size: 12px;
+      border-radius: 7px;
+      font-size: 11px;
     }
     .join-success-row-icon {
-      font-size: 16px;
+      font-size: 14px;
       flex-shrink: 0;
     }
     .join-success-row-label {
       color: var(--text-light);
-      font-size: 10px;
-      margin-bottom: 1px;
+      font-size: 9px;
+      margin-bottom: 0;
     }
     .join-success-row-value {
       color: var(--text-dark);
       font-weight: 600;
-      font-size: 13px;
+      font-size: 12px;
     }
   </style>
 </head>
@@ -882,13 +939,18 @@
 
     <!-- Action buttons -->
     <div class="flow-actions">
-      <button class="btn-flow-action btn-flow-primary" onclick="openFormModal()">
-        <span class="btn-flow-dot"></span>
-        点击体验
-      </button>
-      <button class="btn-flow-action btn-flow-reset" onclick="resetExperience()">
-        重置体验
-      </button>
+      <div class="flow-action-item">
+        <button class="btn-flow-action btn-flow-primary" onclick="openFormModal()">
+          <span class="btn-flow-dot"></span>
+        </button>
+        <span class="flow-action-label">点击体验</span>
+      </div>
+      <div class="flow-action-item">
+        <button class="btn-flow-action btn-flow-reset" onclick="resetExperience()">
+          ↻
+        </button>
+        <span class="flow-action-label">重置体验</span>
+      </div>
     </div>
   </section>
 
@@ -1056,6 +1118,7 @@
   <div class="msg-card-overlay" id="msgCardOverlay">
     <div class="msg-card">
       <div class="msg-card-header">
+        <button class="msg-card-close" onclick="closeMsgCard()" title="关闭">✕</button>
         <div class="msg-card-bot-avatar">🤖</div>
         <div class="msg-card-bot-info">
           <div class="msg-card-bot-name">群机器人 · 速拼校园</div>
@@ -1074,7 +1137,6 @@
       </div>
     </div>
   </div>
-
   <script>
     // === SCROLL PROGRESS ===
     (function() {
@@ -1250,14 +1312,19 @@
       card.classList.remove('active');
       card.style.display = 'none';
 
-      // Reset flow nodes
-      var nodes = document.querySelectorAll('.flow-node');
-      nodes.forEach(function(n) { n.classList.remove('flow-active'); });
-
       // Reset join button state
       var btn = document.getElementById('btnJoin');
       btn.textContent = '我要拼单';
       btn.classList.remove('joined');
+
+      // Deactivate 04 node reopen ability + clear order
+      var nodes = document.querySelectorAll('.flow-node');
+      nodes.forEach(function(n) { n.classList.remove('flow-active'); });
+      if (nodes[3]) {
+        nodes[3].classList.remove('flow-node-reopen');
+        delete nodes[3].dataset.reopenBound;
+      }
+      currentOrder = null;
 
       // Remove join confirmation & success banner
       var confirmEl = document.querySelector('.join-confirm');
@@ -1275,6 +1342,32 @@
       document.getElementById('formName').value = demoData.name;
       document.getElementById('formCreated').value = '';
       document.body.style.overflow = '';
+    }
+
+    // Close card without resetting — 04 flow node can reopen it
+    function closeMsgCard() {
+      var card = document.getElementById('msgCardOverlay');
+      card.classList.remove('active');
+      setTimeout(function() {
+        card.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 500);
+      // Activate 04 node as reopen trigger (only now that card has been seen)
+      var flowNodes = document.querySelectorAll('.flow-node');
+      if (flowNodes[3] && !flowNodes[3].dataset.reopenBound) {
+        flowNodes[3].dataset.reopenBound = '1';
+        flowNodes[3].classList.add('flow-node-reopen');
+        flowNodes[3].addEventListener('click', reopenMsgCard);
+      }
+    }
+
+    function reopenMsgCard() {
+      if (!currentOrder) return;
+      var card = document.getElementById('msgCardOverlay');
+      card.style.display = '';
+      card.offsetHeight;
+      card.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
 
     var joinCount = 0;
@@ -1399,6 +1492,7 @@
         flowNodes[0].classList.add('flow-node-clickable');
         flowNodes[0].addEventListener('click', openFormModal);
       }
+      // 4th flow node — listeners will be activated after card is shown+closed
     });
 
     // Close modals on overlay click
@@ -1409,7 +1503,7 @@
       if (e.target === this) closeJoinForm();
     });
     document.getElementById('msgCardOverlay').addEventListener('click', function(e) {
-      if (e.target === this) resetExperience();
+      if (e.target === this) closeMsgCard();
     });
   </script>
 
