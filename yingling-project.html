@@ -168,23 +168,6 @@
       max-width: 640px; font-size: 15px; line-height: 1.9; color: var(--text-medium);
     }
 
-    /* Double-Bezel cover card */
-    .cover-shell {
-      margin-top: 56px; padding: 6px; border: 1px solid var(--border);
-      border-radius: var(--radius-lg); background: var(--border);
-      position: relative; overflow: hidden;
-    }
-    .cover-core {
-      border-radius: 22px; overflow: hidden; position: relative;
-      background: var(--bg-secondary);
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.3);
-    }
-    .cover-core img { width: 100%; height: auto; display: block; transition: transform 1.2s var(--ease-lux); }
-    .cover-core:hover img { transform: scale(1.03); }
-    .cover-placeholder {
-      width: 100%; min-height: 360px; display: flex; align-items: center; justify-content: center;
-      font-size: 72px; background: linear-gradient(135deg, #e8e4dc 0%, #d8d2c4 100%);
-    }
 
     /* ============ SECTION DIVIDER ============ */
     .section-divider { border: none; border-top: 1px solid var(--border); margin: 0 auto; width: calc(100% - 80px); max-width: 1120px; }
@@ -346,11 +329,6 @@
       并已产出两部 B 站原创短片及系列视觉资产，
       探索传统文化在数字时代的新叙事形式。
     </p>
-    <!-- Double-Bezel cover -->
-    <div class="cover-shell"><div class="cover-core" id="heroCover">
-      <img src="images/yinglingling/yinglingling_views.png" alt="影灵灵三视图"
-           onerror="this.parentElement.innerHTML='<div class=\'cover-placeholder\'>🎭</div>'">
-    </div></div>
   </section>
 
   <hr class="section-divider">
