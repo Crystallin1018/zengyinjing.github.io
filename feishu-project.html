@@ -623,6 +623,29 @@
     </div>
   </div>
 
+  <!-- ============ JOIN FORM MODAL ============ -->
+  <div class="form-modal-overlay" id="joinFormOverlay">
+    <div class="form-modal" style="max-width:400px;">
+      <div class="form-modal-header">
+        <div class="form-modal-title">加入拼单</div>
+        <button class="form-modal-close" onclick="closeJoinForm()">✕</button>
+      </div>
+      <p style="font-size:13px;color:var(--text-light);margin-bottom:24px;">填写你的信息即可加入当前拼单</p>
+      <div class="form-group">
+        <label class="form-label">联系方式 <span class="form-required">*</span></label>
+        <input class="form-input" type="text" id="joinContact" value="12345">
+      </div>
+      <div class="form-group">
+        <label class="form-label">姓名 <span class="form-required">*</span></label>
+        <input class="form-input" type="text" id="joinName" value="X">
+      </div>
+      <div class="form-actions">
+        <button class="btn-clear" onclick="closeJoinForm()">取消</button>
+        <button class="btn-submit" onclick="submitJoinForm()">确认加入</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ============ MESSAGE CARD OVERLAY ============ -->
   <div class="msg-card-overlay" id="msgCardOverlay">
     <div class="msg-card">
@@ -775,6 +798,9 @@
       btn.textContent = '我要拼单';
       btn.classList.remove('joined');
       joinCount = 0;
+      // Clean up join confirmation
+      var confirmEl = document.querySelector('.join-confirm');
+      if (confirmEl) confirmEl.remove();
     }
 
     function resetExperience() {
@@ -788,6 +814,10 @@
       var btn = document.getElementById('btnJoin');
       btn.textContent = '我要拼单';
       btn.classList.remove('joined');
+
+      // Remove join confirmation from message card
+      var confirmEl = document.querySelector('.join-confirm');
+      if (confirmEl) confirmEl.remove();
 
       // Restore demo data
       document.getElementById('formType').value = demoData.type;
@@ -803,11 +833,34 @@
 
     var joinCount = 0;
     function joinOrder() {
+      // Open personal info form instead of directly joining
+      document.getElementById('joinFormOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeJoinForm() {
+      document.getElementById('joinFormOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function submitJoinForm() {
+      var jContact = document.getElementById('joinContact').value.trim();
+      var jName = document.getElementById('joinName').value.trim();
+      if (!jContact || !jName) {
+        alert('请填写联系方式和姓名');
+        return;
+      }
+
+      // Close join form
+      closeJoinForm();
+
+      // Mark as joined
       var btn = document.getElementById('btnJoin');
       joinCount++;
       btn.textContent = '已加入拼单 ✓';
       btn.classList.add('joined');
-      // Update the lack count in the card
+
+      // Update the lack count in the message card
       var lackEl = document.querySelector('.msg-card-field:nth-child(3) .msg-card-field-value');
       if (lackEl) {
         var currentLack = parseInt(lackEl.textContent) || 1;
@@ -818,6 +871,16 @@
           lackEl.style.color = '#1D9E75';
         }
       }
+
+      // Show a brief confirmation in the card — append a joined-by line
+      var body = document.getElementById('msgCardBody');
+      var existing = body.querySelector('.join-confirm');
+      if (existing) existing.remove();
+      var confirmEl = document.createElement('div');
+      confirmEl.className = 'join-confirm';
+      confirmEl.style.cssText = 'margin-top:12px;padding:10px 14px;background:#F6FCF9;border-radius:var(--radius-sm);font-size:12px;color:#14855C;border:1px solid rgba(29,158,117,0.15);';
+      confirmEl.innerHTML = '✅ ' + jName + '（' + jContact + '）已加入拼单';
+      body.appendChild(confirmEl);
     }
 
     function launchNew() {
@@ -854,6 +917,9 @@
     // Close modals on overlay click
     document.getElementById('formModalOverlay').addEventListener('click', function(e) {
       if (e.target === this) closeFormModal();
+    });
+    document.getElementById('joinFormOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeJoinForm();
     });
     document.getElementById('msgCardOverlay').addEventListener('click', function(e) {
       if (e.target === this) resetExperience();
