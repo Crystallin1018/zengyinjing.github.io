@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Serif+SC:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <style>
     /* ============================================
@@ -571,51 +572,222 @@
     }
 
     /* ============================================
-       SKILLS — Floating Tags
+       SKILLS — Glassmorphism Floating Nebula
        ============================================ */
     .skills-section { margin-top: 96px; }
     .skills-section h3 {
       font-family: var(--font-serif);
       font-size: 28px; font-weight: 600;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
       text-align: center;
     }
-    .floating-tags {
-      display: flex; flex-wrap: wrap; gap: 12px;
-      justify-content: center;
-      margin-top: 32px;
+    .skills-subtitle {
+      text-align: center;
+      font-size: 13px; color: var(--text-light);
+      margin-bottom: 8px;
+      font-style: italic;
     }
-    .float-tag {
+
+    /* Nebula container — fixed height for the floating cloud */
+    .skill-nebula {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      height: 440px;
+      overflow: visible;
+      cursor: default;
+    }
+
+    /* Individual floating skill tag */
+    .skill-tag {
+      position: absolute;
       display: inline-flex;
       align-items: center;
-      padding: 8px 20px;
+      gap: 7px;
+      padding: 10px 22px;
       border-radius: var(--radius-pill);
-      background: var(--bg-warm);
-      border: 1px solid var(--border-hairline);
-      color: var(--text-dark);
+      white-space: nowrap;
+      user-select: none;
+      cursor: pointer;
+      pointer-events: auto;
+      will-change: transform;
+
+      /* Glassmorphism core */
+      background: rgba(253, 251, 247, 0.52);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      border: 1px solid rgba(139, 111, 71, 0.14);
+
+      /* Layered shadow: ambient + directional + glow */
+      box-shadow:
+        0 2px 10px rgba(26, 26, 26, 0.03),
+        0 8px 28px rgba(139, 111, 71, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
       font-family: var(--font-sans);
+      color: var(--text-dark);
+      transition:
+        box-shadow 0.55s var(--ease-lux),
+        border-color 0.55s var(--ease-lux),
+        background 0.55s var(--ease-lux);
+    }
+
+    .skill-tag-icon {
+      font-size: 15px;
+      line-height: 1;
+      transition: transform 0.5s var(--ease-spring);
+    }
+
+    .skill-tag-text {
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.3px;
-      animation: floatTag 3s var(--ease-spring) infinite;
-      animation-delay: calc(var(--d, 0) * 0.15s);
-      cursor: default;
-      transition: all 0.5s var(--ease-lux);
     }
-    .float-tag:hover {
-      background: var(--text-dark);
-      color: var(--bg-primary);
+
+    /* Size tiers */
+    .skill-tag--lg { padding: 12px 26px; }
+    .skill-tag--lg .skill-tag-icon { font-size: 17px; }
+    .skill-tag--lg .skill-tag-text { font-size: 15px; font-weight: 600; }
+
+    .skill-tag--md { padding: 10px 22px; }
+    .skill-tag--md .skill-tag-icon { font-size: 15px; }
+    .skill-tag--md .skill-tag-text { font-size: 13px; }
+
+    .skill-tag--sm { padding: 8px 18px; }
+    .skill-tag--sm .skill-tag-icon { font-size: 13px; }
+    .skill-tag--sm .skill-tag-text { font-size: 12px; }
+
+    /* Hover state — brighten, scale, intensify glow */
+    .skill-tag:hover {
+      background: rgba(253, 251, 247, 0.78);
+      border-color: rgba(139, 111, 71, 0.32);
+      box-shadow:
+        0 4px 16px rgba(26, 26, 26, 0.06),
+        0 14px 40px rgba(139, 111, 71, 0.14),
+        0 0 40px rgba(139, 111, 71, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      z-index: 20 !important;
+    }
+    .skill-tag:hover .skill-tag-icon {
+      transform: scale(1.15);
+    }
+
+    /* Active/clicked state */
+    .skill-tag:active {
+      transform: scale(0.96) !important;
+      transition: transform 0.1s var(--ease-lux);
+    }
+
+    /* Breathing glow pulse on key tags */
+    .skill-tag--glow {
+      animation: breatheGlow 3.6s ease-in-out infinite;
+    }
+    @keyframes breatheGlow {
+      0%, 100% {
+        box-shadow:
+          0 2px 10px rgba(26, 26, 26, 0.03),
+          0 8px 28px rgba(139, 111, 71, 0.06),
+          0 0 24px rgba(139, 111, 71, 0.02),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      }
+      50% {
+        box-shadow:
+          0 2px 10px rgba(26, 26, 26, 0.03),
+          0 8px 28px rgba(139, 111, 71, 0.06),
+          0 0 42px rgba(139, 111, 71, 0.10),
+          inset 0 1px 0 rgba(255, 255, 255, 0.65);
+      }
+    }
+
+    /* ============================================
+       SKILL DETAIL POPUP — Glassmorphism Overlay
+       ============================================ */
+    .skill-popup-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 4000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(26, 26, 26, 0.28);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.45s var(--ease-expo);
+    }
+    .skill-popup-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .skill-popup {
+      background: rgba(253, 251, 247, 0.88);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(139, 111, 71, 0.18);
+      border-radius: 20px;
+      max-width: 440px;
+      width: calc(100% - 48px);
+      padding: 40px 36px 36px;
+      text-align: center;
+      box-shadow:
+        0 4px 12px rgba(26, 26, 26, 0.04),
+        0 32px 96px rgba(26, 26, 26, 0.18),
+        0 0 80px rgba(139, 111, 71, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      transform: translateY(36px) scale(0.92);
+      transition: transform 0.55s var(--ease-spring);
+    }
+    .skill-popup-overlay.active .skill-popup {
+      transform: translateY(0) scale(1);
+    }
+
+    .skill-popup-icon {
+      font-size: 52px;
+      margin-bottom: 16px;
+      display: block;
+      animation: popIn 0.55s var(--ease-spring);
+    }
+
+    .skill-popup-name {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text-dark);
+      letter-spacing: 0.5px;
+    }
+
+    .skill-popup-desc {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text-medium);
+      max-width: 340px;
+      margin: 0 auto 28px;
+    }
+
+    .skill-popup-close {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 24px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-primary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-medium);
+      cursor: pointer;
+      transition: all 0.4s var(--ease-lux);
+    }
+    .skill-popup-close:hover {
       border-color: var(--text-dark);
-      transform: translateY(-4px);
-      animation-play-state: paused;
+      color: var(--text-dark);
+      background: var(--bg-warm);
     }
-    @keyframes floatTag {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-    .tag-lg { font-size: 15px; padding: 10px 24px; }
-    .tag-md { font-size: 13px; }
-    .tag-sm { font-size: 12px; padding: 6px 16px; }
 
     /* ============================================
        PROJECTS — Magazine Spreads (Double-Bezel)
@@ -662,7 +834,7 @@
     .mag-spread {
       max-width: 1200px;
       width: calc(100% - 96px);
-      margin: 0 auto 56px;
+      margin: 0 auto 32px;
       aspect-ratio: 16 / 9;
       border-radius: var(--radius-bezel-outer);
       overflow: hidden;
@@ -1103,6 +1275,8 @@
 
       .timeline::before { left: 16px; }
       .timeline-dot { width: 33px; min-width: 33px; font-size: 12px; }
+
+      .skill-nebula { height: 380px; max-width: 100%; }
     }
 
     /* ============================================
@@ -1126,7 +1300,7 @@
       .mag-masthead-num { font-size: 12px; }
       .mag-masthead-text h2 { font-size: 24px; letter-spacing: 3px; }
       .mag-spread { width: calc(100% - 32px); }
-      .mag-typo { padding: 24px 20px 20px; max-width: 80%; }
+      .mag-typo { padding: 24px 20px 20px; max-width: 100% !important; top: auto !important; bottom: 0 !important; left: 0 !important; right: 0 !important; transform: none !important; text-align: left !important; align-items: flex-start !important; display: flex !important; flex-direction: column !important; }
       .mag-spread::after { width: 85%; height: 85%; }
       .mag-title { font-size: clamp(20px, 5vw, 26px); letter-spacing: 0px; }
       .mag-desc p { font-size: 13px; line-height: 1.7; }
@@ -1139,6 +1313,28 @@
       .footer-links { justify-content: center; }
 
       .contact-deco-left { display: none; }
+
+      .quadrant-grid { grid-template-columns: 1fr; }
+      .q-tl, .q-tr, .q-bl { border-right: none; border-bottom: 1px solid var(--border-hairline); }
+      .q-br { border-bottom: none; }
+      .q-cell { padding: 28px 20px; }
+
+      .skill-nebula { height: 340px; }
+      .skill-tag--lg { padding: 8px 18px; }
+      .skill-tag--lg .skill-tag-icon { font-size: 14px; }
+      .skill-tag--lg .skill-tag-text { font-size: 12px; }
+      .skill-tag--md { padding: 7px 16px; }
+      .skill-tag--md .skill-tag-icon { font-size: 12px; }
+      .skill-tag--md .skill-tag-text { font-size: 11px; }
+      .skill-tag--sm { padding: 6px 13px; }
+      .skill-tag--sm .skill-tag-icon { font-size: 11px; }
+      .skill-tag--sm .skill-tag-text { font-size: 10px; }
+    }
+
+    /* Reduced motion — disable floating animations */
+    @media (prefers-reduced-motion: reduce) {
+      .skill-tag { transition: none !important; }
+      .skill-tag--glow { animation: none; }
     }
 
     /* ============================================
@@ -1351,21 +1547,23 @@
       </div>
     </div>
 
-    <!-- ===== SKILLS ===== -->
+    <!-- ===== SKILLS — Glassmorphism Nebula ===== -->
     <div class="skills-section fade-up">
       <h3>Skills</h3>
+      <p class="skills-subtitle">Hover to feel the pull. Click to explore.</p>
 
-      <div class="floating-tags" id="floatingTags">
-        <span class="float-tag tag-lg" data-delay="0">Prompt 工程</span>
-        <span class="float-tag tag-md" data-delay="1">AIGC 内容生产</span>
-        <span class="float-tag tag-sm" data-delay="2">视觉一致性控制</span>
-        <span class="float-tag tag-md" data-delay="3">飞书自动化 / 低代码</span>
-        <span class="float-tag tag-sm" data-delay="4">跨团队协作与沟通</span>
-        <span class="float-tag tag-lg" data-delay="5">项目管理与执行</span>
-        <span class="float-tag tag-md" data-delay="6">创意叙事能力</span>
-        <span class="float-tag tag-sm" data-delay="7">快速学习新技术工具</span>
-        <span class="float-tag tag-md" data-delay="8">中英双语表达能力</span>
-        <span class="float-tag tag-sm" data-delay="9">用户研究与洞察</span>
+      <div class="skill-nebula" id="skillNebula">
+        <!-- Tags rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Skill Detail Popup -->
+    <div class="skill-popup-overlay" id="skillPopupOverlay">
+      <div class="skill-popup">
+        <span class="skill-popup-icon" id="skillPopupIcon"></span>
+        <div class="skill-popup-name" id="skillPopupName"></div>
+        <p class="skill-popup-desc" id="skillPopupDesc"></p>
+        <button class="skill-popup-close" onclick="closeSkillPopup()">关闭 · Close</button>
       </div>
     </div>
 
@@ -1737,9 +1935,255 @@
       });
     })();
 
-    // Set floating tag animation delays
-    document.querySelectorAll('.float-tag').forEach(function(tag, i) {
-      tag.style.setProperty('--d', i);
+    // =====================================================
+    //  FLOATING SKILL TAGS — Glassmorphism Nebula System
+    //  GSAP-powered floating orbits + magnetic mouse + popup
+    // =====================================================
+    (function() {
+      var nebula = document.getElementById('skillNebula');
+      if (!nebula) return;
+
+      // --- Skill Data ---
+      var skills = [
+        { icon: '🤖', text: 'Prompt 工程', size: 'lg', desc: '构建三层 Prompt 架构（角色层/风格层/叙事层），实现 AIGC 内容生产的精准控制与高质量输出。' },
+        { icon: '🎨', text: 'AIGC 内容生产', size: 'lg', glow: true, desc: '从概念到成品的全链路 AI 生成能力，涵盖图像、视频、3D 等多模态内容创作。' },
+        { icon: '🎯', text: '视觉一致性控制', size: 'md', glow: true, desc: '通过 Prompt 锁定、风格锁、材质统一、叙事连续性四策略，确保 AI 生成内容的视觉一致性。' },
+        { icon: '⚡', text: '飞书自动化 / 低代码', size: 'lg', desc: '基于飞书多维表+Webhook+消息卡片技术栈，设计并实现拼单自动化系统，效率提升 90%。' },
+        { icon: '🤝', text: '跨团队协作与沟通', size: 'sm', desc: '在多个跨学科项目中协调设计、技术、内容团队，确保项目目标一致、高效推进。' },
+        { icon: '📋', text: '项目管理与执行', size: 'md', desc: '从需求分析到最终交付的全周期项目管理能力，擅长在有限资源下实现最大产出。' },
+        { icon: '✍️', text: '创意叙事能力', size: 'sm', desc: '将品牌故事与用户需求融合为有情感温度的设计叙事，让作品不仅仅是功能性的。' },
+        { icon: '🔧', text: '快速学习新技术工具', size: 'md', desc: '对新兴 AI 工具和技术保持高度敏感，能快速上手并灵活运用于实际项目中。' },
+        { icon: '🌐', text: '中英双语表达能力', size: 'sm', desc: '流利的中英文沟通能力，能够在国际化的项目环境中高效协作与表达。' },
+        { icon: '🔍', text: '用户研究与洞察', size: 'md', desc: '运用用户调研、数据分析等方法深入理解目标用户，为设计决策提供坚实依据。' }
+      ];
+
+      // --- Build DOM ---
+      var tagEls = [];
+      skills.forEach(function(s, idx) {
+        var el = document.createElement('span');
+        el.className = 'skill-tag skill-tag--' + s.size + (s.glow ? ' skill-tag--glow' : '');
+        el.setAttribute('data-index', idx);
+        el.setAttribute('data-desc', s.desc);
+        el.innerHTML = '<span class="skill-tag-icon">' + s.icon + '</span><span class="skill-tag-text">' + s.text + '</span>';
+        el.addEventListener('click', function(e) { e.stopPropagation(); openSkillPopup(s.icon, s.text, s.desc); });
+        nebula.appendChild(el);
+        tagEls.push(el);
+      });
+
+      // --- Compute safe bounds for each tag ---
+      var nebulaRect;
+      function getBounds() {
+        nebulaRect = nebula.getBoundingClientRect();
+      }
+      getBounds();
+      window.addEventListener('resize', getBounds);
+
+      function getTagBounds(tag) {
+        var tr = tag.getBoundingClientRect();
+        return {
+          w: tr.width, h: tr.height,
+          minX: 0, maxX: nebulaRect.width - tr.width,
+          minY: 0, maxY: nebulaRect.height - tr.height
+        };
+      }
+
+      // --- Scatter tags randomly in container ---
+      function scatterTags() {
+        getBounds();
+        var used = [];
+        tagEls.forEach(function(tag) {
+          var b = getTagBounds(tag);
+          var x, y, tries = 0;
+          do {
+            x = Math.random() * b.maxX;
+            y = Math.random() * b.maxY;
+            tries++;
+          } while (tries < 40 && used.some(function(u) {
+            return Math.abs(u.x - x) < 100 && Math.abs(u.y - y) < 60;
+          }));
+          used.push({ x: x + b.w/2, y: y + b.h/2 });
+          gsap.set(tag, { x: x, y: y });
+        });
+      }
+
+      // --- GSAP floating orbits ---
+      // Each tag gets a unique elliptical orbit with different radius, speed, and phase
+      var orbitTweens = [];
+      function startFloating() {
+        tagEls.forEach(function(tag, i) {
+          var rx = 18 + Math.random() * 38;  // horizontal radius
+          var ry = 8 + Math.random() * 24;   // vertical radius
+          var dur = 4.5 + Math.random() * 6; // duration
+          var phase = Math.random() * Math.PI * 2; // random starting angle
+
+          // Build a timeline that draws an ellipse using sin/cos at 60fps
+          // We use a proxy object animated by GSAP, then apply sin/cos
+          var proxy = { angle: phase };
+          var startX = parseFloat(tag.style.getPropertyValue('--base-x') || gsap.getProperty(tag, 'x'));
+          var startY = parseFloat(tag.style.getPropertyValue('--base-y') || gsap.getProperty(tag, 'y'));
+
+          // Store base position
+          tag.style.setProperty('--base-x', startX);
+          tag.style.setProperty('--base-y', startY);
+
+          var tween = gsap.to(proxy, {
+            angle: phase + Math.PI * 2,
+            duration: dur,
+            repeat: -1,
+            ease: 'none',
+            onUpdate: function() {
+              var dx = Math.cos(proxy.angle) * rx;
+              var dy = Math.sin(proxy.angle) * ry;
+              // Clamp to bounds
+              var bx = getTagBounds(tag);
+              var nx = startX + dx;
+              var ny = startY + dy;
+              nx = Math.max(bx.minX, Math.min(bx.maxX, nx));
+              ny = Math.max(bx.minY, Math.min(bx.maxY, ny));
+              gsap.set(tag, { x: nx, y: ny });
+              // Store current position for magnet
+              tag._currentX = nx;
+              tag._currentY = ny;
+            }
+          });
+          orbitTweens.push(tween);
+        });
+      }
+
+      // --- Magnetic Mouse Effect ---
+      var mouseX = -999, mouseY = -999;
+      var magnetActive = false;
+
+      nebula.addEventListener('mousemove', function(e) {
+        if (!nebulaRect) getBounds();
+        mouseX = e.clientX - nebulaRect.left;
+        mouseY = e.clientY - nebulaRect.top;
+        magnetActive = true;
+      });
+
+      nebula.addEventListener('mouseleave', function() {
+        magnetActive = false;
+      });
+
+      // RAF loop for magnetic pull (runs independently from GSAP orbits)
+      var magnetRAF;
+      function magnetLoop() {
+        if (magnetActive) {
+          tagEls.forEach(function(tag) {
+            var cx = tag._currentX !== undefined ? tag._currentX + tag.getBoundingClientRect().width / 2 : 0;
+            var cy = tag._currentY !== undefined ? tag._currentY + tag.getBoundingClientRect().height / 2 : 0;
+            var dx = mouseX - cx;
+            var dy = mouseY - cy;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            var maxDist = 180; // magnetic radius
+
+            if (dist < maxDist && dist > 0) {
+              // Inverse-square attraction, stronger when closer
+              var force = (1 - dist / maxDist) * (1 - dist / maxDist) * 18;
+              var pullX = (dx / dist) * force;
+              var pullY = (dy / dist) * force;
+
+              var b = getTagBounds(tag);
+              var nx = (tag._currentX || 0) + pullX;
+              var ny = (tag._currentY || 0) + pullY;
+              nx = Math.max(b.minX, Math.min(b.maxX, nx));
+              ny = Math.max(b.minY, Math.min(b.maxY, ny));
+
+              gsap.to(tag, {
+                x: nx, y: ny,
+                duration: 0.3,
+                ease: 'power2.out',
+                overwrite: 'auto'
+              });
+              // Update stored position
+              tag._currentX = nx;
+              tag._currentY = ny;
+            }
+          });
+        }
+        magnetRAF = requestAnimationFrame(magnetLoop);
+      }
+
+      // --- Init ---
+      function initSkills() {
+        if (tagEls.length === 0) return;
+        scatterTags();
+        // Small delay then start floating orbits
+        setTimeout(function() {
+          // Re-read base positions after scatter
+          tagEls.forEach(function(tag) {
+            tag.style.setProperty('--base-x', gsap.getProperty(tag, 'x'));
+            tag.style.setProperty('--base-y', gsap.getProperty(tag, 'y'));
+            tag._currentX = gsap.getProperty(tag, 'x');
+            tag._currentY = gsap.getProperty(tag, 'y');
+          });
+          startFloating();
+        }, 300);
+        magnetRAF = requestAnimationFrame(magnetLoop);
+      }
+
+      // Start when visible (IntersectionObserver)
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              initSkills();
+              obs.unobserve(nebula);
+            }
+          });
+        }, { threshold: 0.2 });
+        obs.observe(nebula);
+      } else {
+        setTimeout(initSkills, 600);
+      }
+
+      // --- Resize handler — re-scatter ---
+      var resizeTimeout;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+          getBounds();
+          // Kill old orbit tweens
+          orbitTweens.forEach(function(t) { t.kill(); });
+          orbitTweens = [];
+          scatterTags();
+          setTimeout(function() {
+            tagEls.forEach(function(tag) {
+              tag.style.setProperty('--base-x', gsap.getProperty(tag, 'x'));
+              tag.style.setProperty('--base-y', gsap.getProperty(tag, 'y'));
+              tag._currentX = gsap.getProperty(tag, 'x');
+              tag._currentY = gsap.getProperty(tag, 'y');
+            });
+            startFloating();
+          }, 200);
+        }, 400);
+      });
+    })();
+
+    // --- Skill Popup ---
+    function openSkillPopup(icon, name, desc) {
+      document.getElementById('skillPopupIcon').textContent = icon;
+      document.getElementById('skillPopupName').textContent = name;
+      document.getElementById('skillPopupDesc').textContent = desc;
+      document.getElementById('skillPopupOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSkillPopup() {
+      document.getElementById('skillPopupOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close popup on overlay click
+    document.getElementById('skillPopupOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeSkillPopup();
+    });
+
+    // Close popup on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.getElementById('skillPopupOverlay').classList.contains('active')) {
+        closeSkillPopup();
+      }
     });
 
     // =====================================================
