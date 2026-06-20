@@ -169,25 +169,6 @@
       max-width: 640px; font-size: 15px; line-height: 1.9; color: var(--text-medium);
     }
 
-    /* Double-Bezel cover card */
-    .cover-shell {
-      margin-top: 56px; padding: 6px; border: 1px solid var(--border);
-      border-radius: var(--radius-lg); background: var(--border);
-      position: relative; overflow: hidden;
-    }
-    .cover-core {
-      border-radius: 22px; overflow: hidden; position: relative;
-      background: linear-gradient(135deg, #8B6F47 0%, #6B4F35 100%);
-      aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.08);
-    }
-    .cover-icon { font-size: 96px; opacity: 0.85; }
-    .cover-label {
-      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
-      font-family: var(--font-mono); font-size: 11px; letter-spacing: 3px;
-      color: rgba(255,255,255,0.6);
-    }
-
     /* ============ SECTION DIVIDER ============ */
     .section-divider { border: none; border-top: 1px solid var(--border); margin: 0 auto; width: calc(100% - 80px); max-width: 1120px; }
 
@@ -292,9 +273,150 @@
     @media (max-width: 560px) {
       .project-hero-title { letter-spacing: -0.5px; }
       .project-hero-meta { gap: 16px; }
-      .cover-core { aspect-ratio: 4/3; }
       .takeaway-core { padding: 36px 24px; }
     }
+
+    /* ============ FORM MODAL ============ */
+    .form-modal-overlay {
+      position: fixed; inset: 0; z-index: 3000; display: flex; align-items: center; justify-content: center;
+      background: rgba(26,26,26,0.35); backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s var(--ease-expo);
+    }
+    .form-modal-overlay.active { opacity: 1; pointer-events: auto; }
+    .form-modal {
+      background: white; border-radius: var(--radius-lg); max-width: 520px; width: calc(100% - 40px);
+      max-height: 85vh; overflow-y: auto; box-shadow: 0 24px 80px rgba(0,0,0,0.12);
+      padding: 40px 36px 32px;
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.5s var(--ease-spring);
+    }
+    .form-modal-overlay.active .form-modal { transform: translateY(0) scale(1); }
+    .form-modal-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;
+    }
+    .form-modal-title { font-family: var(--font-serif); font-size: 20px; font-weight: 700; }
+    .form-modal-close {
+      width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 50%;
+      background: none; cursor: pointer; font-size: 16px; color: var(--text-light);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s var(--ease-lux);
+    }
+    .form-modal-close:hover { background: var(--text-dark); color: white; border-color: var(--text-dark); }
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block; font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      color: var(--text-medium); margin-bottom: 6px; text-transform: uppercase;
+    }
+    .form-required { color: #E05050; margin-left: 2px; }
+    .form-input, .form-select, .form-datetime {
+      width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+      font-family: var(--font-sans); font-size: 14px; color: var(--text-dark);
+      background: var(--bg-primary); outline: none;
+      transition: border-color 0.3s var(--ease-lux), box-shadow 0.3s var(--ease-lux);
+    }
+    .form-input:focus, .form-select:focus, .form-datetime:focus {
+      border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .form-input::placeholder { color: var(--text-faint); }
+    .form-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%239C9488' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+    .form-readonly { background: var(--bg-secondary); color: var(--text-light); cursor: not-allowed; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-actions { display: flex; gap: 12px; margin-top: 32px; }
+    .btn-clear {
+      flex: 1; padding: 13px 24px; border: 1px solid var(--border); border-radius: var(--radius-pill);
+      background: white; font-family: var(--font-sans); font-size: 13px; font-weight: 600;
+      color: var(--text-medium); cursor: pointer; transition: all 0.35s var(--ease-lux);
+      letter-spacing: 0.5px;
+    }
+    .btn-clear:hover { background: #fff0f0; border-color: #E05050; color: #E05050; }
+    .btn-submit {
+      flex: 1.5; padding: 13px 24px; border: none; border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, #8B6F47 0%, #6B4F35 100%);
+      font-family: var(--font-sans); font-size: 13px; font-weight: 600;
+      color: white; cursor: pointer; transition: all 0.35s var(--ease-lux);
+      letter-spacing: 0.5px;
+    }
+    .btn-submit:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(139,111,71,0.25); }
+
+    /* Flow node active state */
+    .flow-node.flow-active {
+      border-color: #1D9E75 !important;
+      box-shadow: 0 0 0 4px rgba(29,158,117,0.08), 0 4px 16px rgba(29,158,117,0.06);
+      background: #F6FCF9;
+    }
+    .flow-node.flow-active .flow-node-icon { animation: popIn 0.4s var(--ease-spring); }
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      60% { transform: scale(1.15); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Message card overlay */
+    .msg-card-overlay {
+      position: fixed; inset: 0; z-index: 3100; display: flex; align-items: center; justify-content: center;
+      background: rgba(26,26,26,0.35); backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.5s var(--ease-expo);
+    }
+    .msg-card-overlay.active { opacity: 1; pointer-events: auto; }
+    .msg-card {
+      background: white; border-radius: var(--radius-lg); max-width: 420px; width: calc(100% - 40px);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.14);
+      overflow: hidden;
+      transform: translateY(30px) scale(0.96);
+      transition: transform 0.6s var(--ease-spring);
+    }
+    .msg-card-overlay.active .msg-card { transform: translateY(0) scale(1); }
+    .msg-card-top {
+      background: linear-gradient(135deg, #1D9E75 0%, #14855C 100%);
+      padding: 16px 20px; display: flex; align-items: center; gap: 10px;
+    }
+    .msg-card-bot-icon {
+      width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; font-size: 16px;
+    }
+    .msg-card-bot-name { font-size: 13px; font-weight: 600; color: white; }
+    .msg-card-bot-sub { font-size: 10px; color: rgba(255,255,255,0.7); }
+    .msg-card-body { padding: 20px; }
+    .msg-card-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+    .msg-card-field { display: flex; justify-content: space-between; padding: 6px 0; font-size: 12px; border-bottom: 1px solid var(--border); }
+    .msg-card-field:last-child { border-bottom: none; }
+    .msg-card-field-label { color: var(--text-light); }
+    .msg-card-field-value { color: var(--text-dark); font-weight: 500; text-align: right; }
+    .msg-card-actions {
+      display: flex; gap: 10px; padding: 0 20px 16px;
+    }
+    .btn-join {
+      flex: 1; padding: 12px; border: none; border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, #1D9E75 0%, #14855C 100%);
+      font-family: var(--font-sans); font-size: 13px; font-weight: 600;
+      color: white; cursor: pointer; letter-spacing: 1px;
+      transition: all 0.35s var(--ease-lux);
+    }
+    .btn-join:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(29,158,117,0.3); }
+    .btn-join.joined { background: #C8C0B0; pointer-events: none; }
+    .btn-launch {
+      flex: 1; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius-pill);
+      background: white; font-family: var(--font-sans); font-size: 13px; font-weight: 600;
+      color: var(--text-dark); cursor: pointer; letter-spacing: 1px;
+      transition: all 0.35s var(--ease-lux);
+    }
+    .btn-launch:hover { background: var(--bg-secondary); }
+    .msg-card-reset {
+      display: block; width: calc(100% - 40px); margin: 0 auto 20px;
+      padding: 11px; border: 1px solid var(--border); border-radius: var(--radius-pill);
+      background: white; font-family: var(--font-sans); font-size: 12px; font-weight: 600;
+      color: var(--text-medium); cursor: pointer; text-align: center;
+      transition: all 0.35s var(--ease-lux);
+    }
+    .msg-card-reset:hover { background: var(--bg-secondary); color: var(--text-dark); }
+
+    /* Clickable flow node */
+    .flow-node-clickable { cursor: pointer; }
+    .flow-node-clickable:hover { border-color: var(--accent) !important; }
   </style>
 </head>
 <body>
@@ -340,11 +462,38 @@
       涵盖表单收集、多维表格存储、自动化规则触发、群机器人卡片推送全链路，
       将人工处理流程彻底自动化，显著提升用户体验与拼单成功率。
     </p>
-    <!-- Double-Bezel cover -->
-    <div class="cover-shell"><div class="cover-core">
-      <div class="cover-icon">⚡</div>
-      <div class="cover-label">Feishu Automation System</div>
-    </div></div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ============ PROCESS FLOW ============ -->
+  <section class="detail-section" id="process">
+    <p class="section-label">Design Process</p>
+    <div class="flow-chart fade-up">
+      <div class="flow-node">
+        <div class="flow-node-icon">📋</div>
+        <div class="flow-node-title">信息收集</div>
+        <div class="flow-node-desc">飞书表单<br><span style="font-size:10px;color:var(--accent);cursor:pointer;">点击体验 →</span></div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-node-icon">🗄️</div>
+        <div class="flow-node-title">数据存储</div>
+        <div class="flow-node-desc">多维表格<br>自动建记录</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-node-icon">⚙️</div>
+        <div class="flow-node-title">自动化规则</div>
+        <div class="flow-node-desc">触发条件<br>执行动作</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-node-icon">🤖</div>
+        <div class="flow-node-title">消息推送</div>
+        <div class="flow-node-desc">群机器人<br>卡片通知</div>
+      </div>
+    </div>
   </section>
 
   <hr class="section-divider">
@@ -368,38 +517,6 @@
         <div class="data-label">平均响应时间<br><span style="font-size:10.5px;color:var(--text-light);">自动化触发至推送</span></div>
         <div class="data-before">原 30 分钟</div>
       </div></div>
-    </div>
-  </section>
-
-  <hr class="section-divider">
-
-  <!-- ============ PROCESS FLOW ============ -->
-  <section class="detail-section" id="process">
-    <p class="section-label">Design Process</p>
-    <div class="flow-chart fade-up">
-      <div class="flow-node">
-        <div class="flow-node-icon">📋</div>
-        <div class="flow-node-title">信息收集</div>
-        <div class="flow-node-desc">飞书表单<br>结构化字段</div>
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node">
-        <div class="flow-node-icon">🗄️</div>
-        <div class="flow-node-title">数据存储</div>
-        <div class="flow-node-desc">多维表格<br>自动建记录</div>
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node">
-        <div class="flow-node-icon">⚙️</div>
-        <div class="flow-node-title">自动化规则</div>
-        <div class="flow-node-desc">触发条件<br>执行动作</div>
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-node">
-        <div class="flow-node-icon">🤖</div>
-        <div class="flow-node-title">消息推送</div>
-        <div class="flow-node-desc">群机器人<br>卡片通知</div>
-      </div>
     </div>
   </section>
 
@@ -451,6 +568,82 @@
     </div>
   </footer>
 
+  <!-- ============ FORM PREVIEW MODAL ============ -->
+  <div class="form-modal-overlay" id="formModalOverlay">
+    <div class="form-modal">
+      <div class="form-modal-header">
+        <div class="form-modal-title">速拼校园 · 拼单表单</div>
+        <button class="form-modal-close" onclick="closeFormModal()">✕</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">拼单类型 <span class="form-required">*</span></label>
+        <select class="form-select" id="formType">
+          <option value="外卖" selected>外卖</option>
+          <option value="拼车">拼车</option>
+          <option value="教材打印">教材打印</option>
+          <option value="门票演出">门票演出</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">需求详情 <span class="form-required">*</span></label>
+        <input class="form-input" type="text" id="formDetail" placeholder="如"金拱门12号套餐"" value="金拱门12号套餐">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">当前缺几人 <span class="form-required">*</span></label>
+          <input class="form-input" type="number" id="formLack" min="1" max="10" value="2">
+        </div>
+        <div class="form-group">
+          <label class="form-label">联系方式</label>
+          <input class="form-input" type="text" id="formContact" value="1234567">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">开始时间</label>
+          <input class="form-datetime" type="datetime-local" id="formStart" value="2026-06-21T11:00">
+        </div>
+        <div class="form-group">
+          <label class="form-label">截止时间</label>
+          <input class="form-datetime" type="datetime-local" id="formEnd" value="2026-06-21T12:00">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">姓名 <span class="form-required">*</span></label>
+        <input class="form-input" type="text" id="formName" value="A">
+      </div>
+      <div class="form-group">
+        <label class="form-label">创建时间</label>
+        <input class="form-input form-readonly" type="text" id="formCreated" readonly placeholder="提交时自动生成">
+      </div>
+      <div class="form-actions">
+        <button class="btn-clear" onclick="clearForm()">清除表单</button>
+        <button class="btn-submit" onclick="submitForm()">提交</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MESSAGE CARD OVERLAY ============ -->
+  <div class="msg-card-overlay" id="msgCardOverlay">
+    <div class="msg-card">
+      <div class="msg-card-top">
+        <div class="msg-card-bot-icon">🤖</div>
+        <div>
+          <div class="msg-card-bot-name">群机器人 · 速拼校园</div>
+          <div class="msg-card-bot-sub">拼单推送通知</div>
+        </div>
+      </div>
+      <div class="msg-card-body" id="msgCardBody">
+        <div class="msg-card-title">🛒 新拼单请求</div>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-join" id="btnJoin" onclick="joinOrder()">我要拼单</button>
+        <button class="btn-launch" onclick="launchNew()">发起拼单</button>
+      </div>
+      <button class="msg-card-reset" onclick="resetExperience()">← 重置体验</button>
+    </div>
+  </div>
+
   <script>
     // === SCROLL PROGRESS ===
     (function() {
@@ -494,6 +687,177 @@
     }
 
     document.addEventListener('DOMContentLoaded', initScrollAnimations);
+
+    // ============ FORM MODAL LOGIC ============
+    var demoData = {
+      type: '外卖',
+      detail: '金拱门12号套餐',
+      lack: '2',
+      contact: '1234567',
+      start: '2026-06-21T11:00',
+      end: '2026-06-21T12:00',
+      name: 'A'
+    };
+
+    function openFormModal() {
+      document.getElementById('formModalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeFormModal() {
+      document.getElementById('formModalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function clearForm() {
+      document.getElementById('formType').value = '外卖';
+      document.getElementById('formDetail').value = '';
+      document.getElementById('formLack').value = '';
+      document.getElementById('formContact').value = '';
+      document.getElementById('formStart').value = '';
+      document.getElementById('formEnd').value = '';
+      document.getElementById('formName').value = '';
+      document.getElementById('formCreated').value = '';
+    }
+    function submitForm() {
+      var fd = {
+        type: document.getElementById('formType').value,
+        detail: document.getElementById('formDetail').value,
+        lack: document.getElementById('formLack').value,
+        contact: document.getElementById('formContact').value,
+        start: document.getElementById('formStart').value,
+        end: document.getElementById('formEnd').value,
+        name: document.getElementById('formName').value,
+        created: new Date().toLocaleString('zh-CN', { year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false })
+      };
+      document.getElementById('formCreated').value = fd.created;
+
+      // Close modal
+      closeFormModal();
+
+      // Flow animation: nodes light up sequentially
+      var nodes = document.querySelectorAll('.flow-node');
+      // nodes: 0=信息收集, 1=数据存储, 2=自动化规则, 3=消息推送
+
+      setTimeout(function() {
+        if (nodes[1]) nodes[1].classList.add('flow-active');
+      }, 400);
+
+      setTimeout(function() {
+        if (nodes[2]) nodes[2].classList.add('flow-active');
+      }, 1000);
+
+      setTimeout(function() {
+        if (nodes[3]) nodes[3].classList.add('flow-active');
+      }, 1600);
+
+      // Show message card
+      setTimeout(function() {
+        showMsgCard(fd);
+      }, 2200);
+    }
+
+    function showMsgCard(fd) {
+      var formatDT = function(dt) { return dt ? dt.replace('T',' ') : '-'; };
+      var typeMap = { '外卖': '🍔', '拼车': '🚗', '教材打印': '📚', '门票演出': '🎫' };
+      var body = document.getElementById('msgCardBody');
+      body.innerHTML = '<div class="msg-card-title">' + (typeMap[fd.type]||'📋') + ' 新拼单请求</div>' +
+        '<div class="msg-card-field"><span class="msg-card-field-label">拼单类型</span><span class="msg-card-field-value">' + fd.type + '</span></div>' +
+        '<div class="msg-card-field"><span class="msg-card-field-label">需求详情</span><span class="msg-card-field-value">' + fd.detail + '</span></div>' +
+        '<div class="msg-card-field"><span class="msg-card-field-label">当前缺几人</span><span class="msg-card-field-value">' + fd.lack + ' 人</span></div>' +
+        '<div class="msg-card-field"><span class="msg-card-field-label">开始时间</span><span class="msg-card-field-value">' + formatDT(fd.start) + '</span></div>' +
+        '<div class="msg-card-field"><span class="msg-card-field-label">截止时间</span><span class="msg-card-field-value">' + formatDT(fd.end) + '</span></div>' +
+        '<div class="msg-card-field"><span class="msg-card-field-label">联系方式</span><span class="msg-card-field-value">' + fd.contact + '</span></div>' +
+        '<div class="msg-card-field"><span class="msg-card-field-label">姓名</span><span class="msg-card-field-value">' + fd.name + '</span></div>' +
+        '<div class="msg-card-field"><span class="msg-card-field-label">创建时间</span><span class="msg-card-field-value">' + fd.created + '</span></div>';
+      document.getElementById('msgCardOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Reset join button state
+      var btn = document.getElementById('btnJoin');
+      btn.textContent = '我要拼单';
+      btn.classList.remove('joined');
+      joinCount = 0;
+    }
+
+    function resetExperience() {
+      document.getElementById('msgCardOverlay').classList.remove('active');
+
+      // Reset flow nodes
+      var nodes = document.querySelectorAll('.flow-node');
+      nodes.forEach(function(n) { n.classList.remove('flow-active'); });
+
+      // Reset join button state
+      var btn = document.getElementById('btnJoin');
+      btn.textContent = '我要拼单';
+      btn.classList.remove('joined');
+
+      // Restore demo data
+      document.getElementById('formType').value = demoData.type;
+      document.getElementById('formDetail').value = demoData.detail;
+      document.getElementById('formLack').value = demoData.lack;
+      document.getElementById('formContact').value = demoData.contact;
+      document.getElementById('formStart').value = demoData.start;
+      document.getElementById('formEnd').value = demoData.end;
+      document.getElementById('formName').value = demoData.name;
+      document.getElementById('formCreated').value = '';
+      document.body.style.overflow = '';
+    }
+
+    var joinCount = 0;
+    function joinOrder() {
+      var btn = document.getElementById('btnJoin');
+      joinCount++;
+      btn.textContent = '已加入拼单 ✓';
+      btn.classList.add('joined');
+      // Update the lack count in the card
+      var lackEl = document.querySelector('.msg-card-field:nth-child(3) .msg-card-field-value');
+      if (lackEl) {
+        var currentLack = parseInt(lackEl.textContent) || 1;
+        var newLack = Math.max(currentLack - 1, 0);
+        lackEl.textContent = newLack + ' 人';
+        if (newLack === 0) {
+          lackEl.textContent = '已满员 🎉';
+          lackEl.style.color = '#1D9E75';
+        }
+      }
+    }
+
+    function launchNew() {
+      document.getElementById('msgCardOverlay').classList.remove('active');
+      // Reset flow nodes
+      var nodes = document.querySelectorAll('.flow-node');
+      nodes.forEach(function(n) { n.classList.remove('flow-active'); });
+      // Reset join button
+      var btn = document.getElementById('btnJoin');
+      btn.textContent = '我要拼单';
+      btn.classList.remove('joined');
+      joinCount = 0;
+      // Restore demo and open form
+      document.getElementById('formType').value = demoData.type;
+      document.getElementById('formDetail').value = demoData.detail;
+      document.getElementById('formLack').value = demoData.lack;
+      document.getElementById('formContact').value = '';
+      document.getElementById('formStart').value = demoData.start;
+      document.getElementById('formEnd').value = demoData.end;
+      document.getElementById('formName').value = '';
+      document.getElementById('formCreated').value = '';
+      openFormModal();
+    }
+
+    // Make first flow node clickable to open form
+    document.addEventListener('DOMContentLoaded', function() {
+      var flowNodes = document.querySelectorAll('.flow-node');
+      if (flowNodes[0]) {
+        flowNodes[0].classList.add('flow-node-clickable');
+        flowNodes[0].addEventListener('click', openFormModal);
+      }
+    });
+
+    // Close modals on overlay click
+    document.getElementById('formModalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeFormModal();
+    });
+    document.getElementById('msgCardOverlay').addEventListener('click', function(e) {
+      if (e.target === this) resetExperience();
+    });
   </script>
 
 </body>
