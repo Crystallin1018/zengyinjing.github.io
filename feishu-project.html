@@ -617,11 +617,18 @@
       border-radius: 20px;
       max-width: 440px;
       width: calc(100% - 40px);
-      overflow: hidden;
+      max-height: calc(100vh - 80px);
+      overflow-y: auto;
+      overflow-x: hidden;
       transform: translateY(30px) scale(0.96);
       transition: transform 0.6s var(--ease-spring);
       box-shadow: 0 32px 96px rgba(0,0,0,0.16), 0 8px 32px rgba(0,0,0,0.08);
+      scrollbar-width: thin;
+      scrollbar-color: transparent transparent;
     }
+    .msg-card::-webkit-scrollbar { width: 4px; }
+    .msg-card::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+    .msg-card::-webkit-scrollbar-track { background: transparent; }
     .msg-card-overlay.active .msg-card { transform: translateY(0) scale(1); }
     /* Header */
     .msg-card-header {
@@ -640,7 +647,7 @@
     .msg-card-bot-name { font-size: 15px; font-weight: 600; line-height: 1.3; }
     .msg-card-bot-sub { font-size: 11.5px; opacity: 0.7; }
     /* Body */
-    .msg-card-body { padding: 28px 28px 0; }
+    .msg-card-body { padding: 28px 28px 20px; }
     /* Order banner */
     .msg-card-order-banner {
       display: flex; align-items: center; gap: 12px;
@@ -722,10 +729,72 @@
     .btn-msg-reset:hover { color: var(--text-medium); }
     /* Join confirmation line */
     .join-confirm {
-      margin-top: 14px; padding: 12px 16px;
-      background: #F6FCF9; border-radius: 12px;
-      font-size: 12.5px; color: #14855C;
+      margin-top: 10px; padding: 10px 14px;
+      background: #F6FCF9; border-radius: 10px;
+      font-size: 12px; color: #14855C;
       border: 1px solid rgba(29,158,117,0.12);
+    }
+
+    /* Join success banner — prominent success notification */
+    .join-success-banner {
+      margin-top: 16px; padding: 16px 18px;
+      background: linear-gradient(135deg, #F0FBF7 0%, #E7F7F0 100%);
+      border: 1px solid rgba(29,158,117,0.16);
+      border-radius: 14px;
+      text-align: center;
+      animation: successIn 0.5s var(--ease-spring);
+    }
+    @keyframes successIn {
+      0% { opacity: 0; transform: translateY(10px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .join-success-icon {
+      display: block;
+      font-size: 32px;
+      margin-bottom: 6px;
+      animation: successBounce 0.6s var(--ease-spring) 0.15s both;
+    }
+    @keyframes successBounce {
+      0% { transform: scale(0); }
+      55% { transform: scale(1.25); }
+      100% { transform: scale(1); }
+    }
+    .join-success-title {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 700;
+      color: #14855C;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+    .join-success-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+    .join-success-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 8px;
+      font-size: 12px;
+    }
+    .join-success-row-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .join-success-row-label {
+      color: var(--text-light);
+      font-size: 10px;
+      margin-bottom: 1px;
+    }
+    .join-success-row-value {
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 13px;
     }
   </style>
 </head>
@@ -1117,6 +1186,7 @@
     }
 
     function showMsgCard(fd) {
+      currentOrder = fd; // store for join flow to display creator info
       var formatDT = function(dt) { return dt ? dt.replace('T',' ') : '-'; };
       var typeMap = { '外卖': '🍔', '拼车': '🚗', '教材打印': '📚', '门票演出': '🎫' };
       var typeIcon = typeMap[fd.type] || '📋';
@@ -1167,9 +1237,11 @@
       btn.textContent = '我要拼单';
       btn.classList.remove('joined');
       joinCount = 0;
-      // Clean up join confirmation
+      // Clean up join confirmation & success banner
       var confirmEl = document.querySelector('.join-confirm');
       if (confirmEl) confirmEl.remove();
+      var successEl = document.querySelector('.join-success-banner');
+      if (successEl) successEl.remove();
     }
 
     function resetExperience() {
@@ -1186,9 +1258,11 @@
       btn.textContent = '我要拼单';
       btn.classList.remove('joined');
 
-      // Remove join confirmation from message card
+      // Remove join confirmation & success banner
       var confirmEl = document.querySelector('.join-confirm');
       if (confirmEl) confirmEl.remove();
+      var successEl = document.querySelector('.join-success-banner');
+      if (successEl) successEl.remove();
 
       // Restore demo data
       document.getElementById('formType').value = demoData.type;
@@ -1203,6 +1277,7 @@
     }
 
     var joinCount = 0;
+    var currentOrder = null; // stores the latest submitted order for join flow
     function joinOrder() {
       // Force-hide message card immediately (no transition)
       var card = document.getElementById('msgCardOverlay');
@@ -1229,6 +1304,12 @@
       // Close join form
       closeJoinForm();
 
+      // Re-show the message card so user can see success banner
+      var card = document.getElementById('msgCardOverlay');
+      card.style.display = '';
+      card.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
       // Mark as joined
       var btn = document.getElementById('btnJoin');
       joinCount++;
@@ -1247,13 +1328,41 @@
         }
       }
 
-      // Show a brief confirmation in the card — append a joined-by line
+      // Show success banner + creator info + join confirmation
       var body = document.getElementById('msgCardBody');
-      var existing = body.querySelector('.join-confirm');
-      if (existing) existing.remove();
+      // Remove old success/confirm elements
+      var oldSuccess = body.querySelector('.join-success-banner');
+      if (oldSuccess) oldSuccess.remove();
+      var oldConfirm = body.querySelector('.join-confirm');
+      if (oldConfirm) oldConfirm.remove();
+
+      // Success banner
+      var successEl = document.createElement('div');
+      successEl.className = 'join-success-banner';
+      successEl.innerHTML =
+        '<span class="join-success-icon">🎉</span>' +
+        '<div class="join-success-title">拼单成功！</div>' +
+        '<div class="join-success-info">' +
+          '<div class="join-success-row">' +
+            '<span class="join-success-row-icon">👤</span>' +
+            '<div>' +
+              '<div class="join-success-row-label">发起人</div>' +
+              '<div class="join-success-row-value">' + (currentOrder ? currentOrder.name : '未知') + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="join-success-row">' +
+            '<span class="join-success-row-icon">📱</span>' +
+            '<div>' +
+              '<div class="join-success-row-label">联系方式</div>' +
+              '<div class="join-success-row-value">' + (currentOrder ? currentOrder.contact : '未知') + '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      body.appendChild(successEl);
+
+      // Below the banner: who joined
       var confirmEl = document.createElement('div');
       confirmEl.className = 'join-confirm';
-      confirmEl.style.cssText = 'margin-top:12px;padding:10px 14px;background:#F6FCF9;border-radius:var(--radius-sm);font-size:12px;color:#14855C;border:1px solid rgba(29,158,117,0.15);';
       confirmEl.innerHTML = '✅ ' + jName + '（' + jContact + '）已加入拼单';
       body.appendChild(confirmEl);
     }
