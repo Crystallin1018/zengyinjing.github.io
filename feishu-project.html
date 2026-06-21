@@ -893,7 +893,7 @@
     </div>
     <p class="project-hero-desc">
       针对校园拼单场景中信息不对称、响应滞后的痛点，
-      独立设计了一套基于飞书（Lark/Feishu）的零代码自动化系统，
+      独立设计了一套基于飞书的零代码自动化系统，
       涵盖表单收集、多维表格存储、自动化规则触发、群机器人卡片推送全链路，
       将人工处理流程彻底自动化，显著提升用户体验与拼单成功率。
     </p>
@@ -1038,15 +1038,15 @@
       <div class="form-group">
         <label class="form-label">拼单类型 <span class="form-required">*</span></label>
         <select class="form-select" id="formType">
-          <option value="外卖" selected>外卖</option>
-          <option value="拼车">拼车</option>
+          <option value="外卖">外卖</option>
+          <option value="拼车" selected>拼车</option>
           <option value="教材打印">教材打印</option>
           <option value="门票演出">门票演出</option>
         </select>
       </div>
       <div class="form-group">
         <label class="form-label">需求详情 <span class="form-required">*</span></label>
-        <input class="form-input" type="text" id="formDetail" placeholder="如"金拱门12号套餐"" value="金拱门12号套餐">
+        <input class="form-input" type="text" id="formDetail" placeholder="如：从大学城到白云机场" value="从大学城到白云机场">
       </div>
       <div class="form-row">
         <div class="form-group">
@@ -1099,7 +1099,7 @@
       </div>
       <div class="form-group">
         <label class="form-label">姓名 <span class="form-required">*</span></label>
-        <input class="form-input" type="text" id="joinName" value="X">
+        <input class="form-input" type="text" id="joinName" value="用户1">
       </div>
       <div class="form-actions">
         <button class="btn-clear" onclick="closeJoinForm()">取消</button>
@@ -1178,8 +1178,8 @@
 
     // ============ FORM MODAL LOGIC ============
     var demoData = {
-      type: '外卖',
-      detail: '金拱门12号套餐',
+      type: '拼车',
+      detail: '从大学城到白云机场',
       lack: '2',
       contact: '1234567',
       start: '2026-06-21T11:00',
@@ -1196,7 +1196,7 @@
       document.body.style.overflow = '';
     }
     function clearForm() {
-      document.getElementById('formType').value = '外卖';
+      document.getElementById('formType').value = '拼车';
       document.getElementById('formDetail').value = '';
       document.getElementById('formLack').value = '';
       document.getElementById('formContact').value = '';
