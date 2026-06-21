@@ -1375,6 +1375,102 @@
       visibility: visible;
       transition-delay: 0.45s;
     }
+
+    /* ============================================
+       MOBILE RESPONSIVE (max-width: 768px)
+       Layout: Top to bottom flow + photo/buttons row
+       ============================================ */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        align-items: center;
+        padding: 70px 20px 40px;
+        min-height: auto;
+        gap: 0;
+      }
+
+      /* Reorder elements: title top, then photo+buttons */
+      .hero-right {
+        order: 1;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0;
+      }
+
+      .hero-photo-cta {
+        order: 2;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .hero-left {
+        width: 40%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .hero-photo-stack {
+        width: 100px;
+        height: 130px;
+        margin: 0;
+      }
+
+      .hero-photo-card {
+        width: 90px;
+        height: 120px;
+      }
+
+      .hero-photo-card.top {
+        transform: translate(-50%, -50%) rotate(-3deg);
+      }
+
+      .hero-photo-card.bottom {
+        transform: translate(-50%, -48%) rotate(2deg);
+      }
+
+      .hero-cta-row {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: 60%;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+      }
+
+      .hero-cta {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+
+      .hero-title {
+        font-size: clamp(28px, 7vw, 42px);
+        margin-bottom: 4px;
+      }
+
+      .hero-tagline {
+        font-size: clamp(14px, 3vw, 20px);
+        margin-bottom: 0;
+        line-height: 1.4;
+      }
+
+      .hero-deco-letter,
+      .scroll-indicator {
+        order: 3;
+      }
+    }
   </style>
 </head>
 
@@ -1408,7 +1504,9 @@
   <section class="hero" id="hero">
 
     <!-- Left column: photo card stack -->
-    <div class="hero-left">
+        <div class="hero-photo-cta">
+      <!-- Left: photo card stack -->
+<div class="hero-left">
       <div class="hero-photo-stack load-in" id="heroPhotoStack" data-hero-i="0">
         <div class="hero-photo-card top photo-top" onclick="switchHeroPhoto()">
           <img src="images/about-photo-1.jpg" alt="曾银晶 01" onerror="this.onerror=null;tryLoadExt(this,'images/about-photo-1')">
@@ -1419,24 +1517,28 @@
       </div>
     </div>
 
+    
+
+    <!-- CTA buttons (mobile: below photo) -->
+    <div class="hero-cta-row">
+      <a href="mailto:LinWan1020@163.com" class="hero-cta hero-cta--primary">
+        发送邮件
+        <span class="hero-cta-icon">↗</span>
+      </a>
+      <a href="曾银晶_简历.pdf" download class="hero-cta hero-cta--secondary">
+        下载简历
+        <span class="hero-cta-icon">↗</span>
+      </a>
+    </div>
+    </div>
+
+    <!-- Right column: text content -->
     <!-- Right column: text content -->
     <div class="hero-right">
       <h1 class="hero-title load-in" data-hero-i="0" id="heroTypewriter"></h1>
       <p class="hero-tagline">
         广东外语外贸大学 市场营销专业 2028届
       </p>
-
-      <!-- CTA buttons (row) -->
-      <div class="hero-cta-row">
-        <a href="mailto:LinWan1020@163.com" class="hero-cta hero-cta--primary">
-          发送邮件
-          <span class="hero-cta-icon">↗</span>
-        </a>
-        <a href="曾银晶_简历.pdf" download class="hero-cta hero-cta--secondary">
-          下载简历
-          <span class="hero-cta-icon">↗</span>
-        </a>
-      </div>
     </div>
 
     <!-- Large decorative letter -->
