@@ -656,6 +656,17 @@
       transform: translateY(0) scale(0.95);
       transition: transform 0.1s;
     }
+    .btn-flow-arrow {
+      display: none;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .btn-flow-reset .btn-flow-arrow {
+      display: inline-block;
+    }
+    .btn-flow-reset .btn-flow-dot {
+      display: none;
+    }
 
     /* Message card overlay */
     .msg-card-overlay {
@@ -936,19 +947,14 @@
       </div>
     </div>
 
-    <!-- Action buttons -->
-    <div class="flow-actions">
+    <!-- Action buttons: single toggle button -->
+    <div class="flow-actions" id="flowActions">
       <div class="flow-action-item">
-        <button class="btn-flow-action btn-flow-primary" onclick="openFormModal()">
-          <span class="btn-flow-dot"></span>
+        <button class="btn-flow-action btn-flow-primary" id="btnToggleExperience" onclick="toggleExperience()">
+          <span class="btn-flow-dot" id="toggleDot"></span>
+          <span class="btn-flow-arrow" id="toggleArrow">↻</span>
         </button>
-        <span class="flow-action-label">点击体验</span>
-      </div>
-      <div class="flow-action-item">
-        <button class="btn-flow-action btn-flow-reset" onclick="resetExperience()">
-          ↻
-        </button>
-        <span class="flow-action-label">重置体验</span>
+        <span class="flow-action-label" id="toggleLabel">点击体验</span>
       </div>
     </div>
   </section>
@@ -1128,7 +1134,6 @@
           <button class="btn-msg-primary" id="btnJoin" onclick="joinOrder()">我要拼单</button>
           <button class="btn-msg-secondary" id="btnLaunch" onclick="launchNew()">发起拼单</button>
         </div>
-        <button class="btn-msg-reset" onclick="resetExperience()">← 重置体验</button>
       </div>
     </div>
   </div>
@@ -1187,6 +1192,31 @@
       name: 'A'
     };
 
+    var experienceStarted = false;
+
+    function updateToggleButton() {
+      var btn = document.getElementById('btnToggleExperience');
+      var label = document.getElementById('toggleLabel');
+      if (!btn || !label) return;
+      if (experienceStarted) {
+        btn.className = 'btn-flow-action btn-flow-reset';
+        label.textContent = '重置体验';
+      } else {
+        btn.className = 'btn-flow-action btn-flow-primary';
+        label.textContent = '点击体验';
+      }
+    }
+
+    function toggleExperience() {
+      if (!experienceStarted) {
+        openFormModal();
+        experienceStarted = true;
+        updateToggleButton();
+      } else {
+        resetExperience();
+      }
+    }
+
     function openFormModal() {
       document.getElementById('formModalOverlay').classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -1240,6 +1270,8 @@
       // Show message card
       setTimeout(function() {
         showMsgCard(fd);
+        experienceStarted = true;
+        updateToggleButton();
       }, 2200);
     }
 
@@ -1337,6 +1369,8 @@
       document.getElementById('formName').value = demoData.name;
       document.getElementById('formCreated').value = '';
       document.body.style.overflow = '';
+      experienceStarted = false;
+      updateToggleButton();
     }
 
     // Close card without resetting — 04 flow node can reopen it
