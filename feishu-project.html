@@ -156,7 +156,7 @@
       transition: all 0.4s var(--ease-lux);
     }
     .project-eyebrow:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
-    .eyebrow-dot { width: 7px; height: 7px; background: #1D9E75; border-radius: 50%; animation: dotPulse 2.4s ease-in-out infinite; }
+    .eyebrow-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: dotPulse 2.4s ease-in-out infinite; }
     @keyframes dotPulse {
       0%, 100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.8); opacity: 0.5; }
@@ -459,9 +459,9 @@
       .tag-before, .tag-after { font-size: 9px; padding: 3px 10px; margin-right: 6px; }
 
       /* Fix datetime-local overflow on mobile */
-      .form-datetime { min-width: 0; width: 100%; max-width: 100%; font-size: 12px; padding: 10px 8px; }
-      .form-modal { width: calc(100% - 16px); max-width: 100%; }
-      .form-modal-inner { padding: 20px 14px 16px; border-radius: 16px; }
+      .form-datetime { min-width: 0; width: 100%; max-width: 100%; font-size: 10px; padding: 9px 4px; letter-spacing: -0.3px; }
+      .form-modal { width: calc(100% - 8px); max-width: 100%; }
+      .form-modal-inner { padding: 16px 8px 14px; border-radius: 16px; }
       .form-row { grid-template-columns: 1fr; gap: 8px; }
       .form-actions { flex-direction: column; }
     }
@@ -485,11 +485,11 @@
     }
     .form-modal-overlay.active .form-modal { transform: translateY(0) scale(1); }
     .form-modal-inner {
-      background: white; border-radius: 23px; padding: 28px 28px 24px;
+      background: white; border-radius: 23px; padding: 24px 28px 20px;
       box-shadow: inset 0 1px 1px rgba(255,255,255,0.4);
     }
     .form-modal-header {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
     }
     .form-modal-title { font-family: var(--font-serif); font-size: 18px; font-weight: 700; }
     .form-modal-close {
@@ -499,7 +499,7 @@
       transition: all 0.3s var(--ease-lux);
     }
     .form-modal-close:hover { background: var(--text-dark); color: white; border-color: var(--text-dark); }
-    .form-group { margin-bottom: 12px; }
+    .form-group { margin-bottom: 8px; }
     .form-label {
       display: block; font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
       color: var(--text-medium); margin-bottom: 4px; text-transform: uppercase;
@@ -518,7 +518,9 @@
     .form-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' fill='none' stroke='%239C9488' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
     .form-readonly { background: var(--bg-secondary); color: var(--text-light); cursor: not-allowed; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .form-actions { display: flex; gap: 10px; margin-top: 20px; }
+    .form-row-stack { grid-template-columns: 1fr; gap: 6px; }
+    .form-row-stack .form-group { margin-bottom: 0; }
+    .form-actions { display: flex; gap: 10px; margin-top: 14px; }
     .btn-clear {
       flex: 1; padding: 11px 20px; border: 1px solid var(--border); border-radius: var(--radius-pill);
       background: white; font-family: var(--font-sans); font-size: 12px; font-weight: 600;
@@ -537,12 +539,12 @@
 
     /* Flow node active state */
     .flow-node.flow-active .flow-node-num {
-      background: #1D9E75;
-      border-color: #1D9E75;
+      background: var(--accent);
+      border-color: var(--accent);
       color: white;
-      box-shadow: 0 0 0 10px rgba(29,158,117,0.12), 0 0 0 8px var(--bg-primary);
+      box-shadow: 0 0 0 10px rgba(139,111,71,0.12), 0 0 0 8px var(--bg-primary);
     }
-    .flow-node.flow-active .flow-node-label { color: #1D9E75; }
+    .flow-node.flow-active .flow-node-label { color: var(--accent); }
     .flow-node.flow-active .flow-node-icon { animation: popIn 0.4s var(--ease-spring); }
     @keyframes popIn {
       0% { transform: scale(0.8); opacity: 0.5; }
@@ -572,13 +574,13 @@
       transform: scale(1.12) rotate(5deg);
     }
     .flow-node-reopen .flow-node-num {
-      border-color: rgba(29,158,117,0.4);
-      color: #1D9E75;
-      box-shadow: 0 0 0 8px var(--bg-primary), 0 0 0 10px rgba(29,158,117,0.06);
+      border-color: rgba(139,111,71,0.4);
+      color: var(--accent);
+      box-shadow: 0 0 0 8px var(--bg-primary), 0 0 0 10px rgba(139,111,71,0.06);
     }
     .flow-node-reopen:hover .flow-node-num {
-      border-color: #1D9E75;
-      background: rgba(29,158,117,0.06);
+      border-color: var(--accent);
+      background: rgba(139,111,71,0.06);
     }
 
     /* ============================================
@@ -621,13 +623,13 @@
       flex-shrink: 0;
     }
     .btn-flow-primary {
-      background: linear-gradient(135deg, #1D9E75 0%, #14855C 100%);
+      background: linear-gradient(135deg, #8B6F47 0%, #6B4F35 100%);
       color: white;
-      box-shadow: 0 2px 16px rgba(29,158,117,0.22);
+      box-shadow: 0 2px 16px rgba(139,111,71,0.22);
     }
     .btn-flow-primary:hover {
       transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 6px 28px rgba(29,158,117,0.32);
+      box-shadow: 0 6px 28px rgba(139,111,71,0.32);
     }
     .btn-flow-primary:active {
       transform: translateY(0) scale(0.95);
@@ -696,7 +698,7 @@
     .msg-card-overlay.active .msg-card { transform: translateY(0) scale(1); }
     /* Header */
     .msg-card-header {
-      background: linear-gradient(135deg, #1D9E75 0%, #14855C 100%);
+      background: linear-gradient(135deg, #8B6F47 0%, #6B4F35 100%);
       padding: 16px 20px;
       display: flex; align-items: center; gap: 12px;
       position: relative;
@@ -739,7 +741,7 @@
       display: inline-block; margin-top: 2px;
       font-family: var(--font-sans); font-size: 9px; font-weight: 600;
       padding: 2px 8px; border-radius: 5px;
-      background: rgba(29,158,117,0.08); color: #1D9E75;
+      background: rgba(139,111,71,0.08); color: var(--accent);
       letter-spacing: 1px;
     }
     /* Detail highlight box */
@@ -771,7 +773,7 @@
     .msg-card-info-value {
       font-size: 12px; font-weight: 500; color: var(--text-dark);
     }
-    .msg-card-info-value.highlight { color: #1D9E75; font-weight: 600; }
+    .msg-card-info-value.highlight { color: var(--accent); font-weight: 600; }
     /* Footer actions */
     .msg-card-footer {
       padding: 14px 20px 20px;
@@ -782,12 +784,12 @@
     }
     .btn-msg-primary {
       flex: 1; padding: 11px 16px; border: none; border-radius: 12px;
-      background: linear-gradient(135deg, #1D9E75 0%, #14855C 100%);
+      background: linear-gradient(135deg, #8B6F47 0%, #6B4F35 100%);
       font-family: var(--font-sans); font-size: 13px; font-weight: 600;
       color: white; cursor: pointer; letter-spacing: 0.5px;
       transition: all 0.35s var(--ease-lux);
     }
-    .btn-msg-primary:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(29,158,117,0.3); }
+    .btn-msg-primary:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(139,111,71,0.3); }
     .btn-msg-primary.joined { background: #C8C0B0; pointer-events: none; opacity: 0.7; }
     .btn-msg-secondary {
       flex: 1; padding: 11px 16px; border: 1px solid var(--border); border-radius: 12px;
@@ -806,16 +808,16 @@
     /* Join confirmation line */
     .join-confirm {
       margin-top: 8px; padding: 8px 12px;
-      background: #F6FCF9; border-radius: 8px;
-      font-size: 11px; color: #14855C;
-      border: 1px solid rgba(29,158,117,0.12);
+      background: #F9F7F3; border-radius: 8px;
+      font-size: 11px; color: var(--accent);
+      border: 1px solid rgba(139,111,71,0.12);
     }
 
     /* Join success banner — prominent success notification */
     .join-success-banner {
       margin-top: 10px; padding: 12px 14px;
-      background: linear-gradient(135deg, #F0FBF7 0%, #E7F7F0 100%);
-      border: 1px solid rgba(29,158,117,0.16);
+      background: linear-gradient(135deg, #F9F7F3 0%, #F3EFE7 100%);
+      border: 1px solid rgba(139,111,71,0.16);
       border-radius: 12px;
       text-align: center;
       animation: successIn 0.5s var(--ease-spring);
@@ -839,7 +841,7 @@
       font-family: var(--font-serif);
       font-size: 13px;
       font-weight: 700;
-      color: #14855C;
+      color: var(--accent);
       margin-bottom: 6px;
       letter-spacing: 0.5px;
     }
@@ -1051,10 +1053,10 @@
       <div class="form-group">
         <label class="form-label">拼单类型 <span class="form-required">*</span></label>
         <select class="form-select" id="formType">
-          <option value="外卖">外卖</option>
           <option value="拼车" selected>拼车</option>
-          <option value="教材打印">教材打印</option>
-          <option value="门票演出">门票演出</option>
+          <option value="外卖">外卖</option>
+          <option value="校园网">校园网</option>
+          <option value="会员">会员</option>
         </select>
       </div>
       <div class="form-group">
@@ -1071,14 +1073,14 @@
           <input class="form-input" type="text" id="formContact" value="1234567">
         </div>
       </div>
-      <div class="form-row">
+      <div class="form-row form-row-stack">
         <div class="form-group">
           <label class="form-label">开始时间</label>
-          <input class="form-datetime" type="datetime-local" id="formStart" value="2026-06-21T11:00">
+          <input class="form-datetime" type="datetime-local" id="formStart" value="">
         </div>
         <div class="form-group">
           <label class="form-label">截止时间</label>
-          <input class="form-datetime" type="datetime-local" id="formEnd" value="2026-06-21T12:00">
+          <input class="form-datetime" type="datetime-local" id="formEnd" value="">
         </div>
       </div>
       <div class="form-group">
@@ -1194,10 +1196,19 @@
       detail: '从大学城到白云机场',
       lack: '2',
       contact: '1234567',
-      start: '2026-06-21T11:00',
-      end: '2026-06-21T12:00',
       name: 'A'
     };
+
+    function nowForInput() {
+      var d = new Date();
+      var pad = function(n) { return n < 10 ? '0' + n : n; };
+      return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate()) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+    }
+    function hoursLaterForInput(h) {
+      var d = new Date(Date.now() + h * 3600000);
+      var pad = function(n) { return n < 10 ? '0' + n : n; };
+      return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate()) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+    }
 
     var experienceStarted = false;
 
@@ -1225,6 +1236,8 @@
     }
 
     function openFormModal() {
+      document.getElementById('formStart').value = nowForInput();
+      document.getElementById('formEnd').value = hoursLaterForInput(2);
       document.getElementById('formModalOverlay').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -1285,7 +1298,7 @@
     function showMsgCard(fd) {
       currentOrder = fd; // store for join flow to display creator info
       var formatDT = function(dt) { return dt ? dt.replace('T',' ') : '-'; };
-      var typeMap = { '外卖': '🍔', '拼车': '🚗', '教材打印': '📚', '门票演出': '🎫' };
+      var typeMap = { '拼车': '🚗', '外卖': '🍔', '校园网': '📡', '会员': '⭐' };
       var typeIcon = typeMap[fd.type] || '📋';
       var body = document.getElementById('msgCardBody');
       body.innerHTML =
@@ -1371,8 +1384,8 @@
       document.getElementById('formDetail').value = demoData.detail;
       document.getElementById('formLack').value = demoData.lack;
       document.getElementById('formContact').value = demoData.contact;
-      document.getElementById('formStart').value = demoData.start;
-      document.getElementById('formEnd').value = demoData.end;
+      document.getElementById('formStart').value = nowForInput();
+      document.getElementById('formEnd').value = hoursLaterForInput(2);
       document.getElementById('formName').value = demoData.name;
       document.getElementById('formCreated').value = '';
       document.body.style.overflow = '';
@@ -1454,7 +1467,7 @@
         lackEl.textContent = newLack + ' 人';
         if (newLack === 0) {
           lackEl.textContent = '已满员 🎉';
-          lackEl.style.color = '#1D9E75';
+          lackEl.style.color = '#8B6F47';
         }
       }
 
@@ -1514,8 +1527,8 @@
       document.getElementById('formDetail').value = demoData.detail;
       document.getElementById('formLack').value = demoData.lack;
       document.getElementById('formContact').value = '';
-      document.getElementById('formStart').value = demoData.start;
-      document.getElementById('formEnd').value = demoData.end;
+      document.getElementById('formStart').value = nowForInput();
+      document.getElementById('formEnd').value = hoursLaterForInput(2);
       document.getElementById('formName').value = '';
       document.getElementById('formCreated').value = '';
       openFormModal();
