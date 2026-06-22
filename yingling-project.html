@@ -357,12 +357,15 @@
       overflow: hidden;
       cursor: grab;
       padding: 0 40px;
+      touch-action: pan-x; /* allow horizontal swipe */
+      -webkit-overflow-scrolling: touch;
     }
     .gallery-strip-container.dragging { cursor: grabbing; }
     .gallery-strip {
       display: flex;
       gap: 20px;
       transition: none;
+      will-change: transform;
     }
     .gallery-strip-item {
       flex-shrink: 0;
@@ -372,6 +375,9 @@
       box-shadow: 0 12px 48px rgba(0,0,0,0.18);
       transition: box-shadow 0.5s ease;
       position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
     }
     .gallery-strip-item:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.28); }
     .gallery-strip-item img {
@@ -796,7 +802,7 @@
       container.addEventListener('mousedown', onStripStart);
       window.addEventListener('mousemove', onStripMove);
       window.addEventListener('mouseup', onStripEnd);
-      container.addEventListener('touchstart', onStripStart, { passive: false });
+      container.addEventListener('touchstart', onStripStart, { passive: true });
       window.addEventListener('touchmove', onStripMove, { passive: false });
       window.addEventListener('touchend', onStripEnd);
 

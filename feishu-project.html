@@ -457,6 +457,13 @@
         padding-left: 0; font-size: 13px; font-weight: 700; margin-bottom: 4px;
       }
       .tag-before, .tag-after { font-size: 9px; padding: 3px 10px; margin-right: 6px; }
+
+      /* Fix datetime-local overflow on mobile */
+      .form-datetime { min-width: 0; width: 100%; max-width: 100%; font-size: 12px; padding: 10px 8px; }
+      .form-modal { width: calc(100% - 16px); max-width: 100%; }
+      .form-modal-inner { padding: 20px 14px 16px; border-radius: 16px; }
+      .form-row { grid-template-columns: 1fr; gap: 8px; }
+      .form-actions { flex-direction: column; }
     }
 
     /* ============ FORM MODAL ============ */
