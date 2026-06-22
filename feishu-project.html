@@ -68,73 +68,129 @@
       transition: transform 100ms linear;
     }
 
-    /* ============ FLOATING GLASS NAV ============ */
-    .nav-glass {
-      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-      z-index: 1000; width: calc(100% - 48px); max-width: 720px;
-      background: rgba(253,251,247,0.78);
+    /* ============ NAVIGATION — Floating Glass Pill (Detached) ============ */
+    .navbar {
+      position: fixed;
+      top: 20px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(253, 251, 247, 0.72);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
       border: 1px solid var(--border);
       border-radius: var(--radius-pill);
-      padding: 10px 24px;
+      padding: 10px 28px;
+      height: 52px;
       display: flex; align-items: center; justify-content: space-between;
-      transition: transform 0.5s var(--ease-lux), background 0.5s var(--ease-lux);
+      gap: 40px;
+      box-shadow: 0 1px 2px rgba(26,26,26,0.03), 0 8px 24px rgba(26,26,26,0.06);
+      transition: all 0.6s var(--ease-lux);
     }
-    .nav-glass.scrolled { transform: translateX(-50%) translateY(-4px); background: rgba(253,251,247,0.92); }
-    .nav-brand {
-      font-family: var(--font-serif); font-size: 14px; font-weight: 600; letter-spacing: 2px;
+    .navbar.scrolled {
+      top: 12px;
+      background: rgba(253, 251, 247, 0.88);
+      box-shadow: 0 1px 2px rgba(26,26,26,0.04), 0 12px 36px rgba(26,26,26,0.08);
     }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 14px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      white-space: nowrap;
+    }
+
     .nav-links { display: flex; gap: 32px; align-items: center; }
     .nav-link {
-      font-size: 12px; font-weight: 500; letter-spacing: 0.5px;
-      color: var(--text-medium); transition: color 0.35s var(--ease-lux);
+      font-family: var(--font-sans);
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: opacity 0.4s var(--ease-lux);
+      position: relative;
+      color: var(--text-dark);
     }
-    .nav-link:hover { color: var(--text-dark); opacity: 1; }
-    .nav-cta {
-      font-size: 11px; font-weight: 600; letter-spacing: 1px;
-      padding: 7px 18px; border: 1px solid rgba(26,26,26,0.15);
-      border-radius: var(--radius-pill);
-      transition: all 0.4s var(--ease-lux);
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--text-dark);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s var(--ease-lux);
     }
-    .nav-cta:hover { background: var(--text-dark); color: var(--bg-primary); opacity: 1; }
+    .nav-link:hover { opacity: 1; }
+    .nav-link:hover::after { transform: scaleX(1); }
 
-    /* Hamburger */
+    /* Mobile menu button */
     .menu-toggle {
-      display: none; flex-direction: column; gap: 5px; cursor: pointer;
-      padding: 6px; position: relative; width: 28px; height: 20px;
+      display: none;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 5px;
+      width: 28px; height: 22px;
+      position: relative;
     }
     .menu-toggle span {
-      display: block; position: absolute; left: 4px; width: 20px; height: 1.5px;
-      background: var(--text-dark); transition: all 0.5s var(--ease-lux); border-radius: 1px;
+      display: block;
+      width: 22px; height: 1.5px;
+      background: var(--text-dark);
+      position: absolute;
+      left: 3px;
+      transition: all 0.5s var(--ease-spring);
     }
     .menu-toggle span:nth-child(1) { top: 4px; }
-    .menu-toggle span:nth-child(2) { top: 9px; }
-    .menu-toggle span:nth-child(3) { top: 14px; }
-    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg); top: 9px; }
-    .menu-toggle.active span:nth-child(2) { transform: scaleX(0); opacity: 0; }
-    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg); top: 9px; }
+    .menu-toggle span:nth-child(2) { top: 11px; }
+    .menu-toggle span:nth-child(3) { top: 18px; }
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 11px;
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 11px;
+    }
 
-    /* Fullscreen glass mobile overlay */
-    .mobile-overlay {
-      display: none; position: fixed; inset: 0; z-index: 999;
-      background: rgba(253,251,247,0.85);
+    /* Mobile nav — Fullscreen glass overlay with staggered reveal */
+    .mobile-nav {
+      opacity: 0;
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(253, 251, 247, 0.92);
       backdrop-filter: blur(40px) saturate(180%);
       -webkit-backdrop-filter: blur(40px) saturate(180%);
-      flex-direction: column; align-items: center; justify-content: center;
+      z-index: 999;
+      flex-direction: column;
+      align-items: center; justify-content: flex-start;
+      padding-top: 100px;
+      gap: 0;
+      transition: opacity 0.6s var(--ease-lux);
     }
-    .mobile-overlay.show { display: flex; }
-    .mobile-nav-link {
-      font-family: var(--font-serif); font-size: 32px; font-weight: 700;
-      color: var(--text-dark); margin: 12px 0;
-      opacity: 0; transform: translateY(20px);
-      transition: all 0.6s var(--ease-expo);
+    .mobile-nav.show {
+      opacity: 1;
+      pointer-events: auto;
+      display: flex;
     }
-    .mobile-overlay.show .mobile-nav-link { opacity: 1; transform: translateY(0); }
-    .mobile-nav-link:nth-child(1) { transition-delay: 100ms; }
-    .mobile-nav-link:nth-child(2) { transition-delay: 160ms; }
-    .mobile-nav-link:nth-child(3) { transition-delay: 220ms; }
-    .mobile-nav-link:nth-child(4) { transition-delay: 280ms; }
+    .mobile-nav a {
+      font-family: var(--font-serif);
+      font-size: 32px; font-weight: 600;
+      padding: 20px 0;
+      opacity: 0;
+      transform: translateY(48px);
+      transition: opacity 0.7s var(--ease-expo), transform 0.7s var(--ease-expo);
+    }
+    .mobile-nav.show a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mobile-nav.show a:nth-child(1) { transition-delay: 100ms; }
+    .mobile-nav.show a:nth-child(2) { transition-delay: 180ms; }
+    .mobile-nav.show a:nth-child(3) { transition-delay: 260ms; }
+    .mobile-nav.show a:nth-child(4) { transition-delay: 340ms; }
 
     /* ============ BACK LINK ============ */
     .back-link {
@@ -399,9 +455,8 @@
     /* ============ RESPONSIVE ============ */
     @media (max-width: 900px) {
       .nav-links { display: none; }
-      .nav-cta { display: none; }
       .menu-toggle { display: flex; }
-      .nav-glass { width: calc(100% - 32px); top: 14px; padding: 8px 18px; }
+      .navbar { padding: 8px 20px; gap: 20px; top: 12px; }
       .back-link { left: 18px; top: 78px; }
       .project-hero { padding: 150px 20px 56px; }
       .detail-section { padding: 80px 20px; }
@@ -880,24 +935,29 @@
 
   <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- ============ FLOATING GLASS NAV ============ -->
-  <nav class="nav-glass" id="navbar">
-    <a href="index.html" class="nav-brand">曾银晶</a>
+  <!-- ============ NAVIGATION — Floating Glass Pill ============ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">曾银晶</div>
+
     <div class="nav-links">
       <a href="index.html#hero" class="nav-link">首页</a>
       <a href="index.html#about" class="nav-link">关于</a>
       <a href="index.html#projects" class="nav-link">项目</a>
       <a href="index.html#contact" class="nav-link">联系</a>
     </div>
-    <div class="menu-toggle" id="menuToggle" onclick="toggleMobileNav()"><span></span><span></span><span></span></div>
+
+    <!-- Mobile hamburger — X morph -->
+    <div class="menu-toggle" id="menuToggle" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
   </nav>
 
-  <!-- Fullscreen glass mobile overlay -->
-  <div class="mobile-overlay" id="mobileOverlay">
-    <a href="index.html#hero" class="mobile-nav-link" onclick="closeMobileNav()">首页</a>
-    <a href="index.html#about" class="mobile-nav-link" onclick="closeMobileNav()">关于</a>
-    <a href="index.html#projects" class="mobile-nav-link" onclick="closeMobileNav()">项目</a>
-    <a href="index.html#contact" class="mobile-nav-link" onclick="closeMobileNav()">联系</a>
+  <!-- Mobile navigation — Fullscreen glass overlay -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html#hero" onclick="closeMobileNav()">首页</a>
+    <a href="index.html#about" onclick="closeMobileNav()">关于</a>
+    <a href="index.html#projects" onclick="closeMobileNav()">项目</a>
+    <a href="index.html#contact" onclick="closeMobileNav()">联系</a>
   </div>
 
   <a href="index.html#projects" class="back-link"><span>←</span> 返回项目</a>
@@ -1168,12 +1228,22 @@
 
     // === MOBILE NAV (X morph + fullscreen glass) ===
     function toggleMobileNav() {
-      document.getElementById('menuToggle').classList.toggle('active');
-      document.getElementById('mobileOverlay').classList.toggle('show');
+      var toggle = document.getElementById('menuToggle');
+      var nav = document.getElementById('mobileNav');
+      toggle.classList.toggle('active');
+      nav.classList.toggle('show');
+      if (nav.classList.contains('show')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
     }
     function closeMobileNav() {
-      document.getElementById('menuToggle').classList.remove('active');
-      document.getElementById('mobileOverlay').classList.remove('show');
+      var toggle = document.getElementById('menuToggle');
+      var nav = document.getElementById('mobileNav');
+      if (toggle) toggle.classList.remove('active');
+      if (nav) nav.classList.remove('show');
+      document.body.style.overflow = '';
     }
 
     // === INTERSECTION OBSERVER REVEALS ===
